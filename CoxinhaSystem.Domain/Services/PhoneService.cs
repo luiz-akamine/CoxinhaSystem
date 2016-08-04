@@ -33,7 +33,7 @@ namespace CoxinhaSystem.Domain.Services
             //Verificando se existe
             if (GetById(phone.Id) != null)
             {
-                throw new Exception("phone already exists");
+                throw new ArgumentException("phone already exists");
             }
 
             _unitOfWork.Begin();
@@ -43,6 +43,17 @@ namespace CoxinhaSystem.Domain.Services
 
         public void Update(Phone phone)
         {
+            //Checando parâmetro
+            if (phone == null)
+            {
+                throw new ArgumentNullException();
+            }
+            //Verificando se existe
+            if (GetById(phone.Id) == null)
+            {
+                throw new ArgumentException("phone not exists");
+            }
+
             _unitOfWork.Begin();
             _phoneRepository.Update(phone);
             _unitOfWork.Commit();

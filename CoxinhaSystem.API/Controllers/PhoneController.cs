@@ -24,24 +24,73 @@ namespace CoxinhaSystem.API.Controllers
 
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _phoneService.GetAll().ToList());
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, _phoneService.GetAll().ToList());
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
 
         public HttpResponseMessage Get(int id)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _phoneService.GetById(id));
+            try
+            {
+                var phone = _phoneService.GetById(id);
+
+                if (phone == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, phone);
+                }
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
 
         public HttpResponseMessage Post(Phone phone)
         {
-            _phoneService.Post(phone);
-            return Request.CreateResponse(HttpStatusCode.OK);
+            try
+            {
+                _phoneService.Post(phone);
+                return Request.CreateResponse(HttpStatusCode.Created);
+            }
+            catch (ArgumentException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
 
         public HttpResponseMessage Put(Phone phone)
         {
-            _phoneService.Update(phone);
-            return Request.CreateResponse(HttpStatusCode.OK);
+            try
+            {
+                _phoneService.Update(phone);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ArgumentNullException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+            catch (ArgumentException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
     }
 }

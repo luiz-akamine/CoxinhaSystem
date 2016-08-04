@@ -171,7 +171,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoxinhaSystem.Domain\3 - CoxinhaSystem.Domain.csproj">
       <Project>{4D4A8A41-8014-4F42-87AA-54E476BEBD09}</Project>
