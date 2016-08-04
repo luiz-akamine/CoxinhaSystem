@@ -41,7 +41,7 @@ namespace CoxinhaSystem.Domain.Services
             _unitOfWork.Commit();
         }
 
-        public void Put(Phone phone)
+        public void Update(Phone phone)
         {
             _unitOfWork.Begin();
             _phoneRepository.Update(phone);

@@ -8,6 +8,6 @@ namespace CoxinhaSystem.Domain.Interfaces.Services
         IQueryable<Phone> GetAll();
         Phone GetById(int id);
         void Post(Phone phone);
-        void Put(Phone phone);
+        void Update(Phone phone);
     }
 }

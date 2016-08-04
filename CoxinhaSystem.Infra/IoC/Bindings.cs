@@ -19,7 +19,7 @@ namespace CoxinhaSystem.Infra.IoC
         {
             //Infra
             container.Register<IRepositoryManager, RepositoryManager>();
-            container.Register<IUnityOfWork, UnitOfWork>();
+            container.Register<IUnityOfWork, UnitOfWork>(Lifestyle.Scoped);
             container.Register(typeof(IBaseRepository<>), typeof(BaseRepository<>), Lifestyle.Scoped);
             container.Register(typeof(ICustomerRepository), typeof(CustomerRepository), Lifestyle.Scoped);
             container.Register(typeof(IOrderItemRepository), typeof(OrderItemRepository), Lifestyle.Scoped);
@@ -29,6 +29,7 @@ namespace CoxinhaSystem.Infra.IoC
 
             //Services
             container.Register(typeof(ICustomerService), typeof(CustomerService), Lifestyle.Scoped);
+            container.Register(typeof(IPhoneService), typeof(PhoneService), Lifestyle.Scoped);
 
             //API
             //to do

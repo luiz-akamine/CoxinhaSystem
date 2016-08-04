@@ -1,4 +1,5 @@
 ﻿using CoxinhaSystem.Domain.Interfaces.Services;
+using CoxinhaSystem.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,27 @@ namespace CoxinhaSystem.API.Controllers
 
 
         //APIS
-        [Route("Get")]
+
         public HttpResponseMessage Get()
         {
             return Request.CreateResponse(HttpStatusCode.OK, _phoneService.GetAll().ToList());
         }
 
-        [Route("Get")]
         public HttpResponseMessage Get(int id)
         {
             return Request.CreateResponse(HttpStatusCode.OK, _phoneService.GetById(id));
+        }
+
+        public HttpResponseMessage Post(Phone phone)
+        {
+            _phoneService.Post(phone);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        public HttpResponseMessage Put(Phone phone)
+        {
+            _phoneService.Update(phone);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }
