@@ -19,13 +19,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2015 11:01:10</publishTime>
     </File>
     <File Include="bin/CoxinhaSystem.API.dll">
-      <publishTime>08/02/2016 21:53:58</publishTime>
+      <publishTime>03/08/2016 22:42:15</publishTime>
     </File>
     <File Include="bin/CoxinhaSystem.Domain.dll">
-      <publishTime>08/02/2016 21:53:41</publishTime>
+      <publishTime>03/08/2016 22:42:04</publishTime>
     </File>
     <File Include="bin/CoxinhaSystem.Infra.dll">
-      <publishTime>08/02/2016 21:53:42</publishTime>
+      <publishTime>03/08/2016 22:42:05</publishTime>
     </File>
     <File Include="bin/EntityFramework.Core.dll">
       <publishTime>11/16/2015 16:03:38</publishTime>
@@ -100,7 +100,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/03/2014 20:33:56</publishTime>
     </File>
     <File Include="bin/Remotion.Linq.dll">
-      <publishTime>10/30/2015 15:35:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 20:19:46</publishTime>
@@ -157,7 +157,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/30/2015 00:32:02</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>01/28/2015 05:02:42</publishTime>
+      <publishTime>01/28/2015 04:02:42</publishTime>
     </File>
     <File Include="bin/System.Web.Cors.dll">
       <publishTime>01/28/2015 04:01:46</publishTime>
@@ -166,10 +166,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2015 04:03:04</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>01/28/2015 05:02:54</publishTime>
+      <publishTime>01/28/2015 04:02:54</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>01/28/2015 05:03:46</publishTime>
+      <publishTime>01/28/2015 04:03:46</publishTime>
     </File>
     <File Include="bin/WebActivator.dll">
       <publishTime>12/20/2012 12:14:24</publishTime>
@@ -181,7 +181,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/02/2016 21:48:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/02/2016 21:53:59</publishTime>
+      <publishTime>08/03/2016 22:53:59</publishTime>
     </File>
   </ItemGroup>
 </Project>
