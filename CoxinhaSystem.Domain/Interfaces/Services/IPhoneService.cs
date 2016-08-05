@@ -1,13 +1,12 @@
-﻿using CoxinhaSystem.Domain.Models;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CoxinhaSystem.Domain.Interfaces.Services
 {
     public interface IPhoneService
     {
-        IQueryable<Phone> GetAll();
-        Phone GetById(int id);
-        void Post(Phone phone);
-        void Update(Phone phone);
     }
 }

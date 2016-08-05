@@ -2,7 +2,7 @@
 
 namespace CoxinhaSystem.Domain.Interfaces.Repositories
 {
-    public interface IPhoneRepository : IBaseRepository<Phone>
+    public interface IPhoneRepository 
     {
     }
 }

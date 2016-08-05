@@ -1,5 +1,6 @@
 ﻿using CoxinhaSystem.Domain.Interfaces.Services;
 using CoxinhaSystem.Domain.Models;
+using CoxinhaSystem.Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,14 @@ namespace CoxinhaSystem.API.Controllers
     [RoutePrefix("api/Phone")]
     public class PhoneController : ApiController
     {
-        private readonly IPhoneService _phoneService;
+        private readonly PhoneService _phoneService;
+        //private readonly IBaseService<Phone> _baseService;
 
+        //public PhoneController(IPhoneService phoneService, IBaseService<Phone> baseService)
         public PhoneController(IPhoneService phoneService)
-        {
-            _phoneService = phoneService;
+        {            
+               _phoneService = phoneService as PhoneService;
+            //_baseService = baseService;
         }
 
 
@@ -26,6 +30,7 @@ namespace CoxinhaSystem.API.Controllers
         {
             try
             {
+                
                 return Request.CreateResponse(HttpStatusCode.OK, _phoneService.GetAll().ToList());
             }
             catch (Exception e)

@@ -140,6 +140,7 @@
     <Compile Include="Data\Configuration\RepositoryManager.cs" />
     <Compile Include="Data\Configuration\UnitOfWork.cs" />
     <Compile Include="Data\Context\CoxinhaContext.cs" />
+    <Compile Include="Data\Repositories\CustomerRepository.cs" />
     <Compile Include="IoC\Bindings.cs" />
     <Compile Include="Data\Migrations\20160803022806_FirstLoad.cs" />
     <Compile Include="Data\Migrations\20160803022806_FirstLoad.designer.cs">
@@ -148,7 +149,6 @@
     <Compile Include="Data\Migrations\CoxinhaContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Repositories\BaseRepository.cs" />
-    <Compile Include="Data\Repositories\CustomerRepository.cs" />
     <Compile Include="Data\Repositories\OrderItemRepository.cs" />
     <Compile Include="Data\Repositories\OrderRepository.cs" />
     <Compile Include="Data\Repositories\PhoneRepository.cs" />

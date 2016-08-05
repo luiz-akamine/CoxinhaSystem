@@ -8,10 +8,11 @@ using CoxinhaSystem.Domain.Interfaces.Infra;
 using CoxinhaSystem.Domain.Interfaces.Repositories;
 using CoxinhaSystem.Infra.Data.Context;
 using CoxinhaSystem.Infra.Data.Configuration;
+using CoxinhaSystem.Domain.Models;
 
 namespace CoxinhaSystem.Infra.Data.Repositories
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity>: IBaseRepository<TEntity> where TEntity : EntityBase
     {
         protected readonly CoxinhaContext _context;
 

@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoxinhaSystem.Domain.Models
 {
-    public class Product
+    public class Product : EntityBase
     {
-        [Key]
-        public int Id { get; set; }
+        //[Key]
+        //public int Id { get; set; }
 
         [Column(TypeName = "VARCHAR(100)")]        
         [Required]

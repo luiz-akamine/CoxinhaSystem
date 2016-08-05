@@ -2,6 +2,7 @@
 using CoxinhaSystem.Domain.Interfaces.Infra;
 using CoxinhaSystem.Domain.Interfaces.Repositories;
 using CoxinhaSystem.Domain.Interfaces.Services;
+using CoxinhaSystem.Domain.Models;
 using CoxinhaSystem.Domain.Services;
 using CoxinhaSystem.Infra.Data.Configuration;
 using CoxinhaSystem.Infra.Data.Repositories;
@@ -27,9 +28,10 @@ namespace CoxinhaSystem.Infra.IoC
             container.Register(typeof(IPhoneRepository), typeof(PhoneRepository), Lifestyle.Scoped);
             container.Register(typeof(IProductRepository), typeof(ProductRepository), Lifestyle.Scoped);
 
-            //Services
+            //Services            
             container.Register(typeof(ICustomerService), typeof(CustomerService), Lifestyle.Scoped);
             container.Register(typeof(IPhoneService), typeof(PhoneService), Lifestyle.Scoped);
+            container.Register(typeof(IBaseService<>), typeof(BaseService<>), Lifestyle.Scoped);
 
             //API
             //to do

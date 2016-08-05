@@ -46,15 +46,18 @@
     <Compile Include="Interfaces\Repositories\IOrderRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPhoneRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProductRepository.cs" />
+    <Compile Include="Interfaces\Services\IBaseService.cs" />
     <Compile Include="Interfaces\Services\ICustomerService.cs" />
     <Compile Include="Interfaces\Services\IPhoneService.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BaseDomainService.cs" />
+    <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\PhoneService.cs" />
   </ItemGroup>
