@@ -30,6 +30,7 @@ namespace CoxinhaSystem.Infra.IoC
             //Services            
             container.Register(typeof(ICustomerService), typeof(CustomerService), Lifestyle.Scoped);
             container.Register(typeof(IPhoneService), typeof(PhoneService), Lifestyle.Scoped);
+            container.Register(typeof(IProductService), typeof(ProductService), Lifestyle.Scoped);
             container.Register(typeof(IBaseService<>), typeof(BaseService<>), Lifestyle.Scoped);
 
             //API

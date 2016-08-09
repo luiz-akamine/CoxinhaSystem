@@ -2,8 +2,7 @@
 using CoxinhaSystem.Domain.Interfaces.Repositories;
 using CoxinhaSystem.Domain.Interfaces.Services;
 using CoxinhaSystem.Domain.Models;
-using System;
-using System.Linq;
+using Microsoft.Practices.ServiceLocation;
 
 namespace CoxinhaSystem.Domain.Services
 {
@@ -13,7 +12,7 @@ namespace CoxinhaSystem.Domain.Services
 
         public PhoneService(IBaseRepository<Phone> entityRepository, IUnityOfWork unitOfWork) : base(entityRepository, unitOfWork)
         {
-            _phoneRepository = entityRepository as IPhoneRepository;
+            _phoneRepository = ServiceLocator.Current.GetInstance<IPhoneRepository>();
         }
     }
 }

@@ -9,14 +9,14 @@ using System.Web.Http;
 
 namespace CoxinhaSystem.API.Controllers
 {
-    [RoutePrefix("api/Phone")]
-    public class PhoneController : ApiController
+    [RoutePrefix("api/Product")]
+    public class ProductController : ApiController
     {
-        private readonly PhoneService _phoneService;
+        private readonly ProductService _ProductService;
 
-        public PhoneController(IPhoneService phoneService)
-        {            
-               _phoneService = phoneService as PhoneService;
+        public ProductController(IProductService ProductService)
+        {
+            _ProductService = ProductService as ProductService;
         }
 
 
@@ -26,8 +26,8 @@ namespace CoxinhaSystem.API.Controllers
         {
             try
             {
-                
-                return Request.CreateResponse(HttpStatusCode.OK, _phoneService.GetAll().ToList());
+
+                return Request.CreateResponse(HttpStatusCode.OK, _ProductService.GetAll().ToList());
             }
             catch (Exception e)
             {
@@ -39,15 +39,15 @@ namespace CoxinhaSystem.API.Controllers
         {
             try
             {
-                var phone = _phoneService.GetById(id);
+                var Product = _ProductService.GetById(id);
 
-                if (phone == null)
+                if (Product == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, phone);
+                    return Request.CreateResponse(HttpStatusCode.OK, Product);
                 }
             }
             catch (Exception e)
@@ -56,11 +56,11 @@ namespace CoxinhaSystem.API.Controllers
             }
         }
 
-        public HttpResponseMessage Post(Phone phone)
+        public HttpResponseMessage Post(Product Product)
         {
             try
             {
-                _phoneService.Post(phone);
+                _ProductService.Post(Product);
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
             catch (ArgumentException e)
@@ -73,11 +73,11 @@ namespace CoxinhaSystem.API.Controllers
             }
         }
 
-        public HttpResponseMessage Put(Phone phone)
+        public HttpResponseMessage Put(Product Product)
         {
             try
             {
-                _phoneService.Update(phone);
+                _ProductService.Update(Product);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (ArgumentNullException e)
