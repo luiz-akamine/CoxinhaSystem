@@ -12,7 +12,7 @@ namespace CoxinhaSystem.Infra.Data.Configuration
         public CoxinhaContext Context
         {
             get
-            {
+            {                
                 if (HttpContext.Current.Items[HttpCtxt] == null)
                 {
                     HttpContext.Current.Items[HttpCtxt] = new CoxinhaContext();

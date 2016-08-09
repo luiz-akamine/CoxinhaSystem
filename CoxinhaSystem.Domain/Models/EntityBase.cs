@@ -1,10 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoxinhaSystem.Domain.Models
 {
-    public class EntityBase
+    public class EntityBase : IDisposable
     {
         [Key]
         public int Id { get; set; }
+
+        public void Dispose()
+        {
+            
+        }
     }
 }

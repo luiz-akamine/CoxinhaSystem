@@ -51,12 +51,13 @@ namespace CoxinhaSystem.Domain.Services
             {
                 throw new ArgumentNullException();
             }
+                        
             //Verificando se existe
             if (GetById(obj.Id) == null)
             {
                 throw new ArgumentException("object not exists");
             }
-
+                        
             _unitOfWork.Begin();
             _entityRepository.Update(obj);
             _unitOfWork.Commit();

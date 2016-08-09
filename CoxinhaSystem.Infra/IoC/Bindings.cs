@@ -2,7 +2,6 @@
 using CoxinhaSystem.Domain.Interfaces.Infra;
 using CoxinhaSystem.Domain.Interfaces.Repositories;
 using CoxinhaSystem.Domain.Interfaces.Services;
-using CoxinhaSystem.Domain.Models;
 using CoxinhaSystem.Domain.Services;
 using CoxinhaSystem.Infra.Data.Configuration;
 using CoxinhaSystem.Infra.Data.Repositories;

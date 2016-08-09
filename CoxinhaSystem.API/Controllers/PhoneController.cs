@@ -14,13 +14,10 @@ namespace CoxinhaSystem.API.Controllers
     public class PhoneController : ApiController
     {
         private readonly PhoneService _phoneService;
-        //private readonly IBaseService<Phone> _baseService;
 
-        //public PhoneController(IPhoneService phoneService, IBaseService<Phone> baseService)
         public PhoneController(IPhoneService phoneService)
         {            
                _phoneService = phoneService as PhoneService;
-            //_baseService = baseService;
         }
 
 
