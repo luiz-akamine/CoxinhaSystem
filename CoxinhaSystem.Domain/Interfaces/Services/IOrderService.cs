@@ -12,6 +12,6 @@ namespace CoxinhaSystem.Domain.Interfaces.Services
         //IQueryable<Order> GetByDtCreation(DateTime dtStart, DateTime dtEnd);
         //IQueryable<Order> GetByDeliveryDate(DateTime dtStart, DateTime dtEnd);
         IQueryable<Order> GetComplete();
-        IQueryable<Order> GetCompleteById(int id);
+        Order GetCompleteById(int id);
     }
 }

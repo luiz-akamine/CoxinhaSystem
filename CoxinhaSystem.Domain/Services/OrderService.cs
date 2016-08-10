@@ -1,17 +1,13 @@
-﻿using CoxinhaSystem.Domain.Interfaces.Services;
-using CoxinhaSystem.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoxinhaSystem.Domain.Interfaces.Infra;
+﻿using CoxinhaSystem.Domain.Interfaces.Infra;
 using CoxinhaSystem.Domain.Interfaces.Repositories;
+using CoxinhaSystem.Domain.Interfaces.Services;
+using CoxinhaSystem.Domain.Models;
 using Microsoft.Practices.ServiceLocation;
+using System.Linq;
 
 namespace CoxinhaSystem.Domain.Services
 {
-    class OrderService : BaseService<Order>, IOrderService
+    public class OrderService : BaseService<Order>, IOrderService
     {
         private readonly IOrderRepository _orderRepository;
 
@@ -23,12 +19,12 @@ namespace CoxinhaSystem.Domain.Services
 
         public IQueryable<Order> GetComplete()
         {
-            throw new NotImplementedException();
+            return _orderRepository.GetComplete();
         }
 
-        public IQueryable<Order> GetCompleteById(int id)
+        public Order GetCompleteById(int id)
         {
-            throw new NotImplementedException();
+            return _orderRepository.GetCompleteById(id);
         }
     }
 }
