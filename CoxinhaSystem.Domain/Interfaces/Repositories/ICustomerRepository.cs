@@ -2,7 +2,7 @@
 
 namespace CoxinhaSystem.Domain.Interfaces.Repositories
 {
-    public interface ICustomerRepository : IBaseRepository<Customer>
+    public interface ICustomerRepository
     {
         Customer GetByPhone(string phoneNumber);
     }

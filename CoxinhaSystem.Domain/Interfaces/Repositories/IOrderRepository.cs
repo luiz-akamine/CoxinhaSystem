@@ -2,7 +2,7 @@
 
 namespace CoxinhaSystem.Domain.Interfaces.Repositories
 {
-    public interface IOrderRepository : IBaseRepository<Order>
+    public interface IOrderRepository
     {
     }
 }

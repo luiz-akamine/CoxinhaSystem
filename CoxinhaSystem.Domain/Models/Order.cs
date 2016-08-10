@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoxinhaSystem.Domain.Models
 {
-    public class Order
+    public class Order : EntityBase
     {
-        [Key]
-        public int Id { get; set; }
+        //[Key]
+        //public int Id { get; set; }
 
         [Column(TypeName = "DATETIME")]
         [Required]

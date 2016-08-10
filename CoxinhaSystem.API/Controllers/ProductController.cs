@@ -9,10 +9,10 @@ using System.Web.Http;
 
 namespace CoxinhaSystem.API.Controllers
 {
-    [RoutePrefix("api/Phone")]
-    public class PhoneController : BaseController<Phone>
+    [RoutePrefix("api/Product")]
+    public class ProductController : BaseController<Product>
     {
-        public PhoneController(IBaseService<Phone> baseService) : base(baseService)
+        public ProductController(IBaseService<Product> baseService) : base(baseService)
         {
         }
     }

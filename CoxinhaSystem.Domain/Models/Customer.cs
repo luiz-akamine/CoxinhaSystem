@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoxinhaSystem.Domain.Models
 {
-    public class Customer
+    public class Customer : EntityBase
     {   
-        [Key]     
-        public int Id { get; set; }
+        //[Key]     
+        //public int Id { get; set; }
         
         [Column(TypeName = "VARCHAR(100)")]                
         [Required]        

@@ -1,17 +1,15 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using Microsoft.Practices.ServiceLocation;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using CoxinhaSystem.Domain.Interfaces.Infra;
+﻿using CoxinhaSystem.Domain.Interfaces.Infra;
 using CoxinhaSystem.Domain.Interfaces.Repositories;
-using CoxinhaSystem.Infra.Data.Context;
+using CoxinhaSystem.Domain.Models;
 using CoxinhaSystem.Infra.Data.Configuration;
+using CoxinhaSystem.Infra.Data.Context;
+using Microsoft.Data.Entity;
+using Microsoft.Practices.ServiceLocation;
+using System.Linq;
 
 namespace CoxinhaSystem.Infra.Data.Repositories
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity>: IBaseRepository<TEntity> where TEntity : EntityBase
     {
         protected readonly CoxinhaContext _context;
 
@@ -42,8 +40,8 @@ namespace CoxinhaSystem.Infra.Data.Repositories
         }
 
         public TEntity GetById(int id)
-        {            
-            return _context.Set<TEntity>().Find(id);
+        {
+            return _context.Set<TEntity>().Where(x => x.Id == id).FirstOrDefault();
         }
 
         public void Insert(TEntity obj)
@@ -53,50 +51,17 @@ namespace CoxinhaSystem.Infra.Data.Repositories
 
         public void Update(TEntity obj)
         {
+            //Gambiarra ou Ajuste Técnico??? Sem isso abaixo, não funciona... Ocorre o erro:
+            //
+            //  'Entidade XXX' cannot be tracked because another instance of this type with the same key 
+            //  is already being tracked. For new entities consider using an IIdentityGenerator to generate 
+            //  unique key values.
+            //
+            //Assim, estou "Detachando" a entidade em questão para ser salva
+            var entry = _context.ChangeTracker.Entries().Where(x => x.Entity.GetType().Equals(obj.GetType())).FirstOrDefault();
+            _context.Entry(entry.Entity).State = EntityState.Detached;
+                   
             _context.Entry(obj).State = EntityState.Modified;
         }
-    }
-
-    #region 
-    //Find Extension
-    public static class Extensions
-    {
-        public static TEntity Find<TEntity>(this DbSet<TEntity> set, params object[] keyValues) where TEntity : class
-        {
-            var context = ((IInfrastructure<IServiceProvider>)set).GetService<DbContext>();
-
-            var entityType = context.Model.FindEntityType(typeof(TEntity));
-            var key = entityType.FindPrimaryKey();
-
-            var entries = context.ChangeTracker.Entries<TEntity>();
-
-            var i = 0;
-            foreach (var property in key.Properties)
-            {
-                entries = entries.Where(e => e.Property(property.Name).CurrentValue == keyValues[i]);
-                i++;
-            }
-
-            var entry = entries.FirstOrDefault();
-            if (entry != null)
-            {
-                // Return the local object if it exists.
-                return entry.Entity;
-            }
-
-            // TODO: Build the real LINQ Expression
-            // set.Where(x => x.Id == keyValues[0]);
-            var parameter = Expression.Parameter(typeof(TEntity), "x");
-            var query = set.Where((Expression<Func<TEntity, bool>>)
-                Expression.Lambda(
-                    Expression.Equal(
-                        Expression.Property(parameter, "Id"),
-                        Expression.Constant(keyValues[0])),
-                    parameter));
-
-            // Look in the database
-            return query.FirstOrDefault();
-        }
-    }
-    #endregion 
+    }    
 }

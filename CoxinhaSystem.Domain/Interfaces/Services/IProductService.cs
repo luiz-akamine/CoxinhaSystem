@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoxinhaSystem.Domain.Interfaces.Services
 {
-    public interface IPhoneService
+    public interface IProductService
     {
     }
 }

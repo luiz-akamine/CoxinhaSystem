@@ -1,4 +1,5 @@
 ﻿using CoxinhaSystem.Domain.Interfaces.Infra;
+using CoxinhaSystem.Domain.Interfaces.Services;
 using Microsoft.Practices.ServiceLocation;
 
 namespace CoxinhaSystem.Domain.Services
