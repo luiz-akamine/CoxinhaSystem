@@ -36,8 +36,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\Controller\IBaseController.cs" />
     <Compile Include="Interfaces\Infra\IRepositoryManager.cs" />
     <Compile Include="Interfaces\Infra\IUnityOfWork.cs" />
     <Compile Include="Interfaces\Repositories\IBaseRepository.cs" />
