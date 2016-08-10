@@ -16,7 +16,7 @@ namespace CoxinhaSystem.Domain.Services
             _customerRepository = ServiceLocator.Current.GetInstance<ICustomerRepository>();
         }
 
-        //Métodos adicionais 
+        //Métodos adicionais além da classe base 
         public Customer GetByPhone(string phoneNumber)
         {
             //regras de negócio...

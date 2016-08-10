@@ -29,10 +29,8 @@ namespace CoxinhaSystem.Infra.IoC
             container.Register(typeof(IProductRepository), typeof(ProductRepository), Lifestyle.Scoped);
 
             //Services            
+            container.Register(typeof(IBaseService<>), typeof(BaseService<>), Lifestyle.Scoped);
             container.Register(typeof(ICustomerService), typeof(CustomerService), Lifestyle.Scoped);
-            container.Register(typeof(IPhoneService), typeof(PhoneService), Lifestyle.Scoped);
-            container.Register(typeof(IProductService), typeof(ProductService), Lifestyle.Scoped);
-            container.Register(typeof(IBaseService<>), typeof(BaseService<>), Lifestyle.Scoped);           
 
             //Service Locator
             ServiceLocator.SetLocatorProvider(() => new SimpleInjectorServiceLocatorAdapter(container));

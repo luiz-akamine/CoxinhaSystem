@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoxinhaSystem.Domain.Models
 {
     public class OrderItem : EntityBase
     {
-        //[Key]
-        //public int Id { get; set; }
-
         public virtual Product Product { get; set; }
 
         [Required]
@@ -17,5 +15,9 @@ namespace CoxinhaSystem.Domain.Models
 
         [Required]
         public double Price { get; set; }
+
+        public virtual Order Order { get; set; }
+        [Required]
+        public int OrderId { get; set; }
     }
 }

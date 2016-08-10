@@ -1,5 +1,4 @@
 ﻿using CoxinhaSystem.Domain.Models;
-using CoxinhaSystem.Domain.Services;
 
 namespace CoxinhaSystem.Domain.Interfaces.Services
 {
