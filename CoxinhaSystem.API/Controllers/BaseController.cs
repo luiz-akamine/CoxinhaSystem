@@ -38,15 +38,15 @@ namespace CoxinhaSystem.API.Controllers
         {
             try
             {
-                var phone = _baseService.GetById(id);
+                var obj = _baseService.GetById(id);
 
-                if (phone == null)
+                if (obj == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, phone);
+                    return Request.CreateResponse(HttpStatusCode.OK, obj);
                 }
             }
             catch (Exception e)
@@ -60,7 +60,7 @@ namespace CoxinhaSystem.API.Controllers
             try
             {
                 _baseService.Post(obj);
-                return Request.CreateResponse(HttpStatusCode.Created);
+                return Request.CreateResponse(HttpStatusCode.Created, obj.Id);
             }
             catch (ArgumentException e)
             {

@@ -28,11 +28,15 @@ namespace CoxinhaSystem.Domain.Services
 
         public TEntity GetById(int id)
         {
+            ServiceHelper.ValidateParams(new object[] { id });
+
             return _entityRepository.GetById(id);
         }
 
         public void Post(TEntity obj)
-        {                           
+        {
+            ServiceHelper.ValidateParams(new object[] { obj });
+
             //Verificando se existe
             if (GetById(obj.Id) != null)
             {
@@ -46,11 +50,7 @@ namespace CoxinhaSystem.Domain.Services
 
         public void Update(TEntity obj)
         {
-            //Checando parâmetro
-            if (obj == null)
-            {
-                throw new ArgumentNullException();
-            }
+            ServiceHelper.ValidateParams(new object[] { obj });
                         
             //Verificando se existe
             if (GetById(obj.Id) == null)
