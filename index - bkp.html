@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="CoxinhaApp">
+<head>
+    <title>Coxinha System</title>
+
+    <link href="content/bootstrap.min.css" rel="stylesheet" />
+    <link href="content/reset.css" rel="stylesheet" />
+    <link href="content/site.css" rel="stylesheet" />     
+    <link href="content/font-awesome.min.css" rel="stylesheet" />
+    <link href="content/loading-bar.css" rel="stylesheet" />     
+    <link href="content/simple-sidebar.css" rel="stylesheet">
+
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <base href="/" />
+</head>
+<body>
+    <table class="table table-bordered">
+        <tr>
+            <th colspan="2" height="20%">
+                <!--Header Título Início-->
+                <div class="jumbotron center-block" style="padding-top: 20px; padding-bottom: 20px; margin: 0px 5% 0px 5%; background-color: slategray;">
+                    <h1 class="panel-title text-center" style="color: white">Teste System</h1>
+                </div>
+                <!--Header Título Fim-->
+            </th>
+        </tr>
+        <tr>
+            <td width="30%" height="70%">
+                <!--Menu Lateral Início-->
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-brand">
+                            <a href="#">
+                                Start Bootstrap
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#">Shortcuts</a>
+                        </li>
+                        <li>
+                            <a href="#">Overview</a>
+                        </li>
+                        <li>
+                            <a href="#">Events</a>
+                        </li>
+                        <li>
+                            <a href="#">About</a>
+                        </li>
+                        <li>
+                            <a href="#">Services</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Menu Lateral Fim-->
+            </td>
+            <td width="70%" height="10%">
+                <!--ngView Início-->
+                <div class="container" style="border: 2px solid gray; position: relative; margin-left: 5%; width: 70%; box-sizing: border-box; align-items: stretch; display: inline-block">
+                    <div data-ng-view=""></div>
+                </div>
+                <!--ngView Fim-->
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <!--Rodapé Início-->
+                <!--<footer id="footer">-->
+                    <div class="navbar-fixed-bottom" style="background-color: lightslategray; margin: 0px 5% 0px 5%;">
+                        <div class="row">
+                            <!--<div class="col-md-6">-->
+                            <p class="text-muted text-center" style="padding: 5px 0 5px 0; color: white">Criado por Luiz Akamine.</p>
+                            <!--</div>-->
+                        </div>
+                    </div>
+                <!--</footer>-->
+                <!--Rodapé Fim-->
+            </td>
+        </tr>
+    </table>
+    
+    <!-- 3rd party libraries -->
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="scripts/angular-local-storage.min.js"></script>
+    <script src="scripts/loading-bar.min.js"></script>
+    <!-- Load app main script -->
+    <script src="app/app.js"></script>
+    <!-- Load services -->
+    <!--
+    <script src="app/services/authInterceptorService.js"></script>
+    <script src="app/services/AuthService.js"></script>
+    <script src="app/services/ordersService.js"></script>
+    <script src="app/services/tokensManagerService.js"></script>
+    -->
+    <!-- Load controllers -->
+    <script src="app/controllers/homeController.js"></script>
+    <!-- 
+    <script src="app/controllers/indexController.js"></script>    
+    <script src="app/controllers/loginController.js"></script>
+    <script src="app/controllers/signupController.js"></script>
+    <script src="app/controllers/ordersController.js"></script>
+    <script src="app/controllers/refreshController.js"></script>
+    <script src="app/controllers/tokensManagerController.js"></script>
+    <script src="app/controllers/associateController.js"></script>
+    -->
+</body>
+</html>

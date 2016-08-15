@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html ng-app="CoxinhaApp">
+<head>
+    <title>Coxinha System</title>
+
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">    
+
+    <base href="/" />
+
+    <!--CSS Início-->
+    <link href="content/reset.css" rel="stylesheet" />
+    <link href="content/bootstrap.css" rel="stylesheet" />
+    <!--CSS Início-->
+
+    <!--Custom CSS Início-->
+    <link href="content/site.css" rel="stylesheet" />
+    <!--Custom CSS Fim-->
+</head>
+<body>
+    <!--Header Título Início-->
+    <div class="header">
+        <div class="header-title center-child-text">Salgados da Zeza</div>
+    </div>
+    <!--Header Título Fim-->
+
+    <!--Menu Lateral Início-->
+    <aside class="menu">
+        <ul class="menu-items">
+            <li class="panel panel-primary center-block text-center menu-item-header"><div class="center-child-text">MENU</div></li>
+            <li class="btn btn-primary center-block text-center menu-item"><div class="center-child-text">Pedidos do Dia</div></li>
+            <li class="btn btn-primary menu-item"><div class="center-child-text">Novo Pedido</div></li>
+            <li class="btn btn-primary menu-item"><div class="center-child-text">Consultar Pedidos</div></li>
+            <li class="btn btn-primary menu-item"><div class="center-child-text">Clientes</div></li>
+            <li class="btn btn-primary menu-item"><div class="center-child-text">Produtos</div></li>
+            <li class="btn btn-primary menu-item"><div class="center-child-text">Relatórios</div></li>
+        </ul>
+    </aside>
+    <!--Menu Lateral Fim-->
+
+    <!--Conteúdo Início-->
+    <main class="content">
+        <div class="main"><div data-ng-view="" style="box-shadow: none;"></div></div>
+    </main>
+    <!--Conteúdo Fim-->
+
+    <!--Rodapé Início-->
+    <footer class="footer">
+        <div class="footer-value center-child-text">Criado por Luiz Akamine</div>
+    </footer>
+    <!--Rodapé Fim-->
+
+
+    <!--JS Início-->
+
+    <!--external js-->
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="scripts/angular-local-storage.min.js"></script>    
+    <script src="scripts/loading-bar.min.js"></script>
+
+    <!-- Load app main script -->
+    <script src="app/app.js"></script>
+    
+    <!-- Load services -->
+
+    <!-- Load controllers -->
+    <script src="app/controllers/homeController.js"></script>
+    
+    <!--JS Fim-->
+</body>
+</html>
