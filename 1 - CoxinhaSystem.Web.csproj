@@ -95,12 +95,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
+    <Content Include="App\Components\orderCard.html" />
+    <Content Include="App\Controllers\customersController.js" />
     <Content Include="App\Controllers\homeController.js" />
+    <Content Include="App\Controllers\newOrderController.js" />
+    <Content Include="App\Controllers\productsController.js" />
+    <Content Include="App\Controllers\reportsController.js" />
+    <Content Include="App\Controllers\searchOrdersController.js" />
+    <Content Include="App\myDirectives.js" />
+    <Content Include="App\Services\ordersService.js" />
+    <Content Include="App\Views\customers.html" />
     <Content Include="App\Views\home.html" />
+    <Content Include="App\Views\newOrder.html" />
+    <Content Include="App\Views\products.html" />
+    <Content Include="App\Views\reports.html" />
+    <Content Include="App\Views\searchOrders.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="App\Components\orderCard.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\loading-bar.css" />
     <Content Include="Content\loading-bar.min.css" />
@@ -161,9 +175,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App\Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
