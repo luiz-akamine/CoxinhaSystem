@@ -57,7 +57,8 @@ namespace CoxinhaSystem.Infra.Data.Repositories
         {
             var ordersComplete = _context.Orders
                 .Include(x => x.Customer)
-                .Include(x => x.OrderItems)
+                .ThenInclude(x => x.Phones)
+                .Include(x => x.OrderItems)                
                 .ThenInclude(x => x.Product);
 
             return ordersComplete;
@@ -67,6 +68,7 @@ namespace CoxinhaSystem.Infra.Data.Repositories
         {            
                var ordersComplete = _context.Orders
                 .Include(x => x.Customer)
+                .ThenInclude(x => x.Phones)
                 .Include(x => x.OrderItems)
                 .ThenInclude(x => x.Product)
                 .Where(x => x.Id == id)

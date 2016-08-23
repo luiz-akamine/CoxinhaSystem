@@ -8,7 +8,7 @@ using CoxinhaSystem.Infra.Data.Context;
 namespace CoxinhaSystem.Infra.Migrations
 {
     [DbContext(typeof(CoxinhaContext))]
-    [Migration("20160803022806_FirstLoad")]
+    [Migration("20160819003107_FirstLoad")]
     partial class FirstLoad
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,7 +72,7 @@ namespace CoxinhaSystem.Infra.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("OrderId");
+                    b.Property<int>("OrderId");
 
                     b.Property<double>("Price");
 
@@ -117,6 +117,8 @@ namespace CoxinhaSystem.Infra.Migrations
                     b.Property<double>("Price");
 
                     b.Property<int>("ProductType");
+
+                    b.Property<int>("Unit");
 
                     b.HasKey("Id");
 

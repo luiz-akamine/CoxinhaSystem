@@ -8,10 +8,9 @@ using CoxinhaSystem.Infra.Data.Context;
 namespace CoxinhaSystem.Infra.Migrations
 {
     [DbContext(typeof(CoxinhaContext))]
-    [Migration("20160810020630_Update")]
-    partial class Update
+    partial class CoxinhaContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -117,6 +116,8 @@ namespace CoxinhaSystem.Infra.Migrations
                     b.Property<double>("Price");
 
                     b.Property<int>("ProductType");
+
+                    b.Property<int>("Unit");
 
                     b.HasKey("Id");
 

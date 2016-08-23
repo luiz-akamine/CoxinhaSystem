@@ -33,7 +33,8 @@ namespace CoxinhaSystem.Infra.Migrations
                     IncQty = table.Column<double>(nullable: false),
                     Name = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    ProductType = table.Column<int>(nullable: false)
+                    ProductType = table.Column<int>(nullable: false),
+                    Unit = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,7 +92,7 @@ namespace CoxinhaSystem.Infra.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    OrderId = table.Column<int>(nullable: true),
+                    OrderId = table.Column<int>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     ProductId = table.Column<int>(nullable: false),
                     Qty = table.Column<double>(nullable: false)
@@ -104,7 +105,7 @@ namespace CoxinhaSystem.Infra.Migrations
                         column: x => x.OrderId,
                         principalTable: "Order",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderItem_Product_ProductId",
                         column: x => x.ProductId,

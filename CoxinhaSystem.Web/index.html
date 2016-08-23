@@ -15,12 +15,13 @@
 
     <!--Custom CSS Início-->
     <link href="content/site.css" rel="stylesheet" />
+    <link href="App/Components/orderCard.css" rel="stylesheet" />
     <!--Custom CSS Fim-->
 </head>
 <body>
     <!--Header Título Início-->
     <div class="header">
-        <div class="header-title center-child-text">Salgados da Zeza</div>
+        <div class="header-title center-child-text">Doces e Salgados da Zeza</div>
     </div>
     <!--Header Título Fim-->
 
@@ -28,19 +29,19 @@
     <aside class="menu">
         <ul class="menu-items">
             <li class="panel panel-primary center-block text-center menu-item-header"><div class="center-child-text">MENU</div></li>
-            <li class="btn btn-primary center-block text-center menu-item"><div class="center-child-text">Pedidos do Dia</div></li>
-            <li class="btn btn-primary menu-item"><div class="center-child-text">Novo Pedido</div></li>
-            <li class="btn btn-primary menu-item"><div class="center-child-text">Consultar Pedidos</div></li>
-            <li class="btn btn-primary menu-item"><div class="center-child-text">Clientes</div></li>
-            <li class="btn btn-primary menu-item"><div class="center-child-text">Produtos</div></li>
-            <li class="btn btn-primary menu-item"><div class="center-child-text">Relatórios</div></li>
+            <li><a href="/#/home" class="btn btn-primary menu-item"><div class="center-child-text">Pedidos do Dia</div></a></li>
+            <li><a href="/#/newOrder" class="btn btn-primary menu-item"><div class="center-child-text">Novo Pedido</div></a></li>
+            <li><a href="/#/searchOrders" class="btn btn-primary menu-item"><div class="center-child-text">Consultar Pedidos</div></a></li>
+            <li><a href="/#/customers" class="btn btn-primary menu-item"><div class="center-child-text">Clientes</div></a></li>
+            <li><a href="/#/products" class="btn btn-primary menu-item"><div class="center-child-text">Produtos</div></a></li>
+            <li><a href="/#/reports" class="btn btn-primary menu-item"><div class="center-child-text">Relatórios</div></a></li>
         </ul>
     </aside>
     <!--Menu Lateral Fim-->
 
     <!--Conteúdo Início-->
     <main class="content">
-        <div class="main"><div data-ng-view="" style="box-shadow: none;"></div></div>
+        <div class="main"><div data-ng-view="" style="box-shadow: none; overflow: auto; max-height: 100%;"></div></div>
     </main>
     <!--Conteúdo Fim-->
 
@@ -61,11 +62,18 @@
 
     <!-- Load app main script -->
     <script src="app/app.js"></script>
+    <script src="app/myDirectives.js"></script>
     
     <!-- Load services -->
+    <script src="app/Services/ordersService.js"></script>
 
     <!-- Load controllers -->
     <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/customersController.js"></script>
+    <script src="app/controllers/newOrderController.js"></script>
+    <script src="app/controllers/productsController.js"></script>
+    <script src="app/controllers/reportsController.js"></script>
+    <script src="app/controllers/searchOrdersController.js"></script>
     
     <!--JS Fim-->
 </body>

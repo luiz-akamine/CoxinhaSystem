@@ -1,0 +1,46 @@
+﻿.card-main {
+    margin-right: 1%;    
+    margin-bottom: 1%;
+    display: inline-block;    
+    vertical-align: middle;
+    width: 48.5%;
+}
+
+.card-header {
+    box-shadow: none;      
+    padding: 1%;
+}
+
+.card-header-title {
+    font-size: 90%;
+    font-weight: 600;
+}
+
+.card {
+    box-shadow: none;  
+    margin-bottom: 1%;
+    display: inline-block;
+}
+
+.card-body {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 1%;
+    box-shadow: none;
+    font-size: 90%;
+    position: relative;
+}
+
+.card-body-table {
+    margin: 0;
+}
+
+.card-body-footer {
+    margin: 0;
+    bottom: 0;
+    width: 100%;
+    box-shadow: none;
+    background-color: rgb(252, 244, 244);
+    border-radius: 3px;
+}

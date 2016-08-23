@@ -141,17 +141,13 @@
     <Compile Include="Data\Configuration\RepositoryManager.cs" />
     <Compile Include="Data\Configuration\UnitOfWork.cs" />
     <Compile Include="Data\Context\CoxinhaContext.cs" />
-    <Compile Include="Data\Migrations\20160810020630_Update.cs" />
-    <Compile Include="Data\Migrations\20160810020630_Update.designer.cs">
-      <DependentUpon>20160810020630_Update.cs</DependentUpon>
-    </Compile>
     <Compile Include="Data\Repositories\CustomerRepository.cs" />
     <Compile Include="IoC\Bindings.cs" />
-    <Compile Include="Data\Migrations\20160803022806_FirstLoad.cs" />
-    <Compile Include="Data\Migrations\20160803022806_FirstLoad.designer.cs">
-      <DependentUpon>20160803022806_FirstLoad.cs</DependentUpon>
+    <Compile Include="Migrations\20160819003107_FirstLoad.cs" />
+    <Compile Include="Migrations\20160819003107_FirstLoad.designer.cs">
+      <DependentUpon>20160819003107_FirstLoad.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\Migrations\CoxinhaContextModelSnapshot.cs" />
+    <Compile Include="Migrations\CoxinhaContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Repositories\BaseRepository.cs" />
     <Compile Include="Data\Repositories\OrderItemRepository.cs" />
@@ -169,7 +165,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
