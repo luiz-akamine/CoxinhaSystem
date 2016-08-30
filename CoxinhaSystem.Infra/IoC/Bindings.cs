@@ -32,6 +32,7 @@ namespace CoxinhaSystem.Infra.IoC
             container.Register(typeof(IBaseService<>), typeof(BaseService<>), Lifestyle.Scoped);
             container.Register(typeof(ICustomerService), typeof(CustomerService), Lifestyle.Scoped);
             container.Register(typeof(IOrderService), typeof(OrderService), Lifestyle.Scoped);
+            container.Register(typeof(IProductService), typeof(ProductService), Lifestyle.Scoped);
 
             //Service Locator
             ServiceLocator.SetLocatorProvider(() => new SimpleInjectorServiceLocatorAdapter(container));

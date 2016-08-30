@@ -1,0 +1,64 @@
+﻿.new-order-left-top-div {
+    width: 19%;
+    height: 43%;
+    float: left;
+    margin-left: 0.3%;
+    box-shadow: 0 0 0.3rem gray;
+}
+
+.new-order-menu-flex {
+    display: flex; 
+    align-items: center; 
+    flex-direction: column; 
+    justify-content: space-between;
+}
+
+.new-order-btn-menu {
+    margin: 5%;
+    width: 92%;
+}
+
+.new-order-right-top-div {
+    width: 79%;
+    height: 43%;
+    float: left;
+    margin-left: 1%;
+    box-shadow: 0 0 0.3rem gray;
+    /*overflow: auto; 
+    max-height: 100%; */
+}
+
+.new-order-left-bottom-div {
+    width: 49%;
+    height: 43.1%;
+    float: left;
+    margin-left: 0.3%;
+    box-shadow: 0 0 0.3rem gray;
+}
+
+.new-order-right-bottom-div {
+    width: 49%;
+    height: 43.1%;
+    float: left;
+    margin-left: 1%;
+    position: relative;
+    box-shadow: 0 0 0.3rem gray;
+}
+
+.new-order-right-bottom-div-footer {
+    position: absolute; 
+    bottom: 0.1%; 
+    width: 95%;
+    margin-left: 0;
+    box-shadow: none;   
+}
+
+.new-order-btn-cancel {
+    float: left;
+    width: 40%;
+}
+
+.new-order-btn-confirm {
+    float: right;
+    width: 40%;
+}

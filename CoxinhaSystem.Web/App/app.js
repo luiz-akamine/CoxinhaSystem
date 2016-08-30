@@ -50,6 +50,12 @@ app.config(function ($routeProvider, $httpProvider, $locationProvider) {
 app.constant('ngCoxinhaSettings', {
     apiServiceBaseUri: 'http://localhost:3001/'
 });
+app.constant('ngProductTypes', {
+    Cake: 1,
+    Frie: 2,
+    Roast: 3,
+    Sweet: 4
+});
 
 /* TODO
 //Setando serviço que realizará a interceptação das requisições http
