@@ -3,3 +3,8 @@
 
 <!--Cards das Ordens do Dia-->
 <order-card ng-repeat="order in orders" orderjson="order"></order-card>
+
+<!--Informação de Nenhum card encontrado-->
+<div ng-show="orders.length == 0" class="panel panel-danger center-child-text center" style="height: 15%; width: 70%; position: relative; background-color: moccasin; transform: translate(-50%, -100%);">
+    <div class="center-child-text text-center" style="color: red; font-size: 2rem">Não há pedidos neste dia</div>
+</div>

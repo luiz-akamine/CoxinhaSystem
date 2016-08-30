@@ -102,10 +102,13 @@
     <Content Include="App\Controllers\productsController.js" />
     <Content Include="App\Controllers\reportsController.js" />
     <Content Include="App\Controllers\searchOrdersController.js" />
+    <Content Include="App\myFilters.js" />
     <Content Include="App\myDirectives.js" />
     <Content Include="App\Services\ordersService.js" />
+    <Content Include="App\Services\productsService.js" />
     <Content Include="App\Views\customers.html" />
     <Content Include="App\Views\home.html" />
+    <Content Include="App\Views\newOrder.css" />
     <Content Include="App\Views\newOrder.html" />
     <Content Include="App\Views\products.html" />
     <Content Include="App\Views\reports.html" />
