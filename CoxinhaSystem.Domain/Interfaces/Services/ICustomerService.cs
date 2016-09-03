@@ -5,5 +5,6 @@ namespace CoxinhaSystem.Domain.Interfaces.Services
     public interface ICustomerService
     {
         Customer GetByPhone(string phoneNumber);
+        Customer GetByPhoneComplete(string phoneNumber);
     }
 }

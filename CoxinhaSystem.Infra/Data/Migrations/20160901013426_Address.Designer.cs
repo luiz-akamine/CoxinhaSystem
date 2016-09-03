@@ -8,9 +8,10 @@ using CoxinhaSystem.Infra.Data.Context;
 namespace CoxinhaSystem.Infra.Migrations
 {
     [DbContext(typeof(CoxinhaContext))]
-    partial class CoxinhaContextModelSnapshot : ModelSnapshot
+    [Migration("20160901013426_Address")]
+    partial class Address
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -33,12 +34,10 @@ namespace CoxinhaSystem.Infra.Migrations
                     b.Property<string>("Complement")
                         .HasAnnotation("Relational:ColumnType", "VARCHAR(100)");
 
-                    b.Property<int>("CustomerId");
+                    b.Property<int?>("CustomerId");
 
                     b.Property<string>("District")
                         .HasAnnotation("Relational:ColumnType", "VARCHAR(100)");
-
-                    b.Property<bool>("MainAddress");
 
                     b.Property<int>("Number");
 
@@ -59,6 +58,8 @@ namespace CoxinhaSystem.Infra.Migrations
                     b.Property<string>("FullAddress")
                         .IsRequired()
                         .HasAnnotation("Relational:ColumnType", "VARCHAR(200)");
+
+                    b.Property<int>("MainAddressId");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -88,8 +89,6 @@ namespace CoxinhaSystem.Infra.Migrations
                         .HasAnnotation("Relational:ColumnType", "DATETIME");
 
                     b.Property<bool>("Paid");
-
-                    b.Property<bool?>("RetrieveInLocal");
 
                     b.Property<int>("Status");
 
@@ -164,6 +163,13 @@ namespace CoxinhaSystem.Infra.Migrations
                     b.HasOne("CoxinhaSystem.Domain.Models.Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId");
+                });
+
+            modelBuilder.Entity("CoxinhaSystem.Domain.Models.Customer", b =>
+                {
+                    b.HasOne("CoxinhaSystem.Domain.Models.Address")
+                        .WithMany()
+                        .HasForeignKey("MainAddressId");
                 });
 
             modelBuilder.Entity("CoxinhaSystem.Domain.Models.Order", b =>

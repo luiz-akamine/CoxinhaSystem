@@ -24,5 +24,14 @@ namespace CoxinhaSystem.Domain.Services
             //            
             return _customerRepository.GetByPhone(phoneNumber);
         }
+
+        //Métodos adicionais além da classe base 
+        public Customer GetByPhoneComplete(string phoneNumber)
+        {
+            //regras de negócio...
+            //
+            //            
+            return _customerRepository.GetByPhoneComplete(phoneNumber);
+        }
     }
 }

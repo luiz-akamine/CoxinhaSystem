@@ -8,9 +8,10 @@ using CoxinhaSystem.Infra.Data.Context;
 namespace CoxinhaSystem.Infra.Migrations
 {
     [DbContext(typeof(CoxinhaContext))]
-    partial class CoxinhaContextModelSnapshot : ModelSnapshot
+    [Migration("20160901021041_Address2")]
+    partial class Address2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -88,8 +89,6 @@ namespace CoxinhaSystem.Infra.Migrations
                         .HasAnnotation("Relational:ColumnType", "DATETIME");
 
                     b.Property<bool>("Paid");
-
-                    b.Property<bool?>("RetrieveInLocal");
 
                     b.Property<int>("Status");
 

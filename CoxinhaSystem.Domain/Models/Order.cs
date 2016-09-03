@@ -33,7 +33,9 @@ namespace CoxinhaSystem.Domain.Models
 
         [Column(TypeName = "VARCHAR(200)")]        
         public string Description { get; set; }
-        
+
+        public bool? RetrieveInLocal { get; set; }
+
         public virtual Customer Customer { get; set; }
 
         [Required]

@@ -141,6 +141,19 @@
     <Compile Include="Data\Configuration\RepositoryManager.cs" />
     <Compile Include="Data\Configuration\UnitOfWork.cs" />
     <Compile Include="Data\Context\CoxinhaContext.cs" />
+    <Compile Include="Data\Migrations\20160901013426_Address.cs" />
+    <Compile Include="Data\Migrations\20160901013426_Address.designer.cs">
+      <DependentUpon>20160901013426_Address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Migrations\20160901021041_Address2.cs" />
+    <Compile Include="Data\Migrations\20160901021041_Address2.designer.cs">
+      <DependentUpon>20160901021041_Address2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Migrations\20160903015242_Order.RetrieveInLocal.cs" />
+    <Compile Include="Data\Migrations\20160903015242_Order.RetrieveInLocal.designer.cs">
+      <DependentUpon>20160903015242_Order.RetrieveInLocal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Repositories\AddressRepository.cs" />
     <Compile Include="Data\Repositories\CustomerRepository.cs" />
     <Compile Include="IoC\Bindings.cs" />
     <Compile Include="Data\Migrations\20160819003107_FirstLoad.cs" />

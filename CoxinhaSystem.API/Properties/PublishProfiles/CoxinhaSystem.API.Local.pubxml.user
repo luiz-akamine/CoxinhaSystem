@@ -19,13 +19,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2015 11:01:10</publishTime>
     </File>
     <File Include="bin/CoxinhaSystem.API.dll">
-      <publishTime>08/24/2016 22:33:03</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/CoxinhaSystem.Domain.dll">
-      <publishTime>08/24/2016 22:30:35</publishTime>
+      <publishTime>09/02/2016 22:55:46</publishTime>
     </File>
     <File Include="bin/CoxinhaSystem.Infra.dll">
-      <publishTime>08/24/2016 22:32:49</publishTime>
+      <publishTime>09/02/2016 22:55:47</publishTime>
     </File>
     <File Include="bin/EntityFramework.Core.dll">
       <publishTime>11/16/2015 16:03:38</publishTime>
@@ -187,7 +187,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2016 20:42:28</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/24/2016 22:30:54</publishTime>
+      <publishTime>08/31/2016 21:45:09</publishTime>
     </File>
   </ItemGroup>
 </Project>

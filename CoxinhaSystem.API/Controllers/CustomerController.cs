@@ -25,5 +25,11 @@ namespace CoxinhaSystem.API.Controllers
         {
             return Request.CreateResponse(HttpStatusCode.OK, _customerService.GetByPhone(phoneNumber));
         }
+
+        [Route("GetByPhoneComplete")]
+        public HttpResponseMessage GetByPhoneComplete(string phoneNumber)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, _customerService.GetByPhoneComplete(phoneNumber));
+        }
     }
 }

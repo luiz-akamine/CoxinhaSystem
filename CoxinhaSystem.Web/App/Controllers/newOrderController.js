@@ -1,5 +1,6 @@
 ﻿'use strict';
-app.controller('newOrderController', ['$scope', 'productsService', 'ngProductTypes', function ($scope, productsService, ngProductTypes) {
+app.controller('newOrderController', ['$scope', '$http', '$timeout', 'productsService', 'customersService', 'showAndHideService', 'ngProductTypes',
+    function ($scope, $http, $timeout, productsService, customersService, showAndHideService, ngProductTypes) {
 
     //Lista de produtos a ser exibida para seleção
     $scope.listProducts = [];
@@ -12,6 +13,7 @@ app.controller('newOrderController', ['$scope', 'productsService', 'ngProductTyp
     $scope.discount = 0;
     //Variável com o Valor Total do Pedido com Desconto
     $scope.orderTotalWithDiscount = 0;
+    
 
     //Controle de visibilidade do form
     $scope.showDivConfirmation = false;
@@ -22,7 +24,7 @@ app.controller('newOrderController', ['$scope', 'productsService', 'ngProductTyp
 
         productsService.getProductsByType(ngProductTypes.Cake)
             .success(function (result) {
-                $scope.listProducts = result;
+                $scope.listProducts = result;                
             });
     };
 
@@ -145,6 +147,8 @@ app.controller('newOrderController', ['$scope', 'productsService', 'ngProductTyp
         $scope.orderTotal = 0;
         $scope.discount = 0;
         $scope.orderTotalWithDiscount = 0;
+        $scope.orderConfirmation = {};
+        $scope.orderConfirmation.address = {};
 
         $scope.listProducts.forEach(function (prod) {
             $scope.loadQty(prod);
@@ -155,10 +159,129 @@ app.controller('newOrderController', ['$scope', 'productsService', 'ngProductTyp
     $scope.showConfirmation = function () {
         if ($scope.listOrderProducts.length > 0) {
             $scope.showDivConfirmation = true;
+
+            //Foco com delay no telefone
+            $timeout(function () {
+                jq('#phone').focus();
+            }, 750);            
         }        
     };    
 
-
     //Chamando click inicial no primeiro botão de "Bolo"    
-    $scope.loadCakes();    
+    $scope.loadCakes();
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                              SUB-TELA DE CONFIRMAÇÃO DO PEDIDO                                       //
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //objeto confirmação do pedido
+    $scope.orderConfirmation = {};
+    $scope.orderConfirmation.address = {};
+
+    //Controle de carregamento automatico do endereço pelo cep
+    var _loadCEP = true;
+
+    //Exibe mensagem de erro e desaparece
+    $scope.$watch('error', function () {
+        if ($scope.error) {
+            $scope.msgErr = showAndHideService(3000);
+
+            $timeout(function () {
+                $scope.error = '';
+            }, 3000);
+        }        
+    });
+
+    //Carrega Endereço a partir do CEP
+    $scope.loadCEP = function () {
+        if (!_loadCEP) {
+            return;
+        };
+
+        //api do CEP
+        var urlCEP = 'https://viacep.com.br/ws/%CEP%/json';
+        
+        if (($scope.orderConfirmation.address.cep) && ($scope.orderConfirmation.address.cep.length >= 8)) {
+            urlCEP = urlCEP.replace('%CEP%', $scope.orderConfirmation.address.cep);
+
+            $http.get(urlCEP)
+                .success(function (result) {
+                    if (result.erro) {
+                        $scope.error = 'CEP inválido';
+                        $scope.orderConfirmation.address = {};
+                        //$scope.msgErr = showAndHideService(3000);
+                    }
+                    else {
+                        $scope.orderConfirmation.address.logradouro = result.logradouro;
+                        $scope.orderConfirmation.address.complemento = result.complemento;
+                        $scope.orderConfirmation.address.bairro = result.bairro;
+                        $scope.orderConfirmation.address.localidade = result.localidade;
+                        $scope.orderConfirmation.address.uf = result.uf;
+
+                        jq('#addressnumber').focus();
+                    }
+                })
+                .error(function (response, status) {                    
+                    $scope.error = 'CEP inválido';
+                    $scope.orderConfirmation.address = {};
+                    //$scope.msgErr = showAndHideService(3000);
+                });
+        }
+        else {
+            $scope.orderConfirmation.address.logradouro = null;
+            $scope.orderConfirmation.address.complemento = null;
+            $scope.orderConfirmation.address.bairro = null;
+            $scope.orderConfirmation.address.localidade = null;
+            $scope.orderConfirmation.address.uf = null;
+            $scope.orderConfirmation.address.numero = null;
+        }
+    };
+
+    //Carrega cliente pelo telefone
+    $scope.loadCustomerByPhone = function (phoneNumber) {        
+        customersService.getByPhoneComplete(phoneNumber)
+            .success(function(result){
+                if (result != null){
+                    $scope.orderConfirmation.address.cliente = result.name;
+
+                    //endereço
+                    if (result.addresses.length > 0) {
+                        try {
+                            _loadCEP = false;
+                            //tratando cep (colocar num service)
+                            var formatCep = "00000000";                        
+                            var cepFormated = formatCep.substring(0, formatCep.length - result.addresses[0].cep.toString().length) + result.addresses[0].cep.toString();
+                            console.log(cepFormated);
+                            cepFormated = cepFormated.substring(0, 5) + "-" + cepFormated.substring(5, 8);
+                            $scope.orderConfirmation.address.cep = cepFormated;
+                        }
+                        finally {
+                            _loadCEP = true;
+                        }
+                        
+                        $scope.orderConfirmation.address.logradouro = result.addresses[0].addressName;
+                        $scope.orderConfirmation.address.numero = result.addresses[0].number;
+                        $scope.orderConfirmation.address.bairro = result.addresses[0].district;
+                        $scope.orderConfirmation.address.complemento = result.addresses[0].complement;
+                        $scope.orderConfirmation.address.localidade = result.addresses[0].city;
+                        $scope.orderConfirmation.address.uf = result.addresses[0].state;
+                    };
+                };
+        });
+    };
+
+    //Foco no horário quando terminar de digitar data
+    $scope.setFocusHour = function (value) {
+        if (value) {
+            jq("#horaEntrega").focus();
+        }
+    };
+
+    //Foco no CEP quando terminar de digitar horário
+    $scope.setFocusCEP = function (value) {
+        if (value) {
+            jq("#cep").focus();
+        }
+    };
 }]);

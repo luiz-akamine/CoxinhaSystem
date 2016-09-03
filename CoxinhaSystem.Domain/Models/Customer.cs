@@ -21,5 +21,6 @@ namespace CoxinhaSystem.Domain.Models
         public string Description { get; set; }
 
         public virtual IList<Phone> Phones { get; set; }
+        public virtual IList<Address> Addresses { get; set; }
     }
 }

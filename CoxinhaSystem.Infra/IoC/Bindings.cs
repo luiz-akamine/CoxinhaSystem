@@ -27,6 +27,7 @@ namespace CoxinhaSystem.Infra.IoC
             container.Register(typeof(IOrderRepository), typeof(OrderRepository), Lifestyle.Scoped);
             container.Register(typeof(IPhoneRepository), typeof(PhoneRepository), Lifestyle.Scoped);
             container.Register(typeof(IProductRepository), typeof(ProductRepository), Lifestyle.Scoped);
+            container.Register(typeof(IAddressRepository), typeof(AddressRepository), Lifestyle.Scoped);
 
             //Services            
             container.Register(typeof(IBaseService<>), typeof(BaseService<>), Lifestyle.Scoped);

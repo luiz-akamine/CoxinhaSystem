@@ -42,6 +42,7 @@
     <Compile Include="Interfaces\Controller\IBaseController.cs" />
     <Compile Include="Interfaces\Infra\IRepositoryManager.cs" />
     <Compile Include="Interfaces\Infra\IUnityOfWork.cs" />
+    <Compile Include="Interfaces\Repositories\IAddressRepository.cs" />
     <Compile Include="Interfaces\Repositories\IBaseRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICustomerRepository.cs" />
     <Compile Include="Interfaces\Repositories\IOrderItemRepository.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Interfaces\Services\ICustomerService.cs" />
     <Compile Include="Interfaces\Services\IOrderService.cs" />
     <Compile Include="Interfaces\Services\IProductService.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\Order.cs" />

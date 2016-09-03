@@ -8,9 +8,10 @@ using CoxinhaSystem.Infra.Data.Context;
 namespace CoxinhaSystem.Infra.Migrations
 {
     [DbContext(typeof(CoxinhaContext))]
-    partial class CoxinhaContextModelSnapshot : ModelSnapshot
+    [Migration("20160903015242_Order.RetrieveInLocal")]
+    partial class OrderRetrieveInLocal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")

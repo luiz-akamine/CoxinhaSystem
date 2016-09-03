@@ -93,19 +93,93 @@
 </div>
 
 <!--Resumo do pedido. Exibir quando clicar em confirmar-->
-<div ng-show="showDivConfirmation" style="width: 100%; height:98%; position: absolute; z-index: 1; margin: 0; left: 0; top: 0; background-color: transparent; box-shadow: none">
+<div ng-show="showDivConfirmation" class="check-element animate-show" style="width: 100%; height:98%; position: absolute; z-index: 1; margin: 0; left: 0; top: 0; background-color: transparent; box-shadow: none">
     <div class="center-child-text" style="background-color: lightslategray; width: 90%; height: 95%; box-shadow: 0 0 1rem black; display: flex; flex-direction: column; justify-content: space-between; align-content: space-between; padding: 1rem">
 
+        <!--Dados cliente-->
+        <div style="box-shadow: none; display: flex; justify-content: space-between; margin-top: 0">
+            <div style="box-shadow: none; width: 25%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem; margin-top: 0">Telefone:</h4>
+                <input ng-blur="loadCustomerByPhone(orderConfirmation.telefone)" ng-model="orderConfirmation.telefone" type="text" id="phone" maxlength="20" style="font-size: 1.7rem; width: 100%" ui-phone-br placeholder="(__) _____-____ "/>                                
+            </div>
+
+            <div style="box-shadow: none; width: 70%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem; margin-top: 0">Cliente:</h4>
+                <input id="cliente" ng-model="orderConfirmation.address.cliente" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+            </div>
+        </div>
+
+        <!--Data Entrega-->
+        <div style="box-shadow: none; display: flex; justify-content: space-between;">
+            <div style="box-shadow: none; width: 25%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem">Data de Entrega:</h4>
+                <input ng-change="setFocusHour(orderConfirmation.dtEntrega)" ng-model="orderConfirmation.dtEntrega" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" ui-date placeholder="__/__/____"/>                                
+            </div>
+            
+            <div style="box-shadow: none; width: 35%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem">Horário de Entrega:</h4>
+                <input ng-change="setFocusCEP(orderConfirmation.tmEntrega)" ng-model="orderConfirmation.tmEntrega" id="horaEntrega" type="text" maxlength="100" style="font-size: 1.7rem; width: 80%" ui-time placeholder="__:__"/>
+            </div>            
+
+            <div style="box-shadow: none; width: 30%; margin-bottom: 0; position: relative; display: inline-block">
+                <div style="box-shadow: none; vertical-align: middle; margin-top: 1.7rem; position: absolute; width: 100%" class="center-child-text">
+                    <input type="checkbox" ng-model="orderConfirmation.retiraNoLocal" id="retiraNoLocal" style="margin: auto; width: 2rem" />
+                    <label for="retiraNoLocal" style="font-size: 2rem; color: white">Retira no Local</label>                    
+                </div>
+            </div>   
+        </div>
+
+        <!--Endereço Entrega P1-->
+        <div style="box-shadow: none; display: flex; justify-content: space-between;">
+            <div style="box-shadow: none; width: 20%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem">CEP:</h4>
+                <input id="cep" ng-model="orderConfirmation.address.cep" ui-mask="99999-999" ng-change="loadCEP()" type="text" maxlength="9" style="font-size: 1.7rem; width: 100%" />
+            </div>
+
+            <div style="box-shadow: none; width: 60%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem">Endereço:</h4>
+                <input id="endereco" ng-model="orderConfirmation.address.logradouro" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+            </div>
+
+            <div style="box-shadow: none; width: 10%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem">Nº:</h4>
+                <input ng-model="orderConfirmation.address.numero" type="text" id="addressnumber" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+            </div>
+        </div>
+
+        <!--Endereço Entrega P2-->
+        <div style="box-shadow: none; display: flex; justify-content: space-between;">
+            <div style="box-shadow: none; width: 30%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem">Bairro:</h4>
+                <input id="bairro" ng-model="orderConfirmation.address.bairro" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+            </div>
+
+            <div style="box-shadow: none; width: 20%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem">Complemento:</h4>
+                <input id="complemento" ng-model="orderConfirmation.address.complemento" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+            </div>
+
+            <div style="box-shadow: none; width: 30%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem">Cidade:</h4>
+                <input id="cidade" ng-model="orderConfirmation.address.localidade" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+            </div>
+
+            <div style="box-shadow: none; width: 10%; margin-bottom: 0">
+                <h4 style="color: white; margin-bottom: 0.2rem">UF:</h4>
+                <input id="uf" ng-model="orderConfirmation.address.uf" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+            </div>
+        </div>
+
         <!--Total do Pedido-->
-        <div style="box-shadow: none; margin: 0">
-            <table class="table table-bordered" style="margin-bottom: 1%; background-color: white">
+        <div style="box-shadow: none; margin: 0; border-radius: 5px; border: none">
+            <table class="table table-bordered" style="margin-bottom: 1%; background-color: white; border-radius: 5px">
                 <tr>
                     <td style="padding: 0.3%; font-weight: bold">Total Pedido</td>
                     <td style="padding: 0.3%; text-align: center">{{orderTotal | currency: "R$"}}</td>
                 </tr>
                 <tr>
                     <td style="padding: 0.3%; color: red; font-weight: bold; vertical-align: middle">Desconto</td>
-                    <td style="padding: 0.3%; text-align: center">{{discount | currency: "R$"}}</td>
+                    <td style="padding: 0.3%; text-align: center">{{discount}} %</td>
                 </tr>
                 <tr>
                     <td style="padding: 0.3%; color: green; font-weight: bold; font-size: 2rem">Total c/ Desconto</td>
@@ -114,77 +188,11 @@
             </table>
         </div>
 
-        <!--Dados cliente-->
-        <div style="box-shadow: none; display: flex; justify-content: space-between; margin-top: 0">
-            <div style="box-shadow: none; width: 25%">
-                <h4 style="color: white; margin-bottom: 0.2rem">Telefone:</h4>
-                <input type="text" maxlength="20" style="font-size: 1.7rem; width: 100%" />
-            </div>
-
-            <div style="box-shadow: none; width: 70%">
-                <h4 style="color: white; margin-bottom: 0.2rem">Cliente:</h4>
-                <input type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
-            </div>
-        </div>
-
-        <!--Data Entrega-->
-        <div style="box-shadow: none; display: flex; justify-content: space-between;">
-            <div style="box-shadow: none; width: 25%">
-                <h4 style="color: white; margin-bottom: 0.2rem">Data de Entrega:</h4>
-                <input type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
-            </div>
-
-            <div style="box-shadow: none; width: 70%;">
-                <h4 style="color: white; margin-bottom: 0.2rem">Horário de Entrega:</h4>
-                <input type="text" maxlength="100" style="font-size: 1.7rem; width: 40%" />
-            </div>
-        </div>
-
-        <!--Endereço Entrega P1-->
-        <div style="box-shadow: none; display: flex; justify-content: space-between;">
-            <div style="box-shadow: none; width: 20%">
-                <h4 style="color: white; margin-bottom: 0.2rem">CEP:</h4>
-                <input type="text" maxlength="9" style="font-size: 1.7rem; width: 100%" />
-            </div>
-
-            <div style="box-shadow: none; width: 60%;">
-                <h4 style="color: white; margin-bottom: 0.2rem">Endereço:</h4>
-                <input type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
-            </div>
-
-            <div style="box-shadow: none; width: 10%;">
-                <h4 style="color: white; margin-bottom: 0.2rem">Nº:</h4>
-                <input type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
-            </div>
-        </div>
-
-        <!--Endereço Entrega P2-->
-        <div style="box-shadow: none; display: flex; justify-content: space-between;">
-            <div style="box-shadow: none; width: 30%;">
-                <h4 style="color: white; margin-bottom: 0.2rem">Bairro:</h4>
-                <input type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
-            </div>
-
-            <div style="box-shadow: none; width: 20%;">
-                <h4 style="color: white; margin-bottom: 0.2rem">Complemento:</h4>
-                <input type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
-            </div>
-
-            <div style="box-shadow: none; width: 30%;">
-                <h4 style="color: white; margin-bottom: 0.2rem">Cidade:</h4>
-                <input type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
-            </div>
-
-            <div style="box-shadow: none; width: 10%;">
-                <h4 style="color: white; margin-bottom: 0.2rem">UF:</h4>
-                <input type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
-            </div>
-        </div>
-
         <!--Botões cancelar/Finalizar-->
         <div style="box-shadow: none; margin: 0">
-            <button class="btn btn-danger new-order-btn-cancel" ng-click="showDivConfirmation = false">Fechar</button>
-            <button class="btn btn-success new-order-btn-confirm">Finalizar Pedido</button>
-        </div>
+            <button class="btn btn-danger" style="width: 20rem" ng-click="showDivConfirmation = false">Fechar</button>
+            <button class="btn btn-success" style="width: 20rem; margin-left: 3rem;">Finalizar Pedido</button>
+            <span class="msg-error" ng-show="msgErr.hidden">{{error}}</span>
+        </div>                     
     </div>
 </div>

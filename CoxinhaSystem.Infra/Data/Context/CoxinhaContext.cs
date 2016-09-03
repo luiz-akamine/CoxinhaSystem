@@ -13,6 +13,7 @@ namespace CoxinhaSystem.Infra.Data.Context
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
