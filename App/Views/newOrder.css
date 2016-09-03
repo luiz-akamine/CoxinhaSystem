@@ -62,3 +62,26 @@
     float: right;
     width: 40%;
 }
+
+.animate-show {  
+  opacity: 1;
+  border: 1px solid black;  
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 0.1s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+
+.msg-error {
+    color: yellow;
+    font-weight: bold;
+    margin-left: 3rem;
+    font-size: 2rem;    
+    vertical-align: middle;    
+}
