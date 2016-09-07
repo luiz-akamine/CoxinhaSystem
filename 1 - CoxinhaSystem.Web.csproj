@@ -104,6 +104,7 @@
     <Content Include="App\Controllers\searchOrdersController.js" />
     <Content Include="App\myFilters.js" />
     <Content Include="App\myDirectives.js" />
+    <Content Include="App\Services\commonLibService.js" />
     <Content Include="App\Services\customersService.js" />
     <Content Include="App\Services\ordersService.js" />
     <Content Include="App\Services\productsService.js" />

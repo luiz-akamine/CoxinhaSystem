@@ -94,31 +94,34 @@
 
 <!--Resumo do pedido. Exibir quando clicar em confirmar-->
 <div ng-show="showDivConfirmation" class="check-element animate-show" style="width: 100%; height:98%; position: absolute; z-index: 1; margin: 0; left: 0; top: 0; background-color: transparent; box-shadow: none">
-    <div class="center-child-text" style="background-color: lightslategray; width: 90%; height: 95%; box-shadow: 0 0 1rem black; display: flex; flex-direction: column; justify-content: space-between; align-content: space-between; padding: 1rem">
-
+    <form novalidate name="formNewOrder" class="center-child-text" style="background-color: lightslategray; width: 90%; height: 95%; box-shadow: 0 0 1rem black; display: flex; flex-direction: column; justify-content: space-between; align-content: space-between; padding: 1rem">
         <!--Dados cliente-->
         <div style="box-shadow: none; display: flex; justify-content: space-between; margin-top: 0">
             <div style="box-shadow: none; width: 25%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem; margin-top: 0">Telefone:</h4>
-                <input ng-blur="loadCustomerByPhone(orderConfirmation.telefone)" ng-model="orderConfirmation.telefone" type="text" id="phone" maxlength="20" style="font-size: 1.7rem; width: 100%" ui-phone-br placeholder="(__) _____-____ "/>                                
+                <h4 style="color: white; margin-bottom: 0.2rem; margin-top: 0; display: inline-block">Telefone:</h4>
+                <span style="color: yellow; font-weight: bold; vertical-align: middle" ng-show="formNewOrder.$submitted && (formNewOrder.phone.$error.required || !orderConfirmation.telefone)"> * </span>                
+                <input name="phone" required ng-blur="loadCustomerByPhone(orderConfirmation.telefone)" ng-model="orderConfirmation.telefone" type="text" id="phone" maxlength="20" style="font-size: 1.7rem; width: 100%" ui-phone-br placeholder="(__) _____-____ "/>                
             </div>
 
             <div style="box-shadow: none; width: 70%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem; margin-top: 0">Cliente:</h4>
-                <input id="cliente" ng-model="orderConfirmation.address.cliente" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+                <h4 style="color: white; margin-bottom: 0.2rem; margin-top: 0; display: inline-block">Cliente:</h4>
+                <span style="color: yellow; font-weight: bold; vertical-align: middle" ng-show="formNewOrder.$submitted && formNewOrder.cliente.$error.required"> * </span>                
+                <input id="cliente" name="cliente" required ng-model="orderConfirmation.cliente" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />                
             </div>
         </div>
 
         <!--Data Entrega-->
         <div style="box-shadow: none; display: flex; justify-content: space-between;">
             <div style="box-shadow: none; width: 25%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem">Data de Entrega:</h4>
-                <input ng-change="setFocusHour(orderConfirmation.dtEntrega)" ng-model="orderConfirmation.dtEntrega" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" ui-date placeholder="__/__/____"/>                                
+                <h4 style="color: white; margin-bottom: 0.2rem; display: inline-block">Data de Entrega:</h4>
+                <span style="color: yellow; font-weight: bold; vertical-align: middle" ng-show="formNewOrder.$submitted && (formNewOrder.dtEntrega.$error.required || !orderConfirmation.dtEntrega)"> * </span>                
+                <input name="dtEntrega" required ng-change="setFocusHour(orderConfirmation.dtEntrega)" ng-model="orderConfirmation.dtEntrega" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" ui-date placeholder="__/__/____"/>                                
             </div>
             
             <div style="box-shadow: none; width: 35%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem">Horário de Entrega:</h4>
-                <input ng-change="setFocusCEP(orderConfirmation.tmEntrega)" ng-model="orderConfirmation.tmEntrega" id="horaEntrega" type="text" maxlength="100" style="font-size: 1.7rem; width: 80%" ui-time placeholder="__:__"/>
+                <h4 style="color: white; margin-bottom: 0.2rem; display: inline-block">Horário de Entrega:</h4>
+                <span style="color: yellow; font-weight: bold; vertical-align: middle" ng-show="formNewOrder.$submitted && (formNewOrder.horaEntrega.$error.required || !orderConfirmation.tmEntrega)"> * </span>                
+                <input name="horaEntrega" required ng-change="setFocusCEP(orderConfirmation.tmEntrega)" ng-model="orderConfirmation.tmEntrega" id="horaEntrega" type="text" maxlength="100" style="font-size: 1.7rem; width: 80%" ui-time placeholder="__:__"/>
             </div>            
 
             <div style="box-shadow: none; width: 30%; margin-bottom: 0; position: relative; display: inline-block">
@@ -132,41 +135,46 @@
         <!--Endereço Entrega P1-->
         <div style="box-shadow: none; display: flex; justify-content: space-between;">
             <div style="box-shadow: none; width: 20%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem">CEP:</h4>
+                <h4 style="color: white; margin-bottom: 0.2rem; display: inline-block">CEP:</h4>
                 <input id="cep" ng-model="orderConfirmation.address.cep" ui-mask="99999-999" ng-change="loadCEP()" type="text" maxlength="9" style="font-size: 1.7rem; width: 100%" />
             </div>
 
             <div style="box-shadow: none; width: 60%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem">Endereço:</h4>
-                <input id="endereco" ng-model="orderConfirmation.address.logradouro" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+                <h4 style="color: white; margin-bottom: 0.2rem; display: inline-block">Endereço:</h4>
+                <span style="color: yellow; font-weight: bold; vertical-align: middle" ng-show="formNewOrder.$submitted && !orderConfirmation.address.logradouro && !orderConfirmation.retiraNoLocal"> * </span>                
+                <input name="endereco" id="endereco" ng-model="orderConfirmation.address.logradouro" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
             </div>
 
             <div style="box-shadow: none; width: 10%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem">Nº:</h4>
-                <input ng-model="orderConfirmation.address.numero" type="text" id="addressnumber" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+                <h4 style="color: white; margin-bottom: 0.2rem; display: inline-block">Nº:</h4>
+                <span style="color: yellow; font-weight: bold; vertical-align: middle" ng-show="formNewOrder.$submitted && !orderConfirmation.address.numero && !orderConfirmation.retiraNoLocal"> * </span>
+                <input name="numero" ng-model="orderConfirmation.address.numero" type="text" id="addressnumber" maxlength="100" style="font-size: 1.7rem; width: 100%" />
             </div>
         </div>
 
         <!--Endereço Entrega P2-->
         <div style="box-shadow: none; display: flex; justify-content: space-between;">
             <div style="box-shadow: none; width: 30%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem">Bairro:</h4>
-                <input id="bairro" ng-model="orderConfirmation.address.bairro" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+                <h4 style="color: white; margin-bottom: 0.2rem; display: inline-block">Bairro:</h4>
+                <span style="color: yellow; font-weight: bold; vertical-align: middle" ng-show="formNewOrder.$submitted && !orderConfirmation.address.bairro && !orderConfirmation.retiraNoLocal"> * </span>
+                <input name="bairro" id="bairro" ng-model="orderConfirmation.address.bairro" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
             </div>
 
             <div style="box-shadow: none; width: 20%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem">Complemento:</h4>
+                <h4 style="color: white; margin-bottom: 0.2rem; display: inline-block">Complemento:</h4>
                 <input id="complemento" ng-model="orderConfirmation.address.complemento" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
             </div>
 
             <div style="box-shadow: none; width: 30%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem">Cidade:</h4>
-                <input id="cidade" ng-model="orderConfirmation.address.localidade" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+                <h4 style="color: white; margin-bottom: 0.2rem; display: inline-block">Cidade:</h4>
+                <span style="color: yellow; font-weight: bold; vertical-align: middle" ng-show="formNewOrder.$submitted && !orderConfirmation.address.localidade && !orderConfirmation.retiraNoLocal"> * </span>
+                <input name="cidade" id="cidade" ng-model="orderConfirmation.address.localidade" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
             </div>
 
             <div style="box-shadow: none; width: 10%; margin-bottom: 0">
-                <h4 style="color: white; margin-bottom: 0.2rem">UF:</h4>
-                <input id="uf" ng-model="orderConfirmation.address.uf" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
+                <h4 style="color: white; margin-bottom: 0.2rem; display: inline-block">UF:</h4>
+                <span style="color: yellow; font-weight: bold; vertical-align: middle" ng-show="formNewOrder.$submitted && !orderConfirmation.address.uf && !orderConfirmation.retiraNoLocal"> * </span>
+                <input name="uf" id="uf" ng-model="orderConfirmation.address.uf" type="text" maxlength="100" style="font-size: 1.7rem; width: 100%" />
             </div>
         </div>
 
@@ -191,8 +199,8 @@
         <!--Botões cancelar/Finalizar-->
         <div style="box-shadow: none; margin: 0">
             <button class="btn btn-danger" style="width: 20rem" ng-click="showDivConfirmation = false">Fechar</button>
-            <button class="btn btn-success" style="width: 20rem; margin-left: 3rem;">Finalizar Pedido</button>
+            <button type="submit" ng-click="saveNewOrder(orderConfirmation)" class="btn btn-success" style="width: 20rem; margin-left: 3rem;">Finalizar Pedido</button>
             <span class="msg-error" ng-show="msgErr.hidden">{{error}}</span>
         </div>                     
-    </div>
+    </form>
 </div>

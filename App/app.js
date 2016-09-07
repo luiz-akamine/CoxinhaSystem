@@ -49,12 +49,19 @@ app.config(function ($routeProvider, $httpProvider, $locationProvider) {
 //Constantes da aplicação
 app.constant('ngCoxinhaSettings', {
     apiServiceBaseUri: 'http://localhost:3001/'
+    //apiServiceBaseUri: 'http://localhost:50591/'
 });
 app.constant('ngProductTypes', {
     Cake: 1,
     Frie: 2,
     Roast: 3,
     Sweet: 4
+});
+app.constant('ngOrderStatus', {
+    Created: 10,
+    InProgress: 20,
+    Finished: 30,
+    Canceled: 40
 });
 
 /* TODO

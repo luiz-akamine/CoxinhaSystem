@@ -1,6 +1,6 @@
 ﻿'use strict';
-app.controller('newOrderController', ['$scope', '$http', '$timeout', 'productsService', 'customersService', 'showAndHideService', 'ngProductTypes',
-    function ($scope, $http, $timeout, productsService, customersService, showAndHideService, ngProductTypes) {
+app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location', 'productsService', 'customersService', 'ordersService', 'showAndHideService', 'commonLibService', 'ngProductTypes', 'ngOrderStatus',
+    function ($scope, $http, $timeout, $location, productsService, customersService, ordersService, showAndHideService, commonLibService, ngProductTypes, ngOrderStatus) {
 
     //Lista de produtos a ser exibida para seleção
     $scope.listProducts = [];
@@ -149,6 +149,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', 'productsSe
         $scope.orderTotalWithDiscount = 0;
         $scope.orderConfirmation = {};
         $scope.orderConfirmation.address = {};
+        $scope.formNewOrder.$setPristine();
 
         $scope.listProducts.forEach(function (prod) {
             $scope.loadQty(prod);
@@ -182,7 +183,24 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', 'productsSe
     //Controle de carregamento automatico do endereço pelo cep
     var _loadCEP = true;
 
-    //Exibe mensagem de erro e desaparece
+    //Controle para limpar telefone
+    var _customerInDB = false;    
+    $scope.$watch('orderConfirmation.telefone', function () {
+        if ((_customerInDB) && (!$scope.orderConfirmation.telefone)) {
+            $scope.orderConfirmation.cliente = null;
+            $scope.orderConfirmation.address.cep = null;
+            $scope.orderConfirmation.address.logradouro = null;
+            $scope.orderConfirmation.address.complemento = null;
+            $scope.orderConfirmation.address.bairro = null;
+            $scope.orderConfirmation.address.localidade = null;
+            $scope.orderConfirmation.address.uf = null;
+            $scope.orderConfirmation.address.numero = null;
+
+            _customerInDB = false;
+        }
+    });
+
+    //Apaga informações do cliente caso apague o telefone e o mesmo esteja cadastrado no banco
     $scope.$watch('error', function () {
         if ($scope.error) {
             $scope.msgErr = showAndHideService(3000);
@@ -190,7 +208,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', 'productsSe
             $timeout(function () {
                 $scope.error = '';
             }, 3000);
-        }        
+        }
     });
 
     //Carrega Endereço a partir do CEP
@@ -243,7 +261,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', 'productsSe
         customersService.getByPhoneComplete(phoneNumber)
             .success(function(result){
                 if (result != null){
-                    $scope.orderConfirmation.address.cliente = result.name;
+                    $scope.orderConfirmation.cliente = result.name;
 
                     //endereço
                     if (result.addresses.length > 0) {
@@ -266,6 +284,8 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', 'productsSe
                         $scope.orderConfirmation.address.complemento = result.addresses[0].complement;
                         $scope.orderConfirmation.address.localidade = result.addresses[0].city;
                         $scope.orderConfirmation.address.uf = result.addresses[0].state;
+
+                        _customerInDB = true;
                     };
                 };
         });
@@ -282,6 +302,111 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', 'productsSe
     $scope.setFocusCEP = function (value) {
         if (value) {
             jq("#cep").focus();
+        }
+    };    
+
+    //Salva Pedido
+    $scope.saveNewOrder = function (orderConfirmation) {
+        //Validações
+        if (Object.keys($scope.formNewOrder.$error).length > 0) {
+            $scope.error = ' * Campo obrigatório';
+            return;
+        }
+        else {
+            //Ou preenche o endereço ou checa o flag "Retira no Local"
+            var allAddressIsFilled =
+                (
+                    //$scope.address.cep &&
+                    $scope.orderConfirmation.address.logradouro &&
+                    $scope.orderConfirmation.address.numero &&
+                    $scope.orderConfirmation.address.bairro &&
+                    $scope.orderConfirmation.address.localidade &&
+                    $scope.orderConfirmation.address.uf
+                 );
+
+            if (!orderConfirmation.retiraNoLocal && !allAddressIsFilled) {
+                $scope.error = 'Endereço deve ser preenchido';
+                return;
+            }
+        }
+
+        //Campos OK. Realizar cadastro do Pedido/Cliente
+        var customer = {};
+        customer.name = $scope.orderConfirmation.cliente;
+        customer.phones = [
+            {
+                phoneNumber: $scope.orderConfirmation.telefone
+            }
+        ];
+        //Formatando CEP 
+        var cepToSend = null;
+        if ($scope.orderConfirmation.address.cep) {
+            cepToSend = $scope.orderConfirmation.address.cep.replace('-', '');
+            cepToSend = parseInt(cepToSend);
+        }        
+        customer.addresses = [
+            {
+                addressName: $scope.orderConfirmation.address.logradouro,
+                cep: cepToSend,
+                city: $scope.orderConfirmation.address.localidade,
+                complement: $scope.orderConfirmation.address.complemento,
+                district: $scope.orderConfirmation.address.bairro,
+                number: $scope.orderConfirmation.address.numero,
+                state: $scope.orderConfirmation.address.uf
+            }
+        ];
+        console.log(customer);
+
+        try {
+            // 1) Cadastrar/Atualizar cliente
+            customersService.saveOrUpdateCustomerByPhone(customer)
+                .error(function (result, status) {
+                    $scope.error = 'Falha ao atualizar cliente [' + status + ']';
+                })
+                .then(function (customerId) {
+                    // 2) Cadastrar Novo Pedido              
+                    
+                    //Pedido Pai
+                    var orderComplete = {};
+                    orderComplete.customerId = customerId.data;
+                    orderComplete.deliveryDate = new Date(
+                        $scope.orderConfirmation.dtEntrega.getFullYear(),
+                        $scope.orderConfirmation.dtEntrega.getMonth(),
+                        $scope.orderConfirmation.dtEntrega.getDate(),
+                        $scope.orderConfirmation.tmEntrega.getHours() - (new Date().getTimezoneOffset()/60),
+                        $scope.orderConfirmation.tmEntrega.getMinutes(),0,0);                    
+                    orderComplete.discount = $scope.discount;
+                    orderComplete.dtCreation = new Date();
+                    orderComplete.paid = false;
+                    orderComplete.status = ngOrderStatus.Created;
+                    orderComplete.total = $scope.orderTotal;
+                    orderComplete.totalWithDiscount = $scope.orderTotalWithDiscount;                    
+
+                    //Detalhes do Pedido
+                    var orderItems = [];
+                    $scope.listOrderProducts.forEach(function (prodInList) {
+                        var orderItem =
+                        {
+                            productId: prodInList.id,
+                            qty: prodInList.qty,
+                            price: prodInList.priceInOrder
+                        };
+
+                        orderItems.push(orderItem);
+                    });
+
+                    orderComplete.orderItems = orderItems;                    
+
+                    ordersService.saveNewOrder(orderComplete)
+                        .then(function () {
+                            //Exibir msg de OK e voltar para tela inicial de Pedidos do Dia
+                            $location.path('/home');
+                        });                    
+                });                                                 
+        }
+        catch (e) {
+            console.log(e);
+            $scope.error = e.message;
         }
     };
 }]);
