@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 namespace CoxinhaSystem.Domain.Models
 {
     public class Address : EntityBase
-    {        
-        [Required]
-        public int CEP { get; set; }
+    {                
+        public int? CEP { get; set; }
 
         [Column(TypeName = "VARCHAR(300)")]
         [Required]

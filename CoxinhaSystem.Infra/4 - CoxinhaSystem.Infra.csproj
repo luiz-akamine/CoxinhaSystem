@@ -153,6 +153,14 @@
     <Compile Include="Data\Migrations\20160903015242_Order.RetrieveInLocal.designer.cs">
       <DependentUpon>20160903015242_Order.RetrieveInLocal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\Migrations\20160907000611_Delete_Customer.FullAddress.cs" />
+    <Compile Include="Data\Migrations\20160907000611_Delete_Customer.FullAddress.designer.cs">
+      <DependentUpon>20160907000611_Delete_Customer.FullAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Migrations\20160907001408_NOTNULL_Address.CEP.cs" />
+    <Compile Include="Data\Migrations\20160907001408_NOTNULL_Address.CEP.designer.cs">
+      <DependentUpon>20160907001408_NOTNULL_Address.CEP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\Repositories\AddressRepository.cs" />
     <Compile Include="Data\Repositories\CustomerRepository.cs" />
     <Compile Include="IoC\Bindings.cs" />

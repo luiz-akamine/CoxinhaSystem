@@ -6,5 +6,6 @@ namespace CoxinhaSystem.Domain.Interfaces.Repositories
     {
         Customer GetByPhone(string phoneNumber);
         Customer GetByPhoneComplete(string phoneNumber);
+        Customer GetCompleteById(int id);        
     }
 }

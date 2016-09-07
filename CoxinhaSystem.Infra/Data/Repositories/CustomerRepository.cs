@@ -2,6 +2,8 @@
 using CoxinhaSystem.Domain.Models;
 using System.Linq;
 using Microsoft.Data.Entity;
+using System;
+using Microsoft.Practices.ServiceLocation;
 
 namespace CoxinhaSystem.Infra.Data.Repositories
 {
@@ -38,6 +40,14 @@ namespace CoxinhaSystem.Infra.Data.Repositories
             {
                 return null;
             }
+        }
+
+        public Customer GetCompleteById(int id)
+        {
+            return _context.Customers
+                .Include(p => p.Phones)
+                .Include(a => a.Addresses)
+                .Where(x => x.Id == id).FirstOrDefault();
         }
     }
 }

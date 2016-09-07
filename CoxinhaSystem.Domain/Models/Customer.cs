@@ -11,11 +11,7 @@ namespace CoxinhaSystem.Domain.Models
         
         [Column(TypeName = "VARCHAR(100)")]                
         [Required]        
-        public string Name { get; set; }
-
-        [Column(TypeName = "VARCHAR(200)")]       
-        [Required]
-        public string FullAddress { get; set; }
+        public string Name { get; set; }        
 
         [Column(TypeName = "VARCHAR(200)")]
         public string Description { get; set; }

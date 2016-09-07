@@ -23,10 +23,10 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
     };
 
     //Método que retorna lista de Ordens por Data de Entrega
-    var _getOrdersByDtDelivery = function (dtBegin, dtEnd) {        
+    var _getOrdersByDtDelivery = function (dtBegin, dtEnd) {
 
         //Chamando WEB API no server que retorna a lista de Pedidos por Data de Entrega
-        return $http.get(serviceBase + 'api/order/GetByDtDelivery?dtBegin='+ dtBegin +'&dtEnd='+ dtEnd)
+        return $http.get(serviceBase + 'api/order/GetByDtDelivery?dtBegin=' + dtBegin + '&dtEnd=' + dtEnd)
             .success(function (result) {
                 return result;
             })
@@ -34,11 +34,29 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
                 console.log('erro ao adquirir pedidos por data de entrega. Status: ' + status);
                 alert('erro ao adquirir pedidos');
             });
-    }
+    };
+
+    //Método que cadastra Novo Pedido
+    var _saveNewOrder = function (orderComplete) {
+
+        //Chamando WEB API no server que cadastra novo pedido
+        return $http.post(
+            serviceBase + 'api/order',
+            JSON.stringify(orderComplete),
+            {
+                headers: { 'Content-Type': 'application/json' }
+            }
+            ).success(function (result) {
+                return result;
+            }).error(function (response, status) {
+                console.log('erro ao cadastrarnovo Pedido. Status: ' + status);
+            });
+    };
 
     //Definindo métodos desta factory a serem chamadas por outros js
     ordersServiceFactory.getOrders = _getOrders;
     ordersServiceFactory.getOrdersByDtDelivery = _getOrdersByDtDelivery;
+    ordersServiceFactory.saveNewOrder = _saveNewOrder;
 
     return ordersServiceFactory;
 }]);

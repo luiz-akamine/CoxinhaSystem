@@ -31,5 +31,11 @@ namespace CoxinhaSystem.API.Controllers
         {
             return Request.CreateResponse(HttpStatusCode.OK, _customerService.GetByPhoneComplete(phoneNumber));
         }
+
+        [Route("SaveOrUpdateCustomerByPhone")]
+        public HttpResponseMessage SaveOrUpdateCustomerByPhone(Customer customer)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, _customerService.SaveOrUpdateCustomerByPhone(customer));
+        }        
     }
 }

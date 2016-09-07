@@ -12,7 +12,7 @@ app.factory('customersService', ['$http', 'ngCoxinhaSettings', function ($http, 
     var _getByPhoneComplete = function (phoneNumber) {
 
         //Chamando WEB API no server que retorna a lista de Pedidos        
-        return $http.get(serviceBase + 'api/customer/GetByPhoneComplete?phoneNumber='+ phoneNumber)
+        return $http.get(serviceBase + 'api/customer/GetByPhoneComplete?phoneNumber=' + phoneNumber)
             .success(function (result) {
                 return result;
             })
@@ -22,8 +22,26 @@ app.factory('customersService', ['$http', 'ngCoxinhaSettings', function ($http, 
             });
     };
 
+    //Método que cadastra ou atualiza cliente
+    var _saveOrUpdateCustomerByPhone = function (customer) {
+
+        //Chamando WEB API no server que cadastra ou atualiza cliente (a busca é pelo telefone)
+        return $http.post(
+            serviceBase + 'api/customer/SaveOrUpdateCustomerByPhone',
+            JSON.stringify(customer),
+            {
+                headers: {'Content-Type': 'application/json'}
+            }
+            ).success(function (result) {
+                return result;
+            }).error(function (response, status) {
+                console.log('erro ao cadastrar/atualizar cliente. Status: ' + status);                
+            });
+    };
+
     //Definindo métodos desta factory a serem chamadas por outros js
     customersServiceFactory.getByPhoneComplete = _getByPhoneComplete;
+    customersServiceFactory.saveOrUpdateCustomerByPhone = _saveOrUpdateCustomerByPhone;
 
     return customersServiceFactory;
 }]);

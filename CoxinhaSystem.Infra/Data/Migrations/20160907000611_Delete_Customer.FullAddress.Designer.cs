@@ -8,9 +8,10 @@ using CoxinhaSystem.Infra.Data.Context;
 namespace CoxinhaSystem.Infra.Migrations
 {
     [DbContext(typeof(CoxinhaContext))]
-    partial class CoxinhaContextModelSnapshot : ModelSnapshot
+    [Migration("20160907000611_Delete_Customer.FullAddress")]
+    partial class Delete_CustomerFullAddress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -25,7 +26,7 @@ namespace CoxinhaSystem.Infra.Migrations
                         .IsRequired()
                         .HasAnnotation("Relational:ColumnType", "VARCHAR(300)");
 
-                    b.Property<int?>("CEP");
+                    b.Property<int>("CEP");
 
                     b.Property<string>("City")
                         .HasAnnotation("Relational:ColumnType", "VARCHAR(100)");
