@@ -1,7 +1,7 @@
 ﻿//Componentes/diretivas customizados
 
 angular.module('myDirectives', [])
-.directive('orderCard', function () {
+.directive('orderCard', ['productsService', function (productsService) {
     return {
         restrict: "AE",
         scope: {
@@ -9,14 +9,21 @@ angular.module('myDirectives', [])
             orderjson: '='
         },
         //transclude: true,
-        templateUrl: 'App/Components/orderCard.html'
+        templateUrl: 'App/Components/orderCard.html',
         /*required: 'ngModel',
         link: function (scope, element, attrs, directive) {
             
             this.orderjson = directive.$viewValue;
         }*/
+        link: function (scope, element, attrs, directive) {
+
+            //Retorna unidade do produto
+            scope.getUnit = function (unitNumber) {
+                return productsService.getUnit(unitNumber);
+            }
+        }
     };
-})
+}])
 .directive('uiDate', function () {
     return {
         restrict: "A",
@@ -47,7 +54,7 @@ angular.module('myDirectives', [])
             //Atribuindo ao ngModel apenas quando atingir o número de caracteres completo de data
             ctrl.$parsers.push(function (value) {
                 if (value.length === 10) {
-                    
+
                     //validação da data
                     if (!moment(value, 'DD/MM/YYYY').isValid()) {
                         //Limpando variável
@@ -75,7 +82,7 @@ angular.module('myDirectives', [])
         require: "ngModel",
         link: function (scope, element, attrs, ctrl) {
             var _formatTime = function (time) {
-                if (time != null) {                    
+                if (time != null) {
                     //retirando carcteres diferentes de números
                     time = time.replace(/[^0-9]+/g, "");
 
@@ -124,24 +131,26 @@ angular.module('myDirectives', [])
         require: "ngModel",
         link: function (scope, element, attrs, ctrl) {
             var _formatPhone = function (phone) {
-                //retirando carcteres diferentes de números
-                phone = phone.replace(/[^0-9]+/g, "");
+                if (phone != null) {                
+                    //retirando carcteres diferentes de números
+                    phone = phone.replace(/[^0-9]+/g, "");
 
-                //Inserindo máscara
-                if (phone.length >= 1) {
-                    phone = "(" + phone.substring(0, 1) + phone.substring(1);
-                }
-                if (phone.length >= 3) {
-                    phone = phone.substring(0, 3) + ") " + phone.substring(3);
-                }
-                if (phone.length >= 9) {
-                    phone = phone.substring(0, 9) + "-" + phone.substring(9, 14);
-                }
-                if (phone.length >= 15) {
-                    phone = phone.substring(0, 9) + phone[10] + "-" + phone.substring(11, 15);
-                }
+                    //Inserindo máscara
+                    if (phone.length >= 1) {
+                        phone = "(" + phone.substring(0, 1) + phone.substring(1);
+                    }
+                    if (phone.length >= 3) {
+                        phone = phone.substring(0, 3) + ") " + phone.substring(3);
+                    }
+                    if (phone.length >= 9) {
+                        phone = phone.substring(0, 9) + "-" + phone.substring(9, 14);
+                    }
+                    if (phone.length >= 15) {
+                        phone = phone.substring(0, 9) + phone[10] + "-" + phone.substring(11, 15);
+                    }
 
-                return phone;
+                    return phone;
+                }
             };
 
             //atribuindo evento keyup para ao digitarmos, a mascara entrar em ação
@@ -156,6 +165,32 @@ angular.module('myDirectives', [])
                     return value
                 }
             });
+        }
+    };
+})
+.directive('ngInputDecimal', function () {
+    return {
+        require: 'ngModel',
+        restrict: 'A',
+        link: function (scope, element, attr, ctrl) {
+            function inputValue(val) {
+
+                if (val) {
+                    var digits = val.replace(/[^0-9.]/g, '');
+
+                    if (digits.split('.').length > 2) {
+                        digits = digits.substring(0, digits.length - 1);
+                    }
+
+                    if (digits !== val) {
+                        ctrl.$setViewValue(digits);
+                        ctrl.$render();
+                    }
+                    return parseFloat(digits);
+                }
+                return 0;
+            }
+            ctrl.$parsers.push(inputValue);
         }
     };
 });

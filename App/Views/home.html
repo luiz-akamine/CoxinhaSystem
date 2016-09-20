@@ -1,5 +1,14 @@
 ﻿<!--Título Principal-->
-<h3 class="text-center content-title">Pedidos do Dia</h3>
+<h3 class="text-center content-title">Pedidos do Dia 
+    <input 
+           type="date" 
+           id="dtOrder" 
+           ng-model="dtOrder" 
+           ng-change="refreshOrders(dtOrder)" 
+           ng-init="refreshOrders(dtOrder)"
+           class="form-control" 
+           style="float: right; font-size: 1.5rem; width: 18rem; margin-right: 2%; color: red" />
+</h3>
 
 <!--Cards das Ordens do Dia-->
 <order-card ng-repeat="order in orders" orderjson="order"></order-card>

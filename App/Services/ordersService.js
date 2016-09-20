@@ -38,7 +38,7 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
 
     //Método que cadastra Novo Pedido
     var _saveNewOrder = function (orderComplete) {
-
+        
         //Chamando WEB API no server que cadastra novo pedido
         return $http.post(
             serviceBase + 'api/order',
@@ -49,7 +49,7 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
             ).success(function (result) {
                 return result;
             }).error(function (response, status) {
-                console.log('erro ao cadastrarnovo Pedido. Status: ' + status);
+                console.log('erro ao cadastrar novo Pedido. Status: ' + status);
             });
     };
 

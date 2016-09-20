@@ -13,7 +13,7 @@
 <div class="new-order-right-top-div" style="position: relative; display: flex; flex-direction: column">
     <div style="display: flex; width: 100%; align-content: space-between; margin: auto; flex: 2; background-color: lightslategray; border-radius: unset">
         <div style="width: 62%; box-shadow: none; margin-top: auto; font-weight: bold; padding-left: 0.7%; color: white">Descrição</div>
-        <div style="width: 10%; box-shadow: none; text-align: center; vertical-align: middle; margin: auto; font-weight: bold; color: white">Qtd.</div>
+        <div style="width: 12%; box-shadow: none; text-align: center; vertical-align: middle; margin: auto; font-weight: bold; color: white">Qtd. [{{getUnit(unit)}}]</div>
         <div style="width: 21.5%; box-shadow: none; text-align: center; vertical-align: middle; margin: auto; font-weight: bold; color: white">Valor</div>
     </div>
     <div style="overflow: auto; width: 100%; box-shadow: none; flex: 10">
@@ -24,7 +24,7 @@
                     <td style="width: 20%; padding: 0.7%">
                         <div style="box-shadow: none; display: flex; justify-content: center; align-items:center">
                             <button ng-click="decProdQty(product)" class="btn btn-danger" style="height: 25px; width: 25px; position: relative"><div class="center-child-text">-</div></button>
-                            <input type="text" style="width: 40%; margin-left: 5%; margin-right: 5%; text-align: center" value="{{product.qty | isNull:0}}" ng-model="product.qty" ng-init="loadQty(product)"/>
+                            <input type="text" ng-input-decimal style="width: 40%; margin-left: 5%; margin-right: 5%; text-align: center" value="{{product.qty | isNull:0}}" ng-model="product.qty" ng-init="loadQty(product)" ng-change="refreshPrice(product)"/>
                             <button ng-click="incProdQty(product)" class="btn btn-success" style="height: 25px; width: 25px; position: relative"><div class="center-child-text">+</div></button>
                         </div>
                     </td>
@@ -100,7 +100,7 @@
             <div style="box-shadow: none; width: 25%; margin-bottom: 0">
                 <h4 style="color: white; margin-bottom: 0.2rem; margin-top: 0; display: inline-block">Telefone:</h4>
                 <span style="color: yellow; font-weight: bold; vertical-align: middle" ng-show="formNewOrder.$submitted && (formNewOrder.phone.$error.required || !orderConfirmation.telefone)"> * </span>                
-                <input name="phone" required ng-blur="loadCustomerByPhone(orderConfirmation.telefone)" ng-model="orderConfirmation.telefone" type="text" id="phone" maxlength="20" style="font-size: 1.7rem; width: 100%" ui-phone-br placeholder="(__) _____-____ "/>                
+                <input name="phone" required ng-blur="loadCustomerByPhone(orderConfirmation.telefone)" ng-model="orderConfirmation.telefone" type="text" id="phone" maxlength="20" style="font-size: 1.7rem; width: 100%" ui-phone-br placeholder="(__) _____-____ "  ng-keypress="tabAsEnter($event)"/>
             </div>
 
             <div style="box-shadow: none; width: 70%; margin-bottom: 0">

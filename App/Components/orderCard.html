@@ -17,14 +17,14 @@
                 <tr ng-repeat="orderItem in orderjson.orderItems">
                     <td style="padding: 1%">{{orderItem.product.name}}</td>
                     <td style="padding: 1%; text-align: center">{{orderItem.qty}}</td>
-                    <td style="padding: 1%; text-align: center">{{orderItem.product.unit}}</td>
+                    <td style="padding: 1%; text-align: center">{{getUnit(orderItem.product.unit)}}</td>
                     <td style="padding: 1%; text-align: center">{{orderItem.product.price | currency: "R$"}}</td>
                 </tr>
             </tbody>
         </table>
 
         
-        <p style="margin: 1%; text-align: center;">Total: {{orderjson.total | currency: "R$"}} | Desc.: {{orderjson.discount | currency: "R$"}}</p>
+        <p style="margin: 1%; text-align: center;">Total: {{orderjson.total | currency: "R$"}} | Desc.: {{orderjson.discount}} %</p>
         <p style="margin: 1%; text-align: center; font-weight: bold; color: green">Total c/ Desc.: {{orderjson.totalWithDiscount | currency: "R$"}}</p>
         
         <footer class="card-body-footer" style="font-size: 1.1rem" ng-if="orderjson.description">

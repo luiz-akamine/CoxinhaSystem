@@ -13,6 +13,8 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
     $scope.discount = 0;
     //Variável com o Valor Total do Pedido com Desconto
     $scope.orderTotalWithDiscount = 0;
+    //Unidade
+    $scope.unit = 0;
     
 
     //Controle de visibilidade do form
@@ -24,7 +26,8 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
 
         productsService.getProductsByType(ngProductTypes.Cake)
             .success(function (result) {
-                $scope.listProducts = result;                
+                $scope.listProducts = result;
+                $scope.unit = $scope.listProducts[0].unit;
             });
     };
 
@@ -35,6 +38,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
         productsService.getProductsByType(ngProductTypes.Frie)
             .success(function (result) {
                 $scope.listProducts = result;
+                $scope.unit = $scope.listProducts[0].unit;
             });
     };
 
@@ -45,6 +49,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
         productsService.getProductsByType(ngProductTypes.Roast)
             .success(function (result) {
                 $scope.listProducts = result;
+                $scope.unit = $scope.listProducts[0].unit;
             });
     };
 
@@ -55,6 +60,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
         productsService.getProductsByType(ngProductTypes.Sweet)
             .success(function (result) {
                 $scope.listProducts = result;
+                $scope.unit = $scope.listProducts[0].unit;
             });
     };
 
@@ -76,6 +82,17 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
         if (product.qty < 0) {
             product.qty = 0;
         }
+
+        refreshListOrderProducts(product);
+        //calcular preço no pedido
+        calcProductPriceInOrder(product);
+
+        //Atualizando totais
+        $scope.refreshTotals();
+    };
+
+    //Atualizo
+    $scope.refreshPrice = function (product) {        
 
         refreshListOrderProducts(product);
         //calcular preço no pedido
@@ -107,6 +124,9 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
     var calcProductPriceInOrder = function(product) {
         if ((parseFloat(product.qty) || 0) > 0) {
             product.priceInOrder = product.price * product.qty;
+        }
+        else {
+            product.priceInOrder = null;
         }
     };
 
@@ -166,7 +186,12 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
                 jq('#phone').focus();
             }, 750);            
         }        
-    };    
+    };
+
+    //Retorna unidade do produto
+    $scope.getUnit = function(unitNumber) {
+        return productsService.getUnit(unitNumber);
+    }
 
     //Chamando click inicial no primeiro botão de "Bolo"    
     $scope.loadCakes();
@@ -369,14 +394,16 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
                     //Pedido Pai
                     var orderComplete = {};
                     orderComplete.customerId = customerId.data;
-                    orderComplete.deliveryDate = new Date(
+                    orderComplete.deliveryDate = commonLibService.getDateBr(
+                        new Date(
                         $scope.orderConfirmation.dtEntrega.getFullYear(),
                         $scope.orderConfirmation.dtEntrega.getMonth(),
                         $scope.orderConfirmation.dtEntrega.getDate(),
-                        $scope.orderConfirmation.tmEntrega.getHours() - (new Date().getTimezoneOffset()/60),
-                        $scope.orderConfirmation.tmEntrega.getMinutes(),0,0);                    
-                    orderComplete.discount = $scope.discount;
-                    orderComplete.dtCreation = new Date();
+                        $scope.orderConfirmation.tmEntrega.getHours(),
+                        $scope.orderConfirmation.tmEntrega.getMinutes())
+                        );
+                    orderComplete.discount = $scope.discount;                    
+                    orderComplete.dtCreation = commonLibService.getDateBr(new Date());
                     orderComplete.paid = false;
                     orderComplete.status = ngOrderStatus.Created;
                     orderComplete.total = $scope.orderTotal;
@@ -409,4 +436,11 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
             $scope.error = e.message;
         }
     };
+
+    $scope.tabAsEnter = function (event) {
+        if (event.which === 13) {
+            event.preventDefault();
+            jq('#cliente').focus();
+        }
+    }
 }]);
