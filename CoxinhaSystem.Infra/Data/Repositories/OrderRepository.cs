@@ -25,7 +25,7 @@ namespace CoxinhaSystem.Infra.Data.Repositories
                 .Include(x => x.Customer)
                 .Include(x => x.OrderItems)
                 .ThenInclude(x => x.Product)
-                .Where(x => x.DtCreation >= dtBegin && x.DtCreation >= dtBegin);
+                .Where(x => x.DtCreation >= dtBegin && x.DtCreation <= dtEnd);
         }
 
         public IQueryable<Order> GetByDtDelivery(DateTime dtBegin, DateTime dtEnd)
@@ -34,7 +34,7 @@ namespace CoxinhaSystem.Infra.Data.Repositories
                 .Include(x => x.Customer)
                 .Include(x => x.OrderItems)
                 .ThenInclude(x => x.Product)
-                .Where(x => x.DeliveryDate >= dtBegin && x.DeliveryDate >= dtBegin);
+                .Where(x => x.DeliveryDate >= dtBegin && x.DeliveryDate <= dtEnd);
         }
 
         public IQueryable<Order> GetByPhone(string phone)

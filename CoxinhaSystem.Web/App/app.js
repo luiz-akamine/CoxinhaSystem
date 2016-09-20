@@ -63,6 +63,10 @@ app.constant('ngOrderStatus', {
     Finished: 30,
     Canceled: 40
 });
+app.constant('ngUnit', {
+    UN: 1,
+    KG: 2
+});
 
 /* TODO
 //Setando serviço que realizará a interceptação das requisições http
