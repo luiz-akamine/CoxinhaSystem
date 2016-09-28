@@ -18,7 +18,7 @@
                     <td style="padding: 1%">{{orderItem.product.name}}</td>
                     <td style="padding: 1%; text-align: center">{{orderItem.qty}}</td>
                     <td style="padding: 1%; text-align: center">{{getUnit(orderItem.product.unit)}}</td>
-                    <td style="padding: 1%; text-align: center">{{orderItem.product.price | currency: "R$"}}</td>
+                    <td style="padding: 1%; text-align: center">{{orderItem.price | currency: "R$"}}</td>
                 </tr>
             </tbody>
         </table>

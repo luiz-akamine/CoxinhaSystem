@@ -1,6 +1,6 @@
 ﻿//Serviço com métodos relacionados a entidade de Pedidos
 'use strict';
-app.factory('productsService', ['$http', 'ngCoxinhaSettings', 'ngUnit', function ($http, ngCoxinhaSettings, ngUnit) {
+app.factory('productsService', ['$http', 'ngCoxinhaSettings', 'ngUnit', 'ngProductTypes', function ($http, ngCoxinhaSettings, ngUnit, ngProductTypes) {
 
     //Server onde está hospedado as WEB APIs
     var serviceBase = ngCoxinhaSettings.apiServiceBaseUri;
@@ -46,12 +46,30 @@ app.factory('productsService', ['$http', 'ngCoxinhaSettings', 'ngUnit', function
             return 'KG';
         }
     };
+
+    //Método que retorna descrição do tipo de produto
+    var _getProductType = function (prodTypeNumber) {
+
+        if (prodTypeNumber == ngProductTypes.Cake) {
+            return 'Bolo';
+        }
+        else if (prodTypeNumber == ngProductTypes.Frie) {
+            return 'Frito';
+        }
+        else if (prodTypeNumber == ngProductTypes.Roast) {
+            return 'Assado';
+        }
+        else if (prodTypeNumber == ngProductTypes.Sweet) {
+            return 'Doce';
+        }
+    };
     
 
     //Definindo métodos desta factory a serem chamadas por outros js
     productsServiceFactory.getProducts = _getProducts;
     productsServiceFactory.getProductsByType = _getProductsByType;
     productsServiceFactory.getUnit = _getUnit;
+    productsServiceFactory.getProductType = _getProductType;
     
 
     return productsServiceFactory;
