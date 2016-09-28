@@ -99,6 +99,7 @@
     <Content Include="App\Controllers\customersController.js" />
     <Content Include="App\Controllers\homeController.js" />
     <Content Include="App\Controllers\newOrderController.js" />
+    <Content Include="App\Controllers\productCadController.js" />
     <Content Include="App\Controllers\productsController.js" />
     <Content Include="App\Controllers\reportsController.js" />
     <Content Include="App\Controllers\searchOrdersController.js" />
@@ -113,6 +114,8 @@
     <Content Include="App\Views\home.html" />
     <Content Include="App\Views\newOrder.css" />
     <Content Include="App\Views\newOrder.html" />
+    <Content Include="App\Views\productCad.html" />
+    <Content Include="App\Views\products.css" />
     <Content Include="App\Views\products.html" />
     <Content Include="App\Views\reports.html" />
     <Content Include="App\Views\searchOrders.html" />
@@ -124,6 +127,8 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\loading-bar.css" />
     <Content Include="Content\loading-bar.min.css" />
+    <Content Include="Content\ng-grid.css" />
+    <Content Include="Content\ng-grid.min.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\site.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
@@ -180,6 +185,8 @@
     <Content Include="Scripts\mask.js" />
     <Content Include="Scripts\mask.min.js" />
     <Content Include="Scripts\momentjs.min.js" />
+    <Content Include="Scripts\ng-grid.js" />
+    <Content Include="Scripts\ng-grid.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

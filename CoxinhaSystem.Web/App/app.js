@@ -1,5 +1,5 @@
 ﻿//Arquivo raíz de configuração da aplicação
-var app = angular.module('CoxinhaApp', ['myDirectives', 'ngAnimate', 'ngRoute', 'ui.mask']);
+var app = angular.module('CoxinhaApp', ['myDirectives', 'ngAnimate', 'ngRoute', 'ui.mask', 'ngGrid']);
 
 //Configurações das rotas da aplicação
 app.config(function ($routeProvider, $httpProvider, $locationProvider) {
@@ -36,6 +36,11 @@ app.config(function ($routeProvider, $httpProvider, $locationProvider) {
     $routeProvider.when("/products", {
         controller: "productsController",
         templateUrl: "/app/views/products.html"
+    });
+
+    $routeProvider.when("/productCad", {
+        controller: "productCadController",
+        templateUrl: "/app/views/productCad.html"
     });
 
     $routeProvider.when("/reports", {

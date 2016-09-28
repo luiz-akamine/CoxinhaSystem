@@ -14,12 +14,18 @@ body {
     margin: 1%;    
 }
 
-div, main, footer, aside {
+main, footer, aside {
     /*border: 1px solid black;*/
     margin-bottom: 1%;    
     border-radius: 0.25em;
     box-shadow: 0 0 0.5rem black;
 }
+
+div {
+    margin-bottom: 1%;    
+    border-radius: 0.25em;    
+}
+
 
 .header {
     height: 12%;
@@ -28,6 +34,7 @@ div, main, footer, aside {
     text-align: center;
     width: 100%;    
     background-color: slategray;     
+    box-shadow: 0 0 0.5rem black;
 }
 
 .header-title {
@@ -43,6 +50,7 @@ div, main, footer, aside {
     float: left;
     width: 24%;
     height: 75%;
+    box-shadow: 0 0 0.5rem black;
 }
 
 .menu-items {
@@ -77,8 +85,8 @@ li {
     height: 3rem;
     float: right;
     width: 75%;
-    height: 75%;
-    /*background-color: rgb(75, 69, 69);*/
+    height: 75%;    
+    box-shadow: 0 0 0.5rem black;    
 }
 
 .content-title {
@@ -90,7 +98,7 @@ li {
 .main {
     margin: 1%;
     height: 96%;
-    box-shadow: none;    
+    box-shadow: none;        
 }
 
 .footer {    
@@ -102,6 +110,7 @@ li {
     position: relative;
     text-align: center;    
     background-color: lightslategray;
+    box-shadow: 0 0 0.5rem black;
 }
 
 .footer-value {
@@ -119,4 +128,13 @@ li {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     box-shadow: none;
+}
+
+.vertical-align-middle {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.table-row-selected {
+    background-color: gold !important;
 }
