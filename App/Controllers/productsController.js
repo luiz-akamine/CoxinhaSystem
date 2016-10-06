@@ -1,5 +1,6 @@
 ﻿'use strict';
-app.controller('productsController', ['$scope', 'productsService', '$location', function ($scope, productsService, $location) {
+app.controller('productsController', ['$scope', 'productsService', '$location', 'commonLibService',
+    function ($scope, productsService, $location, commonLibService) {
     
     //Variavel para filtrar busca de produtos
     $scope.filterProduct = '';
@@ -11,6 +12,7 @@ app.controller('productsController', ['$scope', 'productsService', '$location', 
     $scope.loadProducts = function () {        
         productsService.getProducts()
         .success(function (result) {
+            //commonLibService.sortJsonArrayByProperty(result, 'name');
             $scope.products = result;
         });
     }

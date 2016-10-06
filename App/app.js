@@ -33,12 +33,27 @@ app.config(function ($routeProvider, $httpProvider, $locationProvider) {
         templateUrl: "/app/views/customers.html"
     });
 
+    $routeProvider.when("/customerCad", {
+        controller: "customerCadController",
+        templateUrl: "/app/views/customerCad.html"
+    });
+
+    $routeProvider.when("/customerCad/:customerId", {
+        controller: "customerCadController",
+        templateUrl: "/app/views/customerCad.html"
+    });
+
     $routeProvider.when("/products", {
         controller: "productsController",
         templateUrl: "/app/views/products.html"
     });
 
     $routeProvider.when("/productCad", {
+        controller: "productCadController",
+        templateUrl: "/app/views/productCad.html"
+    });
+
+    $routeProvider.when("/productCad/:productId", {
         controller: "productCadController",
         templateUrl: "/app/views/productCad.html"
     });

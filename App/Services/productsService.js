@@ -22,6 +22,20 @@ app.factory('productsService', ['$http', 'ngCoxinhaSettings', 'ngUnit', 'ngProdu
             });
     };
 
+    //Método que retorna um Produto específico
+    var _getProduct = function (productId) {
+
+        //Chamando WEB API no server que retorna a lista de produtos        
+        return $http.get(serviceBase + 'api/product?id=' + productId)
+            .success(function (result) {
+                return result;
+            })
+            .error(function (response, status) {
+                console.log('erro ao adquirir produto. Status: ' + status);
+                alert('erro ao adquirir produto');
+            });
+    };
+
     //Método que retorna lista completa de Produtos por Tipo
     var _getProductsByType = function (productType) {
 
@@ -63,13 +77,50 @@ app.factory('productsService', ['$http', 'ngCoxinhaSettings', 'ngUnit', 'ngProdu
             return 'Doce';
         }
     };
+
+    //Método que salva produto
+    var _saveNewProduct = function (product) {
+
+        //Chamando WEB API no server que cadastra novo Produto
+        return $http.post(
+            serviceBase + 'api/product',
+            JSON.stringify(product),
+            {
+                headers: { 'Content-Type': 'application/json' }
+            }
+            ).success(function (result) {
+                return result;
+            }).error(function (response, status) {
+                console.log('erro ao cadastrar novo Produto. Status: ' + status);
+            });
+    };
+
+    //Método que altera produto
+    var _updateProduct = function (product) {
+
+        //Chamando WEB API no server que altera Produto
+        return $http.put(
+            serviceBase + 'api/product',
+            JSON.stringify(product),
+            {
+                headers: { 'Content-Type': 'application/json' }
+            }
+            ).success(function (result) {
+                return result;
+            }).error(function (response, status) {
+                console.log('erro ao alterar Produto. Status: ' + status);
+            });
+    };
     
 
     //Definindo métodos desta factory a serem chamadas por outros js
     productsServiceFactory.getProducts = _getProducts;
+    productsServiceFactory.getProduct = _getProduct;
     productsServiceFactory.getProductsByType = _getProductsByType;
     productsServiceFactory.getUnit = _getUnit;
     productsServiceFactory.getProductType = _getProductType;
+    productsServiceFactory.saveNewProduct = _saveNewProduct;
+    productsServiceFactory.updateProduct = _updateProduct;
     
 
     return productsServiceFactory;

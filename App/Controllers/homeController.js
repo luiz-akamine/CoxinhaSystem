@@ -18,8 +18,8 @@ app.controller('homeController', ['$scope', 'ordersService', 'productsService', 
         var dtEnd = commonLibService.getDateBr($scope.dtOrder).toJSON().substring(0, 11);
         dtEnd = dtEnd + '23:59:59';
 
-        console.log(dtBegin);
-        console.log(dtEnd);
+        //console.log(dtBegin);
+        //console.log(dtEnd);
 
         ordersService.getOrdersByDtDelivery(dtBegin, dtEnd)        
             .success(function (result) {

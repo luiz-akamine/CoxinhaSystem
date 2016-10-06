@@ -79,11 +79,3 @@
   opacity: 0;
   padding: 0 10px;
 }
-
-.msg-error {
-    color: yellow;
-    font-weight: bold;
-    margin-left: 3rem;
-    font-size: 2rem;    
-    vertical-align: middle;    
-}

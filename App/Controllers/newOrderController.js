@@ -91,7 +91,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
         $scope.refreshTotals();
     };
 
-    //Atualizo
+    //Atualiza
     $scope.refreshPrice = function (product) {        
 
         refreshListOrderProducts(product);
@@ -252,8 +252,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
                 .success(function (result) {
                     if (result.erro) {
                         $scope.error = 'CEP inválido';
-                        $scope.orderConfirmation.address = {};
-                        //$scope.msgErr = showAndHideService(3000);
+                        $scope.orderConfirmation.address = {};                        
                     }
                     else {
                         $scope.orderConfirmation.address.logradouro = result.logradouro;
@@ -267,8 +266,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
                 })
                 .error(function (response, status) {                    
                     $scope.error = 'CEP inválido';
-                    $scope.orderConfirmation.address = {};
-                    //$scope.msgErr = showAndHideService(3000);
+                    $scope.orderConfirmation.address = {};                    
                 });
         }
         else {
@@ -292,12 +290,8 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
                     if (result.addresses.length > 0) {
                         try {
                             _loadCEP = false;
-                            //tratando cep (colocar num service)
-                            var formatCep = "00000000";                        
-                            var cepFormated = formatCep.substring(0, formatCep.length - result.addresses[0].cep.toString().length) + result.addresses[0].cep.toString();
-                            console.log(cepFormated);
-                            cepFormated = cepFormated.substring(0, 5) + "-" + cepFormated.substring(5, 8);
-                            $scope.orderConfirmation.address.cep = cepFormated;
+                            //tratando cep                             
+                            $scope.orderConfirmation.address.cep = commonLibService.getCepFormated(result.addresses[0].cep);
                         }
                         finally {
                             _loadCEP = true;
@@ -366,8 +360,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
         //Formatando CEP 
         var cepToSend = null;
         if ($scope.orderConfirmation.address.cep) {
-            cepToSend = $scope.orderConfirmation.address.cep.replace('-', '');
-            cepToSend = parseInt(cepToSend);
+            cepToSend = commonLibService.getCepToDB($scope.orderConfirmation.address.cep);
         }        
         customer.addresses = [
             {

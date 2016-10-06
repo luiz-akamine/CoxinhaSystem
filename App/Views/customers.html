@@ -1,2 +1,41 @@
 ﻿<!--Título Principal-->
 <h3 class="text-center content-title">Clientes</h3>
+
+<!--Div principal do Cadastro de Clientes-->
+<div class="cad-main-div" ng-init="loadCustomers()">
+    
+    <!--Primeira linha dos botões "Novo"-->
+    <div class="cad-row cad-first">
+        <button class="btn btn-success cad-button" ng-click="openNewCustomer()">Novo</button>        
+    </div>
+
+    <!--Segunda linha da busca dos Clientes-->
+    <div class="cad-row cad-second">
+        <label class="cad-label">Buscar:</label>
+        <input type="text"
+               ng-model="filterCustomer"
+               ng-model-options="{debounce: 500}"
+               maxlength="100"
+               class="form-control cad-input-find"
+               placeholder="Digite o filtro de busca do Cliente" />
+    </div>
+
+    <!--Terceira linha do Grid dos Clientes-->
+    <div class="cad-row cad-third">        
+        <div class="cad-table-header">            
+            <div class="vertical-align-middle cad-td" style="flex: 1">Nome</div>
+            <div class="vertical-align-middle cad-td" style="flex: 1">Descrição</div>            
+        </div>
+        <div class="cad-table-body">
+            <table class="table-striped" style="width: 100%;">
+                <tbody>
+                    <tr ng-repeat="customer in customers | filter: filterCustomer | orderBy: 'name'"                        
+                        style="display: flex; justify-content: space-between">                        
+                        <td class="cad-td" style="flex: 1"><a href="/#/customerCad/{{customer.id}}">{{customer.name}}</a></td>
+                        <td class="cad-td" style="flex: 1">{{customer.description}}</td>                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
