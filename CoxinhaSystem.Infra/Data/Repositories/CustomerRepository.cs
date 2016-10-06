@@ -9,6 +9,15 @@ namespace CoxinhaSystem.Infra.Data.Repositories
 {
     public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
     {
+        public IQueryable<Customer> GetComplete()
+        {
+            var customersComplete = _context.Customers
+                .Include(x => x.Phones)
+                .Include(x => x.Addresses);                
+
+            return customersComplete;
+        }
+
         public Customer GetByPhone(string phoneNumber)
         {
             var phone = _context.Phones

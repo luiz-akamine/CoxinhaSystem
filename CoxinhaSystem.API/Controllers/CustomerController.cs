@@ -18,7 +18,52 @@ namespace CoxinhaSystem.API.Controllers
         public CustomerController(IBaseService<Customer> baseService, ICustomerService customerService) : base(baseService)
         {
             _customerService = customerService as CustomerService;
-        }        
+        }
+
+        //APIs
+        [Route("GetComplete")]
+        public HttpResponseMessage GetComplete()
+        {
+            try
+            {
+                var customers = _customerService.GetComplete().ToList();
+
+                if (customers == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, customers);
+                }
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [Route("GetCompleteById")]
+        public HttpResponseMessage GetCompleteById(int id)
+        {
+            try
+            {
+                var customer = _customerService.GetCompleteById(id);
+
+                if (customer == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, customer);
+                }
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
 
         [Route("GetByPhone")]
         public HttpResponseMessage GetByPhone(string phoneNumber)
@@ -36,6 +81,12 @@ namespace CoxinhaSystem.API.Controllers
         public HttpResponseMessage SaveOrUpdateCustomerByPhone(Customer customer)
         {
             return Request.CreateResponse(HttpStatusCode.OK, _customerService.SaveOrUpdateCustomerByPhone(customer));
-        }        
+        }
+
+        [Route("UpdateComplete")]
+        public HttpResponseMessage UpdateComplete(Customer customer)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, _customerService.UpdateComplete(customer));
+        }
     }
 }

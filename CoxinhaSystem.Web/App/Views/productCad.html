@@ -1,6 +1,66 @@
 ﻿<!--Título Principal-->
 <h3 class="text-center content-title">Produto {{product.name}}</h3>
 
-<input type="text" ng-model="product.name"/>
+<form name="formProduct" class="sub-cad-form" ng-submit="saveProduct()">
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="name">Nome:</label>
+            <input type="text" name="name" ng-model="product.name" class="form-control" ng-required="true" />
+        </div>
+    </div>
 
-<button ng-click="close()">Voltar</button>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="description">Descrição:</label>
+            <textarea name="description" ng-model="product.description" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-2">
+            <label for="product-type">Tipo:</label>
+            <select class="form-control" 
+                    name="product-type"
+                    ng-model="product.productType"
+                    ng-options="productType.number as productType.description for productType in productTypes"                    
+                    ng-required="true">                
+            </select>                        
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-2">
+            <label for="price">Preço [R$]:</label>
+            <input type="text" name="price" ng-model="product.price" class="form-control" ng-input-decimal ng-required="true" />
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="unit">Unidade:</label>
+            <select class="form-control"
+                    name="unit"
+                    ng-model="product.unit"                    
+                    ng-options="unit.number as unit.description for unit in units"                    
+                    ng-required="true">                
+            </select>            
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="inc-qty">Qtd. Inc.:</label>
+            <input type="text" name="inc-qty" ng-model="product.incQty" class="form-control" ng-input-decimal ng-required="true" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"><button class="btn btn-danger sub-cad-btn" ng-click="close()">Voltar</button></div>
+        <div class="col-md-2">
+            <button class="btn btn-success sub-cad-btn"                     
+                    type="submit"
+                    ng-disabled="formProduct.$invalid">
+                Salvar
+            </button>
+        </div>
+        <div class="col-md-8">
+            <span class="alert alert-danger" ng-show="msgErr.hidden">{{error}}</span>
+        </div>
+    </div>    
+</form>

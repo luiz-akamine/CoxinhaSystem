@@ -4,6 +4,7 @@ using CoxinhaSystem.Domain.Interfaces.Repositories;
 using CoxinhaSystem.Domain.Interfaces.Services;
 using CoxinhaSystem.Domain.Models;
 using Microsoft.Practices.ServiceLocation;
+using System.Linq;
 
 namespace CoxinhaSystem.Domain.Services
 {
@@ -18,6 +19,12 @@ namespace CoxinhaSystem.Domain.Services
         }
 
         //Métodos adicionais além da classe base 
+
+        public IQueryable<Customer> GetComplete()
+        {
+            return _customerRepository.GetComplete();
+        }
+
         public Customer GetByPhone(string phoneNumber)
         {
             //regras de negócio...
@@ -93,6 +100,73 @@ namespace CoxinhaSystem.Domain.Services
                 throw new Exception(e.Message);
             }
             return customer.Id;            
+        }
+
+        public int UpdateComplete(Customer customer)
+        {
+            //Checando se é cliente existe no banco de dados
+            if (customer.Id <= 0)
+            {
+                throw new Exception("customer not exists");
+            }            
+            else
+            {
+                try
+                {
+                    //Atualizando cliente
+                    Update(customer);
+
+                    //Criando serviço de endereço
+                    IBaseRepository<Address> repAdr = (IBaseRepository<Address>)ServiceLocator.Current.GetInstance<IAddressRepository>();
+                    IBaseService<Address> adrService = new BaseService<Address>(repAdr, _unitOfWork);
+
+                    //Verificando se há endereço a ser atualizado
+                    if (customer.Addresses != null)
+                    {
+                        if (customer.Addresses.Count > 0)
+                        { 
+                            if (customer.Addresses[0].Id <= 0)
+                            {
+                                //Criar novo endereço
+                                adrService.Post(customer.Addresses[0]);
+                            }
+                            else
+                            {
+                                //Atualizar
+                                adrService.Update(customer.Addresses[0]);
+                            }
+                        }
+                    }
+
+                    //Criando serviço de telefone
+                    IBaseRepository<Phone> repPhone = (IBaseRepository<Phone>)ServiceLocator.Current.GetInstance<IPhoneRepository>();
+                    IBaseService<Phone> phoneService = new BaseService<Phone>(repPhone, _unitOfWork);
+
+                    //Verificando se há telefone a ser atualizado
+                    if (customer.Phones != null)
+                    {
+                        if (customer.Phones.Count > 0)
+                        { 
+                            if (customer.Phones[0].Id <= 0)
+                            {
+                                //Criar novo endereço
+                                phoneService.Post(customer.Phones[0]);
+                            }
+                            else
+                            {
+                                //Atualizar
+                                phoneService.Update(customer.Phones[0]);
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+
+                return customer.Id;
+            }          
         }
     }
 }

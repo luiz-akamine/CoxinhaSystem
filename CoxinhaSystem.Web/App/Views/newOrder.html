@@ -19,7 +19,7 @@
     <div style="overflow: auto; width: 100%; box-shadow: none; flex: 10">
         <table class="table table-bordered table-striped">
             <tbody>
-                <tr ng-repeat="product in listProducts">
+                <tr ng-repeat="product in listProducts | orderBy: 'name'">
                     <td style="width: 60%; padding: 0.7%; vertical-align: middle">{{product.name}}</td>
                     <td style="width: 20%; padding: 0.7%">
                         <div style="box-shadow: none; display: flex; justify-content: center; align-items:center">

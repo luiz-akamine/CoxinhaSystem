@@ -2,42 +2,47 @@
 <h3 class="text-center content-title">Produtos</h3>
 
 <!--Div principal do Cadastro de Produtos-->
-<div class="product-main-div" ng-init="loadProducts()">
+<div class="cad-main-div" ng-init="loadProducts()">
     <!--Primeira linha dos botões "Novo" e "Excluir"-->
-    <div class="product-row product-first">
-        <button class="btn btn-success product-button" ng-click="openNewProduct()">Novo</button>
-        <button class="btn btn-danger product-button" ng-disabled="!anyProductIsSelected()">Excluir</button>
+    <div class="cad-row cad-first">
+        <button class="btn btn-success cad-button" ng-click="openNewProduct()">Novo</button>
+        <!--<button class="btn btn-danger product-button" ng-disabled="!anyProductIsSelected()">Excluir</button>-->
     </div>
 
     <!--Segunda linha da busca dos Produtos-->
-    <div class="product-row product-second">
-        <label class="product-label">Buscar:</label>
-        <input type="text" ng-model="filterProduct" ng-model-options="{debounce: 500}" maxlength="100" class="form-control product-input-find" placeholder="Digite o filtro de busca do Produto"/>
+    <div class="cad-row cad-second">
+        <label class="cad-label">Buscar:</label>
+        <input type="text" 
+               ng-model="filterProduct" 
+               ng-model-options="{debounce: 500}" 
+               maxlength="100" 
+               class="form-control cad-input-find" 
+               placeholder="Digite o filtro de busca do Produto"/>
     </div>
 
     <!--Terceira linha do Grid dos Produtos-->
-    <div class="product-row product-third">
+    <div class="cad-row cad-third">
         <!--<div style="height: 250px" class="product-grid" ng-grid="gridOptions"></div>-->
-        <div class="product-table-header">
-            <div class="vertical-align-middle product-td" style="flex: 0.2"></div>
-            <div class="vertical-align-middle product-td" style="flex: 1">Nome</div>
-            <div class="vertical-align-middle product-td" style="flex: 1">Descrição</div>
-            <div class="vertical-align-middle product-td text-center" style="flex: 1">Tipo</div>
-            <div class="vertical-align-middle product-td text-center" style="flex: 1">Preço</div>
-            <div class="vertical-align-middle product-td text-center" style="flex: 0.5">Unidade</div>            
+        <div class="cad-table-header">
+            <!--<div class="vertical-align-middle product-td" style="flex: 0.2"></div>-->
+            <div class="vertical-align-middle cad-td" style="flex: 1">Nome</div>
+            <div class="vertical-align-middle cad-td" style="flex: 1">Descrição</div>
+            <div class="vertical-align-middle cad-td text-center" style="flex: 1">Tipo</div>
+            <div class="vertical-align-middle cad-td text-center" style="flex: 1">Preço</div>
+            <div class="vertical-align-middle cad-td text-center" style="flex: 0.5">Unidade</div>            
         </div>
-        <div class="product-table-body">
+        <div class="cad-table-body">
             <table class="table-striped" style="width: 100%;">
                 <tbody>
-                    <tr ng-repeat="product in products | filter: filterProduct"                         
-                        ng-class="{'table-row-selected' : product.selected}"
+                    <tr ng-repeat="product in products | filter: filterProduct | orderBy: 'name'"
                         style="display: flex; justify-content: space-between">
-                        <td class="product-td text-center" style="flex: 0.2"><input type="checkbox" ng-model="product.selected" ng-change="selectProduct($index, products)" style="transform: scale(1.3);"></td>
-                        <td class="product-td" style="flex: 1">{{product.name}}</td>
-                        <td class="product-td" style="flex: 1">{{product.description}}</td>
-                        <td class="product-td text-center" style="flex: 1">{{getProductType(product.productType)}}</td>
-                        <td class="product-td text-center" style="flex: 1">{{product.price | currency: "R$"}}</td>
-                        <td class="product-td text-center" style="flex: 0.5">{{getUnit(product.unit)}}</td>
+                        <!--ng-class="{'table-row-selected' : product.selected}"-->
+                        <!--<td class="product-td text-center" style="flex: 0.2"><input type="checkbox" ng-model="product.selected" ng-change="selectProduct($index, products)" style="transform: scale(1.3);"></td>-->
+                        <td class="cad-td" style="flex: 1"><a href="/#/productCad/{{product.id}}">{{product.name}}</a></td>
+                        <td class="cad-td" style="flex: 1">{{product.description}}</td>
+                        <td class="cad-td text-center" style="flex: 1">{{getProductType(product.productType)}}</td>
+                        <td class="cad-td text-center" style="flex: 1">{{product.price | currency: "R$"}}</td>
+                        <td class="cad-td text-center" style="flex: 0.5">{{getUnit(product.unit)}}</td>
                     </tr>
                 </tbody>
             </table>

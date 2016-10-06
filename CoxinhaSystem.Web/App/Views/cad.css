@@ -1,0 +1,83 @@
+﻿.cad-main-div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 87%;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;    
+}
+
+.cad-row {
+    box-shadow: none;
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+}
+
+.cad-first {        
+    flex: 0.15;    
+    display: flex;        
+    border: unset;
+}
+
+.cad-second {   
+    flex: 0.15;     
+    border: unset;
+    display: flex;
+}
+
+.cad-third {    
+    flex: 0.7;    
+    margin-bottom: 0;    
+    display: flex;
+    flex-direction: column;
+}
+
+.cad-button {
+    width: 15rem;
+    height: 60%;        
+    margin: auto 2rem auto 0;
+}
+
+.cad-label {
+    margin: auto 1rem auto 0;
+}
+
+.cad-input-find {
+    margin: auto 0 auto 0;
+    margin-right: 0px;
+}
+
+.cad-grid {
+    box-shadow: unset;
+}
+
+.cad-table-header {    
+    flex: 0.1; 
+    display: flex; 
+    justify-content: space-between;
+    margin-top: auto;    
+    margin-bottom: auto;
+    font-weight: bold;
+    width: 98.3%;    
+}
+
+.cad-table-body {
+    flex: 0.9; 
+    overflow-y: scroll; 
+    display: block
+}
+
+.cad-td {
+    padding: 0.5rem;
+}
+
+.sub-cad-form {
+    height: 90%;
+    position: relative;    
+    width: 98%;
+}
+
+.sub-cad-btn {
+    width: 100%;
+}

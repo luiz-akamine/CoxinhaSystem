@@ -18,7 +18,7 @@
     <link href="content/site.css" rel="stylesheet" />
     <link href="App/Components/orderCard.css" rel="stylesheet" />
     <link href="App/Views/newOrder.css" rel="stylesheet" />
-    <link href="App/Views/products.css" rel="stylesheet" />
+    <link href="App/Views/cad.css" rel="stylesheet" />    
     <!--Custom CSS Fim-->
 </head>
 <body>
@@ -86,6 +86,7 @@
     <!-- Load controllers -->
     <script src="app/controllers/homeController.js"></script>
     <script src="app/controllers/customersController.js"></script>
+    <script src="app/controllers/customerCadController.js"></script>
     <script src="app/controllers/newOrderController.js"></script>
     <script src="app/controllers/productsController.js"></script>
     <script src="app/controllers/productCadController.js"></script>
@@ -93,7 +94,17 @@
     <script src="app/controllers/searchOrdersController.js"></script>    
 
     <script>
+        //para utilizar jQuery sem conflitar com AngularJs
         var jq = $.noConflict();
+
+        //ENTER com comportamento de TAB
+        jq(document.body).keydown(function (event) {
+
+            if (event.keyCode == 13) {
+                jq(":input")[jq(":input").index(document.activeElement) + 1].focus();                
+                return false;
+            }   
+        });
     </script>
 
     <!--JS Fim-->

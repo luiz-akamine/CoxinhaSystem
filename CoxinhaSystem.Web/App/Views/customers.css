@@ -1,0 +1,9 @@
+﻿.customer-main-div{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 87%;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;    
+}

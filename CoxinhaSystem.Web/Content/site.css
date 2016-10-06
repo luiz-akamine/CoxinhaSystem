@@ -1,6 +1,6 @@
 ﻿html {
     height: 100%;
-    overflow: hidden; /*desativa scroll do browser*/
+    overflow: hidden; /*desativa scroll do browser*/    
 }
 
 * {
@@ -137,4 +137,12 @@ li {
 
 .table-row-selected {
     background-color: gold !important;
+}
+
+.msg-error {
+    color: yellow;
+    font-weight: bold;
+    margin-left: 3rem;
+    font-size: 2rem;    
+    vertical-align: middle;    
 }
