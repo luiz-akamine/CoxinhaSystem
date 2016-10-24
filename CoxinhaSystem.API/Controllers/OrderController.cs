@@ -154,5 +154,31 @@ namespace CoxinhaSystem.API.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
             }
         }
+
+        [Route("GetTotalByPeriod")]
+        public HttpResponseMessage GetTotalByPeriod(DateTime dtBegin, DateTime dtEnd)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, _orderService.GetTotalByPeriod(dtBegin, dtEnd));
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [Route("GetMostRequestedProducts")]
+        public HttpResponseMessage GetMostRequestedProducts(DateTime dtBegin, DateTime dtEnd, ProductType productType)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, _orderService.GetMostRequestedProducts(dtBegin, dtEnd, productType).ToList());
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
     }
 }

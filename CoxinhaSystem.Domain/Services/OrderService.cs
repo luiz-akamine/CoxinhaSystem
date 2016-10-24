@@ -5,6 +5,7 @@ using CoxinhaSystem.Domain.Models;
 using Microsoft.Practices.ServiceLocation;
 using System.Linq;
 using System;
+using CoxinhaSystem.Domain.DTOs;
 
 namespace CoxinhaSystem.Domain.Services
 {
@@ -56,6 +57,20 @@ namespace CoxinhaSystem.Domain.Services
             ServiceHelper.ValidateParams(new object[] { id });
 
             return _orderRepository.GetCompleteById(id);
+        }
+
+        public IQueryable<MostRequestedProducts> GetMostRequestedProducts(DateTime dtBegin, DateTime dtEnd, ProductType productType)
+        {
+            ServiceHelper.ValidateParams(new object[] { dtBegin, dtEnd });
+
+            return _orderRepository.GetMostRequestedProducts(dtBegin, dtEnd, productType);
+        }
+
+        public Double GetTotalByPeriod(DateTime dtBegin, DateTime dtEnd)
+        {
+            ServiceHelper.ValidateParams(new object[] { dtBegin, dtEnd });
+
+            return _orderRepository.GetTotalByPeriod(dtBegin, dtEnd);
         }
     }
 }

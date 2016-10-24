@@ -1,1 +1,162 @@
-﻿Em construção...
+﻿<!--Título Principal-->
+<h3 class="text-center content-title">Relatórios</h3>
+
+<!--Div Principal-->
+<div class="reports-div-main">
+    <!--Div Superior com Botões dos tipos de Relatórios-->
+    <div class="reports-div-buttons container-vertical-align-row">
+        <div class="row vertical-align-middle">
+            <div class="col-md-2 container-vertical-align-row"><button class="btn btn-primary" ng-click="showResult = 1">Rendimentos</button></div>
+            <div class="col-md-2 container-vertical-align-row"><button class="btn btn-primary" ng-click="showResult = 2">Mais Pedidos</button></div>
+        </div>
+    </div>
+
+    <!--Div contendo os filtros de busca-->
+    <div class="reports-div-filters container-vertical-align-row">
+        <div class="row" style="height: 33%; margin: 0">
+            <div class="form-group col-md-3">
+                <label class="radio-inline">
+                    <input type="radio" ng-model="period" value="1" class="radio" name="radioPeriod" />Semana Passada
+                </label>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label class="radio-inline">
+                    <input type="radio" ng-model="period" value="4" class="radio" name="radioPeriod" />Mês Passado
+                </label>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label class="radio-inline">
+                    <input type="radio" ng-model="period" value="7" class="radio" name="radioPeriod" />Por Período:
+                </label>
+            </div>
+        </div>
+
+        <div class="row" style="height: 33%; margin: 0">
+            <div class="form-group col-md-3">
+                <label class="radio-inline">
+                    <input type="radio" ng-model="period" value="2" class="radio" name="radioPeriod" />Semana Atual
+                </label>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label class="radio-inline">
+                    <input type="radio" ng-model="period" value="5" class="radio" name="radioPeriod" />Mês Atual
+                </label>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label class="radio-inline">
+                    De: <input type="date" ng-model="dtIni" name="dtIni" style="width: 15rem;" />
+                </label>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label class="radio-inline">
+                    Até: <input type="date" ng-model="dtEnd" name="dtEnd" style="width: 15rem;" />
+                </label>
+            </div>
+
+            <div class="form-group col-md-1"></div> <!--Espaço vazio-->
+
+            <div class="form-group col-md-1">
+                <button ng-click="filterResult()"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </div>
+
+        <div class="row" style="height: 33%; margin: 0">
+            <div class="form-group col-md-3">
+                <label class="radio-inline">
+                    <input type="radio" ng-model="period" value="3" class="radio" name="radioPeriod" />Próxima Semana
+                </label>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label class="radio-inline">
+                    <input type="radio" ng-model="period" value="6" class="radio" name="radioPeriod" />Próximo Mês
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!--Div com o resultado do relatório-->
+    <div class="reports-div-content">
+        <!--Resultado 1 - Rendimentos-->
+        <div class="panel panel-default center-child-text reports-result" ng-show="(showResult == 1)">
+            <div class="center-child-text text-center" style="color: red; font-size: 2rem; width: 90%">{{result}}</div>
+        </div>
+
+        <!--Resultado 2 - Mais Pedidos-->
+        <div style="display: flex; justify-content: space-between; overflow: auto" ng-show="(showResult == 2)">                           
+            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem">
+                <div class="panel-title text-center" style="border-bottom: 1px solid lightgray; font-weight: bold">Bolos</div>
+                <table class="table table-striped" ng-show="cakes.length > 0">
+                    <thead>
+                        <tr>
+                            <td class="text-center" style="padding: 0.3rem">Item</td>
+                            <td class="text-center" style="padding: 0.3rem">Qtd [{{unitCake}}]</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0.3rem">{{cake.name}}</td>
+                            <td class="text-center" style="padding: 0.3rem">{{cake.sumQty}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>    
+            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem">
+                <div class="panel-title text-center" style="border-bottom: 1px solid lightgray; font-weight: bold">Doces</div>
+                <table class="table table-striped" ng-show="sweets.length > 0">
+                    <thead>
+                        <tr>
+                            <td class="text-center" style="padding: 0.3rem">Item</td>
+                            <td class="text-center" style="padding: 0.3rem">Qtd [{{unitSweet}}]</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0.3rem">{{sweet.name}}</td>
+                            <td class="text-center" style="padding: 0.3rem">{{sweet.sumQty}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>    
+            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem">
+                <div class="panel-title text-center" style="border-bottom: 1px solid lightgray; font-weight: bold">Fritos</div>
+                <table class="table table-striped" ng-show="fries.length > 0">
+                    <thead>
+                        <tr>
+                            <td class="text-center" style="padding: 0.3rem">Item</td>
+                            <td class="text-center" style="padding: 0.3rem">Qtd [{{unitFrie}}]</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0.3rem">{{frie.name}}</td>
+                            <td class="text-center" style="padding: 0.3rem">{{frie.sumQty}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>    
+            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem">
+                <div class="panel-title text-center" style="border-bottom: 1px solid lightgray; font-weight: bold">Assados</div>
+                <table class="table table-striped" ng-show="roasts.length > 0">
+                    <thead>
+                        <tr>
+                            <td class="text-center" style="padding: 0.3rem">Item</td>
+                            <td class="text-center" style="padding: 0.3rem">Qtd [{{unitRoast}}]</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0.3rem">{{roast.name}}</td>
+                            <td class="text-center" style="padding: 0.3rem">{{roast.sumQty}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>            
+        </div>
+    </div>
+</div>
