@@ -120,6 +120,7 @@
     <Content Include="App\Views\productCad.html" />
     <Content Include="App\Views\cad.css" />
     <Content Include="App\Views\products.html" />
+    <Content Include="App\Views\reports.css" />
     <Content Include="App\Views\reports.html" />
     <Content Include="App\Views\searchOrders.html" />
     <Content Include="Content\bootstrap-theme.css" />

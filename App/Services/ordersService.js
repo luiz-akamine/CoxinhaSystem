@@ -36,6 +36,35 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
             });
     };
 
+    //Método que retorna qtd sumarizada do valor doss pedidos
+    var _getSumTotalByPeriod = function (dtBegin, dtEnd) {
+
+        //Chamando WEB API no server que retorna o valor sumarizado dos pedidos
+        return $http.get(serviceBase + 'api/order/GetTotalByPeriod?dtBegin=' + dtBegin + '&dtEnd=' + dtEnd)
+            .success(function (result) {
+                return result;
+            })
+            .error(function (response, status) {
+                console.log('erro ao adquirir total dos pedidos. Status: ' + status);
+                alert('erro ao adquirir total dos pedidos');
+            });
+    };
+
+    
+    //Método que retorna produtos mais pedidos num determinado periodo
+    var _getMostRequestedProducts = function (dtBegin, dtEnd, productType) {
+
+        //Chamando WEB API no server que retorna lista dos mais pedidos no periodo desejado
+        return $http.get(serviceBase + 'api/order/GetMostRequestedProducts?dtBegin=' + dtBegin + '&dtEnd=' + dtEnd + '&productType='+ productType)
+            .success(function (result) {
+                return result;
+            })
+            .error(function (response, status) {
+                console.log('erro ao adquirir mais pedidos. Status: ' + status);
+                alert('erro ao adquirir mais pedidos');
+            });
+    };
+
     //Método que cadastra Novo Pedido
     var _saveNewOrder = function (orderComplete) {
         
@@ -57,6 +86,7 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
     ordersServiceFactory.getOrders = _getOrders;
     ordersServiceFactory.getOrdersByDtDelivery = _getOrdersByDtDelivery;
     ordersServiceFactory.saveNewOrder = _saveNewOrder;
+    ordersServiceFactory.getSumTotalByPeriod = _getSumTotalByPeriod;
 
     return ordersServiceFactory;
 }]);
