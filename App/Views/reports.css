@@ -1,11 +1,11 @@
-﻿.reports-div-main {
-    /*background-color: yellow;*/
+﻿.reports-div-main {    
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-content: space-between;
-    height: 87%;          
+    height: 90%; 
+    margin-bottom: 0;         
 }
 
 .reports-div-buttons {
@@ -21,12 +21,14 @@
     align-content: space-between;
     border: 1px solid lightgray;
     padding: 1rem 1rem 0 1rem;
+    margin-top: 1rem;
 }
 
 .reports-div-content {
     /*background-color: darksalmon;*/
     position: relative;
     flex: 8;  
+    margin-bottom: 0;
 }
 
 .reports-result {

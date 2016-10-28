@@ -6,8 +6,8 @@
     <!--Div Superior com Botões dos tipos de Relatórios-->
     <div class="reports-div-buttons container-vertical-align-row">
         <div class="row vertical-align-middle">
-            <div class="col-md-2 container-vertical-align-row"><button class="btn btn-primary" ng-click="showResult = 1">Rendimentos</button></div>
-            <div class="col-md-2 container-vertical-align-row"><button class="btn btn-primary" ng-click="showResult = 2">Mais Pedidos</button></div>
+            <div class="col-md-2 container-vertical-align-row"><button class="btn btn-primary" ng-click="showResult = 1; restartFilters();">Rendimentos</button></div>
+            <div class="col-md-2 container-vertical-align-row"><button class="btn btn-primary" ng-click="showResult = 2; restartFilters();">Mais Pedidos</button></div>
         </div>
     </div>
 
@@ -88,8 +88,8 @@
         </div>
 
         <!--Resultado 2 - Mais Pedidos-->
-        <div style="display: flex; justify-content: space-between; overflow: auto" ng-show="(showResult == 2)">                           
-            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem">
+        <div style="display: flex; justify-content: space-between; overflow: auto; margin-bottom: 0" ng-show="(showResult == 2)">                           
+            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem; margin-top: 1rem">
                 <div class="panel-title text-center" style="border-bottom: 1px solid lightgray; font-weight: bold">Bolos</div>
                 <table class="table table-striped" ng-show="cakes.length > 0">
                     <thead>
@@ -99,14 +99,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td style="padding: 0.3rem">{{cake.name}}</td>
+                        <tr ng-repeat="cake in cakes">
+                            <td style="padding: 0.3rem">{{cake.productName}}</td>
                             <td class="text-center" style="padding: 0.3rem">{{cake.sumQty}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>    
-            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem">
+            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem; margin-top: 1rem">
                 <div class="panel-title text-center" style="border-bottom: 1px solid lightgray; font-weight: bold">Doces</div>
                 <table class="table table-striped" ng-show="sweets.length > 0">
                     <thead>
@@ -116,14 +116,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td style="padding: 0.3rem">{{sweet.name}}</td>
+                        <tr ng-repeat="sweet in sweets">
+                            <td style="padding: 0.3rem">{{sweet.productName}}</td>
                             <td class="text-center" style="padding: 0.3rem">{{sweet.sumQty}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>    
-            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem">
+            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem; margin-top: 1rem">
                 <div class="panel-title text-center" style="border-bottom: 1px solid lightgray; font-weight: bold">Fritos</div>
                 <table class="table table-striped" ng-show="fries.length > 0">
                     <thead>
@@ -133,14 +133,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td style="padding: 0.3rem">{{frie.name}}</td>
+                        <tr ng-repeat="frie in fries">
+                            <td style="padding: 0.3rem">{{frie.productName}}</td>
                             <td class="text-center" style="padding: 0.3rem">{{frie.sumQty}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>    
-            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem">
+            <div style="border: 1px solid lightgray; flex: 1; margin: 2rem 1rem 1rem 0rem; margin-top: 1rem">
                 <div class="panel-title text-center" style="border-bottom: 1px solid lightgray; font-weight: bold">Assados</div>
                 <table class="table table-striped" ng-show="roasts.length > 0">
                     <thead>
@@ -150,8 +150,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td style="padding: 0.3rem">{{roast.name}}</td>
+                        <tr ng-repeat="roast in roasts">
+                            <td style="padding: 0.3rem">{{roast.productName}}</td>
                             <td class="text-center" style="padding: 0.3rem">{{roast.sumQty}}</td>
                         </tr>
                     </tbody>

@@ -3,9 +3,18 @@ app.controller('homeController', ['$scope', 'ordersService', 'productsService', 
 
     //Data do pedido
     $scope.dtOrder = new Date();
+
+    //Variável de controle do checkbox
+    $scope.showItens = true;
+
+    //Controle para exibição msg de nao pedidos
+    $scope.showAlert = true;
     
     //Adquirindo pedidos do dia
-    $scope.refreshOrders = function (dtOrder) {    
+    $scope.refreshOrders = function (dtOrder) {
+        //desabilitando visualização de msg q nao há pedidos indevidamente
+        $scope.showAlert = false;
+
         $scope.orders = [];
 
         //Formato data JSON
@@ -24,6 +33,7 @@ app.controller('homeController', ['$scope', 'ordersService', 'productsService', 
         ordersService.getOrdersByDtDelivery(dtBegin, dtEnd)        
             .success(function (result) {
                 $scope.orders = result;
+                $scope.showAlert = true;
             });
     }
 }]);

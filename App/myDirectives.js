@@ -6,7 +6,8 @@ angular.module('myDirectives', [])
         restrict: "AE",
         scope: {
             caption: '@',
-            orderjson: '='
+            orderjson: '=',
+            showitens: '='
         },
         //transclude: true,
         templateUrl: 'App/Components/orderCard.html',
