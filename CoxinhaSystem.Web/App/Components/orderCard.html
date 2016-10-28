@@ -3,7 +3,7 @@
         <h4 class="panel-title text-center card-header-title">Pedido: {{orderjson.id}} | {{orderjson.customer.name}} | {{orderjson.customer.phones[0].phoneNumber}}</h4>
         <h4 class="panel-title text-center card-header-title" style="margin-top: 1%; color: red">Entrega: {{orderjson.deliveryDate | date : "dd/MM/yyyy HH:mm"}}</h4>
     </div>
-    <div class="panel-body card-body">        
+    <div class="panel-body card-body" ng-show="{{showitens}}">        
         <table class="table table-striped card-body-table" style="border-bottom: 1px solid lightgray; margin-bottom: 2%;">
             <thead>
                 <tr>

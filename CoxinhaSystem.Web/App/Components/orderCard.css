@@ -4,6 +4,7 @@
     display: inline-block;    
     vertical-align: middle;
     width: 48.5%;
+    border: 1px solid black;
 }
 
 .card-header {

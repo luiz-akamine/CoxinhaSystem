@@ -27,7 +27,9 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
         productsService.getProductsByType(ngProductTypes.Cake)
             .success(function (result) {
                 $scope.listProducts = result;
-                $scope.unit = $scope.listProducts[0].unit;
+                if (result.length > 0) {
+                    $scope.unit = $scope.listProducts[0].unit;
+                }
             });
     };
 

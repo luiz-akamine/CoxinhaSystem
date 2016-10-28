@@ -29,6 +29,21 @@ app.controller('reportsController', ['$scope', 'ordersService', '$filter', 'ngPr
     $scope.fries = [];
     $scope.roasts = [];
 
+    //unidades
+    $scope.unitCake = 'KG';
+    $scope.unitSweet = 'UN';
+    $scope.unitFrie = 'UN';
+    $scope.unitRoast = 'UN';
+
+    $scope.restartFilters = function () {
+        //reiniciando 
+        $scope.cakes = [];
+        $scope.sweets = [];
+        $scope.fries = [];
+        $scope.roasts = [];
+        $scope.result = 'Clique no Botão de Pesquisa para obter o Resultado';
+    }
+
     //Rotina filtra resultado
     $scope.filterResult = function () {
 
@@ -68,7 +83,7 @@ app.controller('reportsController', ['$scope', 'ordersService', '$filter', 'ngPr
                 break;
         }
 
-        if ($scope.showResult = 1) {       
+        if ($scope.showResult == 1) {       
             //Adquirindo rendimento
             ordersService.getSumTotalByPeriod(dtSearchIni.toJSON(), dtSearchEnd.toJSON())
                 .then(function (result) {                
@@ -78,20 +93,20 @@ app.controller('reportsController', ['$scope', 'ordersService', '$filter', 'ngPr
         else {
             //Adquirindo Mais Pedidos no Período de cada tipo
             ordersService.getMostRequestedProducts(dtSearchIni.toJSON(), dtSearchEnd.toJSON(), ngProductTypes.Cake)
-                .then(function (result) {
-                    $scope.cakes = result;
+                .then(function (result) {                    
+                    $scope.cakes = result.data;
                 });
             ordersService.getMostRequestedProducts(dtSearchIni.toJSON(), dtSearchEnd.toJSON(), ngProductTypes.Sweet)
                 .then(function (result) {
-                    $scope.sweets = result;
+                    $scope.sweets = result.data;
                 });
             ordersService.getMostRequestedProducts(dtSearchIni.toJSON(), dtSearchEnd.toJSON(), ngProductTypes.Frie)
                 .then(function (result) {
-                    $scope.fries = result;
+                    $scope.fries = result.data;
                 });
             ordersService.getMostRequestedProducts(dtSearchIni.toJSON(), dtSearchEnd.toJSON(), ngProductTypes.Roast)
                 .then(function (result) {
-                    $scope.roasts = result;
+                    $scope.roasts = result.data;
                 });
         }
     };

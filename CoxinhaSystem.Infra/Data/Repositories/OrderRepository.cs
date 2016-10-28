@@ -4,6 +4,7 @@ using CoxinhaSystem.Domain.DTOs;
 using CoxinhaSystem.Domain.Interfaces.Repositories;
 using CoxinhaSystem.Domain.Models;
 using Microsoft.Data.Entity;
+using System.Collections.Generic;
 
 namespace CoxinhaSystem.Infra.Data.Repositories
 {
@@ -35,7 +36,8 @@ namespace CoxinhaSystem.Infra.Data.Repositories
                 .Include(x => x.Customer)
                 .Include(x => x.OrderItems)
                 .ThenInclude(x => x.Product)
-                .Where(x => x.DeliveryDate >= dtBegin && x.DeliveryDate <= dtEnd);
+                .Where(x => x.DeliveryDate >= dtBegin && x.DeliveryDate <= dtEnd)
+                .OrderBy(x => x.DeliveryDate);
         }
 
         public IQueryable<Order> GetByPhone(string phone)
@@ -80,32 +82,44 @@ namespace CoxinhaSystem.Infra.Data.Repositories
 
         public IQueryable<MostRequestedProducts> GetMostRequestedProducts(DateTime dtBegin, DateTime dtEnd, ProductType productType)
         {
-            var orderItems = _context.OrderItems.Take(100);
-            var orders = GetComplete().Take(100);
-            var products = _context.Products.Take(100);
+            var orderItems = _context.OrderItems
+                .Include(_ => _.Product)
+                .Include(_ => _.Order)
+                .ToList();
+            //var orders = GetComplete().Take(100);
+            // var products = _context.Products.Take(100);
 
-            var mostRequestedProducts = from prod in products
-                                             //join o in orders on oi.OrderId equals o.Id
-                                         join oi in orderItems on prod.Id equals oi.ProductId
-                                         //where o.DeliveryDate >= dtBegin && o.DeliveryDate <= dtEnd
-                                         //&& o.Status < Status.Canceled
-                                         //&& prod.ProductType == productType
-                                         group oi by oi.ProductId into g
-                                         let SumQty = g.Sum(_ => _.Qty)
-                                         orderby SumQty descending
-                                         select new { g.Key, SumQty };
-            Int32 a;
-            Double b;
-            foreach (var x in mostRequestedProducts)
-            {
-                a = x.Key;
-                b = x.SumQty;
-            }
-                                        //group prod_oi by new { prod_oi.prod.Name } into g
-                                        //select new { g.Key.Name, SumQty = g.Sum(_ => _.oi.Qty) };
-                                         //select new MostRequestedProducts() { ProductName = prod.Name, SumQty = oi.Qty }).AsQueryable();
+            //var mostRequestedProducts = from prod in products
+            //                            //join o in orders on oi.OrderId equals o.Id
+            //                            join oi in orderItems on prod.Id equals oi.ProductId
+            //                            //where o.DeliveryDate >= dtBegin && o.DeliveryDate <= dtEnd
+            //                            //&& o.Status < Status.Canceled
+            //                            //&& prod.ProductType == productType                                        
+            //                            group oi by oi.ProductId into g
+            //                            let SumQty = g.Sum(_ => _.Qty)
+            //                            //orderby SumQty descending
+            //                            select new { g.Key, SumQty };
+            var mostRequestedProducts = from oi in orderItems
+                                        where oi.Order.DeliveryDate >= dtBegin && oi.Order.DeliveryDate <= dtEnd
+                                        && oi.Order.Status < Status.Canceled
+                                        && oi.Product.ProductType == productType
+                                        group oi by oi.Product into g
+                                        let SumQty = g.Sum(_ => _.Qty)
+                                        orderby SumQty descending
+                                        select new MostRequestedProducts { ProductName = g.Key.Name, SumQty = SumQty };
+            
+            //String a;
+            //Double b;
+            //foreach (var x in mostRequestedProducts)
+            //{
+            //    a = x.ProductName;
+            //    b = x.SumQty;
+            //}
+            //group prod_oi by new { prod_oi.prod.Name } into g
+            //select new { g.Key.Name, SumQty = g.Sum(_ => _.oi.Qty) };
+            //select new MostRequestedProducts() { ProductName = prod.Name, SumQty = oi.Qty }).AsQueryable();
 
-            return (IQueryable<MostRequestedProducts>)mostRequestedProducts;
+            return mostRequestedProducts.AsQueryable();
         }
 
         public Double GetTotalByPeriod(DateTime dtBegin, DateTime dtEnd)

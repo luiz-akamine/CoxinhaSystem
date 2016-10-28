@@ -1,4 +1,15 @@
-﻿<!--Título Principal-->
+﻿
+<!--Cards das Ordens do Dia-->
+<div class="checkbox" style="position: absolute">
+    <label for="showItens"><input 
+                                  class="checkbox" 
+                                  ng-model="showItens" 
+                                  ng-click="refreshOrders(dtOrder)"
+                                  type="checkbox" 
+                                  id="showItens" />Exibir Itens</label>
+</div>
+
+<!--Título Principal-->
 <h3 class="text-center content-title">Pedidos do Dia 
     <input 
            type="date" 
@@ -11,9 +22,9 @@
 </h3>
 
 <!--Cards das Ordens do Dia-->
-<order-card ng-repeat="order in orders" orderjson="order"></order-card>
+<order-card ng-repeat="order in orders" orderjson="order" showitens="showItens"></order-card>
 
 <!--Informação de Nenhum card encontrado-->
-<div ng-show="orders.length == 0" class="panel panel-danger center-child-text center" style="height: 15%; width: 70%; position: relative; background-color: moccasin; transform: translate(-50%, -100%);">
+<div ng-show="orders.length == 0 && showAlert" class="panel panel-danger center-child-text center" style="height: 15%; width: 70%; position: relative; background-color: moccasin; transform: translate(-50%, -100%);">
     <div class="center-child-text text-center" style="color: red; font-size: 2rem">Não há pedidos neste dia</div>
 </div>

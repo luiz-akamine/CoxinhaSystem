@@ -87,6 +87,7 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
     ordersServiceFactory.getOrdersByDtDelivery = _getOrdersByDtDelivery;
     ordersServiceFactory.saveNewOrder = _saveNewOrder;
     ordersServiceFactory.getSumTotalByPeriod = _getSumTotalByPeriod;
+    ordersServiceFactory.getMostRequestedProducts = _getMostRequestedProducts;
 
     return ordersServiceFactory;
 }]);
