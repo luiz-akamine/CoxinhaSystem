@@ -34,6 +34,9 @@ namespace CoxinhaSystem.Infra.Data.Repositories
         {
             return _context.Orders
                 .Include(x => x.Customer)
+                .ThenInclude(x => x.Phones)
+                .Include(x => x.Customer)
+                .ThenInclude(x => x.Addresses)
                 .Include(x => x.OrderItems)
                 .ThenInclude(x => x.Product)
                 .Where(x => x.DeliveryDate >= dtBegin && x.DeliveryDate <= dtEnd)

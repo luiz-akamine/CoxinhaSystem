@@ -180,5 +180,29 @@ namespace CoxinhaSystem.API.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
             }
         }
+
+        [Route("PutComplete")]
+        [AcceptVerbs("POST")]
+        public HttpResponseMessage PutComplete(Order order)
+        {
+            try
+            {
+                //Atualizando ordem e seus itens
+                _orderService.UpdateComplete(order);                
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ArgumentNullException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+            catch (ArgumentException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
     }
 }

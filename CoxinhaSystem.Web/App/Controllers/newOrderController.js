@@ -1,11 +1,11 @@
 ﻿'use strict';
-app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location', 'productsService', 'customersService', 'ordersService', 'showAndHideService', 'commonLibService', 'ngProductTypes', 'ngOrderStatus',
-    function ($scope, $http, $timeout, $location, productsService, customersService, ordersService, showAndHideService, commonLibService, ngProductTypes, ngOrderStatus) {
+app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location', 'productsService', 'customersService', 'ordersService', 'showAndHideService', 'commonLibService', 'ngProductTypes', 'ngOrderStatus', '$routeParams', 'tempObjectService', '$window',
+    function ($scope, $http, $timeout, $location, productsService, customersService, ordersService, showAndHideService, commonLibService, ngProductTypes, ngOrderStatus, $routeParams, tempObjectService, $window) {
 
     //Lista de produtos a ser exibida para seleção
     $scope.listProducts = [];
     //Lista de produtos adicionadas no Pedido
-    $scope.listOrderProducts = [];
+    $scope.listOrderProducts = [];    
 
     //Variável com o Valor Total do Pedido
     $scope.orderTotal = 0;
@@ -15,7 +15,10 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
     $scope.orderTotalWithDiscount = 0;
     //Unidade
     $scope.unit = 0;
-    
+
+    //objeto confirmação do pedido
+    $scope.orderConfirmation = {};
+    $scope.orderConfirmation.address = {};
 
     //Controle de visibilidade do form
     $scope.showDivConfirmation = false;
@@ -135,6 +138,8 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
     //Atualiza lista do pedido
     var refreshListOrderProducts = function (product) {
 
+        var orderItemId = product.orderItemId;
+
         //Procurando se produto está já na lista
         $scope.listOrderProducts.forEach(function (prodInList, index) {
             if (product.name == prodInList.name) {
@@ -144,7 +149,10 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
         });        
 
         //Adicionando produto na lista
-        if (product.qty > 0){
+        if (product.qty > 0) {
+            if ($routeParams.action == 'edit') {
+                product.orderItemId = orderItemId;
+            };
             $scope.listOrderProducts.push(product);
         }        
     };
@@ -195,17 +203,60 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
         return productsService.getUnit(unitNumber);
     }
 
+
+    //Checando se página foi chamada para edição de um pedido
+    if ($routeParams.action == 'edit') {
+        var orderToEdit = tempObjectService.getOrder();
+        if (orderToEdit) {
+            $scope.action = 'Editar';
+            $scope.orderId = orderToEdit.id;
+
+            //Carregando lista de produtos da ordem a ser editada
+            orderToEdit.orderItems.forEach(function (el, idx) {
+                //console.log(el.product);
+                if (el.product) {
+                    el.product.qty = el.qty;
+                    el.product.priceInOrder = el.price;
+                    el.product.orderId = el.orderId;
+                    el.product.orderItemId = el.id;
+                    $scope.listOrderProducts.push(el.product);
+                };
+            });
+
+            //Endereço
+            $scope.orderConfirmation.address.cep = commonLibService.getCepFormated(orderToEdit.customer.addresses[0].cep);
+            $scope.orderConfirmation.address.logradouro = orderToEdit.customer.addresses[0].addressName;
+            $scope.orderConfirmation.address.numero = orderToEdit.customer.addresses[0].number;
+            $scope.orderConfirmation.address.bairro = orderToEdit.customer.addresses[0].district;
+            $scope.orderConfirmation.address.complemento = orderToEdit.customer.addresses[0].complement;
+            $scope.orderConfirmation.address.localidade = orderToEdit.customer.addresses[0].city;
+            $scope.orderConfirmation.address.uf = orderToEdit.customer.addresses[0].state;
+
+            //Cliente
+            $scope.orderConfirmation.cliente = orderToEdit.customer.name;
+            $scope.orderConfirmation.telefone = orderToEdit.customer.phones[0].phoneNumber;
+
+            //Data
+            var dtDelivery = new Date(orderToEdit.deliveryDate);
+            $scope.orderConfirmation.dtEntrega = new Date(dtDelivery.getFullYear(), dtDelivery.getMonth(), dtDelivery.getDate());
+            $scope.orderConfirmation.tmEntrega = new Date(0, 0, 0, dtDelivery.getHours(), dtDelivery.getMinutes(), 0);
+
+            $scope.refreshTotals();
+        }    
+    }
+    else {
+        $scope.action = 'Novo';
+        $scope.orderId = null;
+    };
+
+
     //Chamando click inicial no primeiro botão de "Bolo"    
     $scope.loadCakes();
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                              SUB-TELA DE CONFIRMAÇÃO DO PEDIDO                                       //
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    //objeto confirmação do pedido
-    $scope.orderConfirmation = {};
-    $scope.orderConfirmation.address = {};
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////    
 
     //Controle de carregamento automatico do endereço pelo cep
     var _loadCEP = true;
@@ -375,7 +426,7 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
                 state: $scope.orderConfirmation.address.uf
             }
         ];
-        console.log(customer);
+        //console.log(customer);
 
         try {
             // 1) Cadastrar/Atualizar cliente
@@ -411,19 +462,34 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
                         {
                             productId: prodInList.id,
                             qty: prodInList.qty,
-                            price: prodInList.priceInOrder
+                            price: prodInList.priceInOrder,
+                            orderId: $scope.orderId
+                            //id: prodInList.orderItemId
                         };
 
                         orderItems.push(orderItem);
                     });
 
-                    orderComplete.orderItems = orderItems;                    
+                    orderComplete.orderItems = orderItems;
 
-                    ordersService.saveNewOrder(orderComplete)
+                    //console.log(orderItems);
+
+                    if ($routeParams.action == 'edit') {
+                        orderComplete.id = $scope.orderId;
+                        ordersService.editOrder(orderComplete)
                         .then(function () {
                             //Exibir msg de OK e voltar para tela inicial de Pedidos do Dia
                             $location.path('/home');
-                        });                    
+                        });
+                    }
+                    else {
+                        ordersService.saveNewOrder(orderComplete)
+                        .then(function () {
+                            //Exibir msg de OK e voltar para tela inicial de Pedidos do Dia
+                            $location.path('/home');
+                        });  
+                    }
+                                      
                 });                                                 
         }
         catch (e) {

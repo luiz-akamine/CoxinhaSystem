@@ -1,11 +1,12 @@
 ﻿'use strict';
-app.controller('homeController', ['$scope', 'ordersService', 'productsService', 'commonLibService', function ($scope, ordersService, productsService, commonLibService) {
+app.controller('homeController', ['$scope', 'ordersService', 'productsService', 'commonLibService', 'tempObjectService',
+    function ($scope, ordersService, productsService, commonLibService, tempObjectService) {
 
     //Data do pedido
     $scope.dtOrder = new Date();
 
     //Variável de controle do checkbox
-    $scope.showItens = true;
+    $scope.showItens = false;
 
     //Controle para exibição msg de nao pedidos
     $scope.showAlert = true;

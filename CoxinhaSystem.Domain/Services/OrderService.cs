@@ -72,5 +72,35 @@ namespace CoxinhaSystem.Domain.Services
 
             return _orderRepository.GetTotalByPeriod(dtBegin, dtEnd);
         }
+
+        public void UpdateComplete(Order order)
+        {
+            ServiceHelper.ValidateParams(new object[] { order });
+
+            //Verificando se existe
+            if (GetById(order.Id) == null)
+            {
+                throw new ArgumentException("order not exists");
+            }
+
+            _unitOfWork.Begin();
+            
+            //Atualizando Ordem Pai
+            _entityRepository.Update(order);
+
+            var orderItensRepository = ServiceLocator.Current.GetInstance<IOrderItemRepository>();
+
+            //Excluindo itens Filhos
+            orderItensRepository.DeleteItensOfOrder(order.Id);
+
+            //Criando novos itens filhos
+            var orderItensService = ServiceLocator.Current.GetInstance<IBaseService<OrderItem>>();
+            foreach (var orderItem in order.OrderItems)
+            {
+                orderItensService.Post(orderItem);
+            }
+
+            _unitOfWork.Commit();
+        }
     }
 }
