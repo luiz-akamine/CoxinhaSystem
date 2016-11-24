@@ -1,13 +1,13 @@
 ﻿//Componentes/diretivas customizados
 
 angular.module('myDirectives', [])
-.directive('orderCard', ['productsService', function (productsService) {
+.directive('orderCard', ['productsService', '$location', 'tempObjectService', '$window', function (productsService, $location, tempObjectService, $window) {
     return {
         restrict: "AE",
         scope: {
             caption: '@',
             orderjson: '=',
-            showitens: '='
+            showitens: '='            
         },
         //transclude: true,
         templateUrl: 'App/Components/orderCard.html',
@@ -15,13 +15,37 @@ angular.module('myDirectives', [])
         link: function (scope, element, attrs, directive) {
             
             this.orderjson = directive.$viewValue;
-        }*/
-        link: function (scope, element, attrs, directive) {
-
+        }*/                
+        link: function (scope, element, attrs, directive) {            
             //Retorna unidade do produto
             scope.getUnit = function (unitNumber) {
                 return productsService.getUnit(unitNumber);
-            }
+            };
+
+            //abre edição do pedido
+            scope.editOrder = function (order) {
+                tempObjectService.addOrder(order);
+                $location.path('/newOrder/edit');
+                //$window.location.href = '/#/newOrder/edit';
+            };
+
+            scope.toggleItens = function () {
+                if (scope.showitens) {
+                    element.find('#divItens').slideDown();
+                }
+                else {
+                    element.find('#divItens').slideUp();
+                }
+            };
+
+            element.find('#toggle').bind('click', function () {
+                scope.showitens = !scope.showitens;                
+                scope.$apply();
+                             
+                scope.toggleItens();
+            });
+
+            scope.toggleItens();
         }
     };
 }])
@@ -52,6 +76,13 @@ angular.module('myDirectives', [])
             element.bind("keyup", function () {
                 ctrl.$setViewValue(_formatDate(ctrl.$viewValue));
                 ctrl.$render();
+            });
+
+            ctrl.$formatters.push(function (data) {
+                //convert data from model format to view format
+                if (data) {
+                    return data.getDate() + '/' + data.getMonth() + '/' + data.getFullYear(); //converted
+                }                
             });
 
             //Atribuindo ao ngModel apenas quando atingir o número de caracteres completo de data
@@ -102,6 +133,16 @@ angular.module('myDirectives', [])
             element.bind("keyup", function () {
                 ctrl.$setViewValue(_formatTime(ctrl.$viewValue));
                 ctrl.$render();
+            });
+
+            ctrl.$formatters.push(function (data) {
+                //convert data from model format to view format
+                if (data) {
+                    var datePush = ('0' + (data.getHours() + (new Date().getTimezoneOffset() / 60))).substr(-2) + ':' + ('0' + data.getMinutes()).substr(-2);
+                    ctrl.$setViewValue(_formatTime(datePush));
+                    ctrl.$render();
+                    return datePush; //converted
+                }                
             });
 
             //Atribuindo ao ngModel apenas quando atingir o número de caracteres completo de data

@@ -67,10 +67,27 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
 
     //Método que cadastra Novo Pedido
     var _saveNewOrder = function (orderComplete) {
-        
+
         //Chamando WEB API no server que cadastra novo pedido
         return $http.post(
             serviceBase + 'api/order',
+            JSON.stringify(orderComplete),
+            {
+                headers: { 'Content-Type': 'application/json' }
+            }
+            ).success(function (result) {
+                return result;
+            }).error(function (response, status) {
+                console.log('erro ao cadastrar novo Pedido. Status: ' + status);
+            });
+    };
+
+    //Método que edita Pedido
+    var _editOrder = function (orderComplete) {
+
+        //Chamando WEB API no server que cadastra novo pedido
+        return $http.post(
+            serviceBase + 'api/order/PutComplete',
             JSON.stringify(orderComplete),
             {
                 headers: { 'Content-Type': 'application/json' }
@@ -86,6 +103,7 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
     ordersServiceFactory.getOrders = _getOrders;
     ordersServiceFactory.getOrdersByDtDelivery = _getOrdersByDtDelivery;
     ordersServiceFactory.saveNewOrder = _saveNewOrder;
+    ordersServiceFactory.editOrder = _editOrder;
     ordersServiceFactory.getSumTotalByPeriod = _getSumTotalByPeriod;
     ordersServiceFactory.getMostRequestedProducts = _getMostRequestedProducts;
 

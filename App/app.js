@@ -23,6 +23,11 @@ app.config(function ($routeProvider, $httpProvider, $locationProvider) {
         templateUrl: "/app/views/newOrder.html"
     });
 
+    $routeProvider.when("/newOrder/:action", {
+        controller: "newOrderController",
+        templateUrl: "/app/views/newOrder.html"
+    });
+
     $routeProvider.when("/searchOrders", {
         controller: "searchOrdersController",
         templateUrl: "/app/views/searchOrders.html"

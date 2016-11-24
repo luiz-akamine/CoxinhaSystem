@@ -22,7 +22,7 @@
     <link href="App/Views/reports.css" rel="stylesheet" />    
     <!--Custom CSS Fim-->
 </head>
-<body>
+<body style="position: fixed">
     <!--Header Título Início-->
     <div class="header">
         <div class="header-title center-child-text">Doces e Salgados da Zeza</div>
@@ -45,7 +45,7 @@
 
     <!--Conteúdo Início-->
     <main class="content">
-        <div class="main"><div data-ng-view="" style="box-shadow: none; overflow: auto; max-height: 100%; height: 100%; position: relative"></div></div>
+        <div class="main"><div data-ng-view="" style="box-shadow: none; overflow: auto; max-height: 100%; height: 100%; position: relative; padding-left: 1px;"></div></div>
     </main>
     <!--Conteúdo Fim-->
 
@@ -80,6 +80,7 @@
     <script src="app/Services/customersService.js"></script>
     <script src="app/Services/showAndHideService.js"></script>
     <script src="app/Services/commonLibService.js"></script>
+    <script src="app/Services/tempObjectService.js"></script>
 
     <!-- Load filters -->
     <script src="app/myFilters.js"></script>

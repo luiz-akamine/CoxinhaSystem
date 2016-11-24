@@ -111,6 +111,7 @@
     <Content Include="App\Services\ordersService.js" />
     <Content Include="App\Services\productsService.js" />
     <Content Include="App\Services\showAndHideService.js" />
+    <Content Include="App\Services\tempObjectService.js" />
     <Content Include="App\Views\customerCad.html" />
     <Content Include="App\Views\customers.css" />
     <Content Include="App\Views\customers.html" />

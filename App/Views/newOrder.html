@@ -1,5 +1,8 @@
 ﻿<!--Título Principal-->
-<h3 class="text-center content-title">Novo Pedido</h3>
+<div class="row" style="margin: 0">
+    <div ng-class="{ 'col-md-10': orderId, 'col-md-12': !orderId }" style="margin: 0"><h3 class="text-center content-title">{{action}} Pedido {{orderId}}</h3></div>
+    <div class="col-md-2" style="margin: 0; padding-right: 0.8rem" ng-show="orderId"><button class="btn btn-danger" style="width: 80%; float: right" ng-click="deleteOrder()">Excluir</button></div>
+</div>
 
 <!--Menu dos tipos de produto-->
 <div class="new-order-left-top-div new-order-menu-flex">
