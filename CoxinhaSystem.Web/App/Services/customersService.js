@@ -85,7 +85,7 @@ app.factory('customersService', ['$http', 'ngCoxinhaSettings', function ($http, 
     };
 
     //Método que altera cliente
-    var _updateCustomer = function (customer) {        
+    var _updateCustomer = function (customer) {
         //Chamando WEB API no server que altera Cliente
         return $http.post(
             serviceBase + 'api/customer/UpdateComplete',

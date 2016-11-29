@@ -1,6 +1,6 @@
 ﻿'use strict';
-app.controller('homeController', ['$scope', 'ordersService', 'productsService', 'commonLibService', 'tempObjectService',
-    function ($scope, ordersService, productsService, commonLibService, tempObjectService) {
+app.controller('homeController', ['$scope', 'ordersService', 'productsService', 'commonLibService', 'tempObjectService', '$modal', 'modalService',
+    function ($scope, ordersService, productsService, commonLibService, tempObjectService, $modal, modalService) {
 
     //Data do pedido
     $scope.dtOrder = new Date();

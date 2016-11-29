@@ -99,6 +99,23 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
             });
     };
 
+    //Método que apaga Pedido completo
+    var _deleteOrderComplete = function (order) {
+
+        //Chamando WEB API no server que apaga pedido
+        return $http.post(
+            serviceBase + 'api/order/DeleteComplete',
+            JSON.stringify(order),
+            {
+                headers: { 'Content-Type': 'application/json' }
+            }
+            ).success(function (result) {
+                return result;
+            }).error(function (response, status) {
+                console.log('erro ao exluir Pedido. Status: ' + status);
+            });
+    };
+
     //Definindo métodos desta factory a serem chamadas por outros js
     ordersServiceFactory.getOrders = _getOrders;
     ordersServiceFactory.getOrdersByDtDelivery = _getOrdersByDtDelivery;
@@ -106,6 +123,7 @@ app.factory('ordersService', ['$http', 'ngCoxinhaSettings', function ($http, ngC
     ordersServiceFactory.editOrder = _editOrder;
     ordersServiceFactory.getSumTotalByPeriod = _getSumTotalByPeriod;
     ordersServiceFactory.getMostRequestedProducts = _getMostRequestedProducts;
+    ordersServiceFactory.deleteOrderComplete = _deleteOrderComplete;
 
     return ordersServiceFactory;
 }]);

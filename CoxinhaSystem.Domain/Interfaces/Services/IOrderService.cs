@@ -17,6 +17,8 @@ namespace CoxinhaSystem.Domain.Interfaces.Services
         IQueryable<Order> GetByPhone(string phone);
         IQueryable<MostRequestedProducts> GetMostRequestedProducts(DateTime dtBegin, DateTime dtEnd, ProductType productType);
         Double GetTotalByPeriod(DateTime dtBegin, DateTime dtEnd);
-        Order GetCompleteById(int id);        
+        Order GetCompleteById(int id);
+        void UpdateComplete(Order order);
+        void DeleteComplete(int orderId);
     }
 }

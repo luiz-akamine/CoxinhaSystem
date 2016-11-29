@@ -19,6 +19,28 @@ namespace CoxinhaSystem.Domain.Services
             _orderRepository = ServiceLocator.Current.GetInstance<IOrderRepository>();
         }
 
+        public void DeleteComplete(int orderId)
+        {
+            //Verificando se existe
+            if (GetById(orderId) == null)
+            {
+                throw new ArgumentException("order not exists");
+            }
+
+            _unitOfWork.Begin();
+            
+            var orderItensRepository = ServiceLocator.Current.GetInstance<IOrderItemRepository>();
+
+            //Excluindo itens Filhos
+            orderItensRepository.DeleteItensOfOrder(orderId);
+
+            //Excluindo pai
+            _entityRepository.Delete(orderId);
+
+
+            _unitOfWork.Commit();
+        }
+
         public IQueryable<Order> GetByCustomer(int customerId)
         {
             ServiceHelper.ValidateParams(new object[] { customerId });

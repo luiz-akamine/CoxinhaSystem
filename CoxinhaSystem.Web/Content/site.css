@@ -153,3 +153,27 @@ li {
     justify-content: space-between;
     margin: 0;    
 }
+
+.modal {
+    display: block;
+    color: black;
+    background-color: white;
+    height: 16rem;
+    padding: 1rem;
+    margin: 0;
+}
+
+.modal-header {
+    padding: 0;
+    margin: 0;
+}
+
+.modal-body {
+    padding: 0;
+    margin: 0;
+}
+
+.modal-footer {
+    padding: 1rem;
+    margin: 0;
+}

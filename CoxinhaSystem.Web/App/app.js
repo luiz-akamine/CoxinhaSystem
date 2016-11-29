@@ -1,5 +1,5 @@
 ﻿//Arquivo raíz de configuração da aplicação
-var app = angular.module('CoxinhaApp', ['myDirectives', 'ngAnimate', 'ngRoute', 'ui.mask', 'ngGrid']);
+var app = angular.module('CoxinhaApp', ['myDirectives', 'ngAnimate', 'ngRoute', 'ui.mask', 'ngGrid', 'ui.bootstrap']);
 
 //Configurações das rotas da aplicação
 app.config(function ($routeProvider, $httpProvider, $locationProvider) {
