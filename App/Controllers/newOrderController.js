@@ -1,6 +1,6 @@
 ﻿'use strict';
-app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location', 'productsService', 'customersService', 'ordersService', 'showAndHideService', 'commonLibService', 'ngProductTypes', 'ngOrderStatus', '$routeParams', 'tempObjectService', '$window',
-    function ($scope, $http, $timeout, $location, productsService, customersService, ordersService, showAndHideService, commonLibService, ngProductTypes, ngOrderStatus, $routeParams, tempObjectService, $window) {
+app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location', 'productsService', 'customersService', 'ordersService', 'showAndHideService', 'commonLibService', 'ngProductTypes', 'ngOrderStatus', '$routeParams', 'tempObjectService', '$window', 'modalService',
+    function ($scope, $http, $timeout, $location, productsService, customersService, ordersService, showAndHideService, commonLibService, ngProductTypes, ngOrderStatus, $routeParams, tempObjectService, $window, modalService) {
 
     //Lista de produtos a ser exibida para seleção
     $scope.listProducts = [];
@@ -503,5 +503,29 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
             event.preventDefault();
             jq('#cliente').focus();
         }
+    }
+
+    //Exclusão do pedido
+    $scope.deleteOrder = function () {
+
+        
+        var modalOptions = {
+            closeButtonText: 'Não',
+            actionButtonText: 'Sim',
+            headerText: 'Pedido ' + $scope.orderId,
+            bodyText: 'Deseja exluir este pedido?'
+        };
+
+        //Pedido Pai
+        var orderComplete = {};
+        orderComplete.id = $scope.orderId;
+
+        modalService.showModal({}, modalOptions).then(function (result) {
+            ordersService.deleteOrderComplete(orderComplete)
+                        .then(function () {
+                            //Exibir msg de OK e voltar para tela inicial de Pedidos do Dia
+                            $location.path('/home');
+                        });
+        });
     }
 }]);
