@@ -10,106 +10,115 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="App/app.js">
-      <publishTime>01/10/2016 00:16:14</publishTime>
+      <publishTime>11/24/2016 21:39:52</publishTime>
+    </File>
+    <File Include="App/Components/modalDialog.html">
+      <publishTime>11/28/2016 21:58:25</publishTime>
     </File>
     <File Include="App/Components/orderCard.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/21/2016 20:47:01</publishTime>
     </File>
     <File Include="App/Components/orderCard.html">
-      <publishTime>11/21/2016 20:38:51</publishTime>
+      <publishTime>11/21/2016 23:16:44</publishTime>
     </File>
     <File Include="App/Controllers/customerCadController.js">
-      <publishTime>05/10/2016 22:55:13</publishTime>
+      <publishTime>10/05/2016 22:55:13</publishTime>
     </File>
     <File Include="App/Controllers/customersController.js">
-      <publishTime>01/10/2016 00:05:50</publishTime>
+      <publishTime>10/01/2016 00:05:50</publishTime>
     </File>
     <File Include="App/Controllers/homeController.js">
-      <publishTime>11/21/2016 20:40:14</publishTime>
+      <publishTime>11/28/2016 21:59:24</publishTime>
     </File>
     <File Include="App/Controllers/newOrderController.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/11/2017 19:35:04</publishTime>
     </File>
     <File Include="App/Controllers/productCadController.js">
-      <publishTime>01/10/2016 12:14:50</publishTime>
+      <publishTime>10/01/2016 12:14:50</publishTime>
     </File>
     <File Include="App/Controllers/productsController.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>09/29/2016 21:36:18</publishTime>
     </File>
     <File Include="App/Controllers/reportsController.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/24/2016 22:57:57</publishTime>
     </File>
     <File Include="App/Controllers/searchOrdersController.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>08/16/2016 20:03:04</publishTime>
     </File>
     <File Include="App/myDirectives.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/11/2017 19:37:46</publishTime>
     </File>
     <File Include="App/myFilters.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>09/15/2016 21:18:08</publishTime>
     </File>
     <File Include="App/Services/commonLibService.js">
-      <publishTime>05/10/2016 22:54:15</publishTime>
+      <publishTime>10/05/2016 22:54:15</publishTime>
     </File>
     <File Include="App/Services/customersService.js">
-      <publishTime>05/10/2016 22:43:25</publishTime>
+      <publishTime>11/28/2016 22:12:43</publishTime>
+    </File>
+    <File Include="App/Services/modalService.js">
+      <publishTime>02/13/2017 21:32:34</publishTime>
     </File>
     <File Include="App/Services/ordersService.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/28/2016 22:22:01</publishTime>
     </File>
     <File Include="App/Services/productsService.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>09/29/2016 23:07:49</publishTime>
     </File>
     <File Include="App/Services/showAndHideService.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/24/2016 21:12:41</publishTime>
+    </File>
+    <File Include="App/Services/tempObjectService.js">
+      <publishTime>11/21/2016 21:51:55</publishTime>
     </File>
     <File Include="App/Views/cad.css">
-      <publishTime>01/10/2016 00:18:48</publishTime>
+      <publishTime>10/01/2016 00:18:48</publishTime>
     </File>
     <File Include="App/Views/customerCad.html">
-      <publishTime>05/10/2016 22:10:49</publishTime>
+      <publishTime>10/05/2016 22:10:49</publishTime>
     </File>
     <File Include="App/Views/customers.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>09/30/2016 23:50:07</publishTime>
     </File>
     <File Include="App/Views/customers.html">
-      <publishTime>01/10/2016 00:07:58</publishTime>
+      <publishTime>10/01/2016 00:07:58</publishTime>
     </File>
     <File Include="App/Views/home.html">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/28/2016 21:59:07</publishTime>
     </File>
     <File Include="App/Views/newOrder.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/11/2017 18:05:06</publishTime>
     </File>
     <File Include="App/Views/newOrder.html">
-      <publishTime>01/10/2016 08:55:45</publishTime>
+      <publishTime>05/11/2017 18:51:18</publishTime>
     </File>
     <File Include="App/Views/productCad.html">
-      <publishTime>01/10/2016 12:09:48</publishTime>
+      <publishTime>10/01/2016 12:09:48</publishTime>
     </File>
     <File Include="App/Views/products.html">
-      <publishTime>01/10/2016 00:07:24</publishTime>
+      <publishTime>10/01/2016 00:07:24</publishTime>
     </File>
     <File Include="App/Views/reports.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/24/2016 22:55:02</publishTime>
     </File>
     <File Include="App/Views/reports.html">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/23/2016 00:00:19</publishTime>
     </File>
     <File Include="App/Views/searchOrders.html">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/24/2016 22:18:26</publishTime>
     </File>
     <File Include="ApplicationInsights.config">
-      <publishTime>02/08/2016 20:00:04</publishTime>
+      <publishTime>08/02/2016 20:00:04</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
-      <publishTime>02/08/2016 20:00:04</publishTime>
+      <publishTime>08/02/2016 20:00:04</publishTime>
     </File>
     <File Include="bin/CoxinhaSystem.Web.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/28/2016 22:57:12</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
-      <publishTime>07/12/2015 19:04:38</publishTime>
+      <publishTime>12/07/2015 19:04:38</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.DependencyCollector.dll">
       <publishTime>06/06/2016 15:40:16</publishTime>
@@ -130,211 +139,211 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 10:42:24</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/15/2015 02:06:24</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:44</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/roslyn/System.Collections.Immutable.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/roslyn/System.Reflection.Metadata.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css.map">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.min.css">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.min.css.map">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="Content/bootstrap.css.map">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css.map">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="Content/font-awesome.min.css">
-      <publishTime>11/08/2016 22:05:36</publishTime>
+      <publishTime>08/11/2016 22:05:36</publishTime>
     </File>
     <File Include="Content/loading-bar.css">
-      <publishTime>11/08/2016 21:33:51</publishTime>
+      <publishTime>08/11/2016 21:33:51</publishTime>
     </File>
     <File Include="Content/loading-bar.min.css">
-      <publishTime>11/08/2016 21:33:51</publishTime>
+      <publishTime>08/11/2016 21:33:51</publishTime>
     </File>
     <File Include="Content/ng-grid.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>09/25/2016 16:27:40</publishTime>
     </File>
     <File Include="Content/ng-grid.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>09/25/2016 16:27:55</publishTime>
     </File>
     <File Include="Content/reset.css">
-      <publishTime>11/08/2016 21:53:17</publishTime>
+      <publishTime>08/11/2016 21:53:17</publishTime>
     </File>
     <File Include="Content/site.css">
-      <publishTime>06/10/2016 22:38:50</publishTime>
+      <publishTime>11/28/2016 21:57:17</publishTime>
     </File>
     <File Include="Content/ui-bootstrap-csp.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>08/30/2016 22:37:16</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.eot">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>07/13/2016 20:28:18</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.svg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>07/13/2016 20:28:18</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.ttf">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>07/13/2016 20:28:18</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.woff">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>07/13/2016 20:28:18</publishTime>
     </File>
     <File Include="fonts/FontAwesome.otf">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>07/13/2016 20:28:18</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>11/08/2016 21:19:42</publishTime>
+      <publishTime>08/11/2016 21:19:42</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>11/08/2016 21:19:41</publishTime>
+      <publishTime>08/11/2016 21:19:41</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>06/10/2016 21:08:24</publishTime>
+      <publishTime>11/24/2016 21:41:20</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>08/30/2016 22:37:17</publishTime>
     </File>
     <File Include="Scripts/angular-animate.js">
-      <publishTime>11/08/2016 21:17:59</publishTime>
+      <publishTime>08/11/2016 21:17:59</publishTime>
     </File>
     <File Include="Scripts/angular-animate.min.js">
-      <publishTime>11/08/2016 21:17:59</publishTime>
+      <publishTime>08/11/2016 21:17:59</publishTime>
     </File>
     <File Include="Scripts/angular-animate.min.js.map">
-      <publishTime>11/08/2016 21:17:59</publishTime>
+      <publishTime>08/11/2016 21:17:59</publishTime>
     </File>
     <File Include="Scripts/angular-local-storage.js">
-      <publishTime>11/08/2016 21:36:30</publishTime>
+      <publishTime>08/11/2016 21:36:30</publishTime>
     </File>
     <File Include="Scripts/angular-local-storage.min.js">
-      <publishTime>11/08/2016 21:36:30</publishTime>
+      <publishTime>08/11/2016 21:36:30</publishTime>
     </File>
     <File Include="Scripts/angular-local-storage.min.js.map">
-      <publishTime>11/08/2016 21:36:30</publishTime>
+      <publishTime>08/11/2016 21:36:30</publishTime>
     </File>
     <File Include="Scripts/angular-mocks.js">
-      <publishTime>11/08/2016 21:15:45</publishTime>
+      <publishTime>08/11/2016 21:15:45</publishTime>
     </File>
     <File Include="Scripts/angular-route.js">
-      <publishTime>11/08/2016 21:35:48</publishTime>
+      <publishTime>08/11/2016 21:35:48</publishTime>
     </File>
     <File Include="Scripts/angular-route.min.js">
-      <publishTime>11/08/2016 21:35:48</publishTime>
+      <publishTime>08/11/2016 21:35:48</publishTime>
     </File>
     <File Include="Scripts/angular-route.min.js.map">
-      <publishTime>11/08/2016 21:35:48</publishTime>
+      <publishTime>08/11/2016 21:35:48</publishTime>
     </File>
     <File Include="Scripts/angular.js">
-      <publishTime>11/08/2016 21:15:45</publishTime>
+      <publishTime>08/11/2016 21:15:45</publishTime>
     </File>
     <File Include="Scripts/angular.min.js">
-      <publishTime>11/08/2016 21:15:45</publishTime>
+      <publishTime>08/11/2016 21:15:45</publishTime>
     </File>
     <File Include="Scripts/angular.min.js.map">
-      <publishTime>11/08/2016 21:15:45</publishTime>
+      <publishTime>08/11/2016 21:15:45</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>11/08/2016 21:19:41</publishTime>
+      <publishTime>08/11/2016 21:19:41</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>11/08/2016 21:19:41</publishTime>
+      <publishTime>08/11/2016 21:19:41</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.0.js">
-      <publishTime>11/08/2016 21:18:21</publishTime>
+      <publishTime>08/11/2016 21:18:21</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.0.min.js">
-      <publishTime>11/08/2016 21:18:21</publishTime>
+      <publishTime>08/11/2016 21:18:21</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.0.min.map">
-      <publishTime>11/08/2016 21:18:21</publishTime>
+      <publishTime>08/11/2016 21:18:21</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.0.slim.js">
-      <publishTime>11/08/2016 21:18:20</publishTime>
+      <publishTime>08/11/2016 21:18:20</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.0.slim.min.js">
-      <publishTime>11/08/2016 21:18:20</publishTime>
+      <publishTime>08/11/2016 21:18:20</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.0.slim.min.map">
-      <publishTime>11/08/2016 21:18:20</publishTime>
+      <publishTime>08/11/2016 21:18:20</publishTime>
     </File>
     <File Include="Scripts/loading-bar.min.js">
-      <publishTime>11/08/2016 21:38:02</publishTime>
+      <publishTime>08/11/2016 21:38:02</publishTime>
     </File>
     <File Include="Scripts/mask.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>08/30/2016 22:46:16</publishTime>
     </File>
     <File Include="Scripts/mask.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>08/30/2016 22:46:15</publishTime>
     </File>
     <File Include="Scripts/momentjs.min.js">
-      <publishTime>02/09/2016 23:56:58</publishTime>
+      <publishTime>09/02/2016 23:56:58</publishTime>
     </File>
     <File Include="Scripts/ng-grid.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/29/2016 20:05:30</publishTime>
     </File>
     <File Include="Scripts/ng-grid.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/28/2016 22:11:44</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/28/2016 22:57:15</publishTime>
     </File>
   </ItemGroup>
 </Project>

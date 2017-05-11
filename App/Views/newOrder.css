@@ -30,7 +30,7 @@
 
 .new-order-left-bottom-div {
     width: 49%;
-    height: 43.1%;
+    height: 38.1%;
     float: left;
     margin-left: 0.3%;
     box-shadow: 0 0 0.3rem gray;
@@ -39,7 +39,7 @@
 
 .new-order-right-bottom-div {
     width: 49%;
-    height: 43.1%;
+    height: 38.1%;
     float: left;
     margin-left: 1%;
     position: relative;
@@ -58,11 +58,15 @@
 .new-order-btn-cancel {
     float: left;
     width: 40%;
+    height: 2.75rem !important;
+    padding: 0.1rem;
 }
 
 .new-order-btn-confirm {
     float: right;
     width: 40%;
+    height: 2.75rem !important;
+    padding: 0.1rem;
 }
 
 .animate-show {  

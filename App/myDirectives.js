@@ -81,7 +81,8 @@ angular.module('myDirectives', [])
             ctrl.$formatters.push(function (data) {
                 //convert data from model format to view format
                 if (data) {
-                    return data.getDate() + '/' + data.getMonth() + '/' + data.getFullYear(); //converted
+                    debugger;
+                    return data.getDate() + '/' + (data.getMonth()+1) + '/' + data.getFullYear(); //converted
                 }                
             });
 

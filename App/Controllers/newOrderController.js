@@ -15,6 +15,8 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
     $scope.orderTotalWithDiscount = 0;
     //Unidade
     $scope.unit = 0;
+    //descrição
+    $scope.description = '';
 
     //objeto confirmação do pedido
     $scope.orderConfirmation = {};
@@ -223,6 +225,8 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
                 };
             });
 
+            $scope.description = orderToEdit.description;
+
             //Endereço
             $scope.orderConfirmation.address.cep = commonLibService.getCepFormated(orderToEdit.customer.addresses[0].cep);
             $scope.orderConfirmation.address.logradouro = orderToEdit.customer.addresses[0].addressName;
@@ -238,9 +242,10 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
 
             //Data
             var dtDelivery = new Date(orderToEdit.deliveryDate);
+            debugger;
             $scope.orderConfirmation.dtEntrega = new Date(dtDelivery.getFullYear(), dtDelivery.getMonth(), dtDelivery.getDate());
-            $scope.orderConfirmation.tmEntrega = new Date(0, 0, 0, dtDelivery.getHours(), dtDelivery.getMinutes(), 0);
-
+            $scope.orderConfirmation.tmEntrega = new Date(0, 0, 0, dtDelivery.getHours()-3, dtDelivery.getMinutes(), 0);
+            
             $scope.refreshTotals();
         }    
     }
@@ -453,7 +458,8 @@ app.controller('newOrderController', ['$scope', '$http', '$timeout', '$location'
                     orderComplete.paid = false;
                     orderComplete.status = ngOrderStatus.Created;
                     orderComplete.total = $scope.orderTotal;
-                    orderComplete.totalWithDiscount = $scope.orderTotalWithDiscount;                    
+                    orderComplete.totalWithDiscount = $scope.orderTotalWithDiscount;
+                    orderComplete.description = $scope.description;
 
                     //Detalhes do Pedido
                     var orderItems = [];
